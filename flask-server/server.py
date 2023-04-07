@@ -2,7 +2,7 @@ import os
 import pathlib
 
 import requests
-from flask import Flask, session, abort, redirect, request
+from flask import Flask, session, abort, redirect, request, Response
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
@@ -38,6 +38,10 @@ def login():
     authorization_url, state = flow.authorization_url()
     session["state"] = state
     return redirect(authorization_url)
+
+
+
+
 
 
 @app.route("/callback")
@@ -80,6 +84,57 @@ def index():
 @login_is_required
 def protected_area():
     return f"Hello {session['name']}! <br/> <a href='/logout'><button>Logout</button></a>"
+
+
+@app.route("/class_room", methods = ['GET'])
+def class_room():
+    class_rooms = request.get_data()
+    #find class rooms
+    return Response(class_rooms, mimetype='application/json', status=200)
+
+@app.route("/course", methods = ['GET'])
+def course():
+    courses = request.get_data()
+    #find courses
+    return Response(courses, mimetype='application/json', status=200)
+
+@app.route("/classes", methods = ['GET'])
+def classes():
+    lecturer = request.get_data()
+    #find lecturers classes
+    classes = 5
+    return Response(classes, mimetype='application/json', status=200)
+
+@app.route("/notice_board", methods = ['GET', 'POST'])
+def notice_board():
+    if request.method == 'POST':
+        #create notice
+        return Response("Notice Created", mimetype='application/json', status=200)
+    if request.method == 'GET':
+        lecturer = request.get_data()
+        #find lecturers notice board
+        notice_board = 5
+        return Response(notice_board, mimetype='application/json', status=200)
+    return Response("Error", mimetype='application/json', status=400)
+
+@app.route("/privileges", methods = ['GET', 'POST'])
+def privileges():
+    if request.method == 'GET':
+        lecturer = request.get_data()
+        #find lecturers privileges
+        privileges = 5
+        return Response(privileges, mimetype='application/json', status=200)
+    if request.method == 'POST':
+        #create privilege
+        return Response("Privilege Created", mimetype='application/json', status=200)
+    return Response("Error", mimetype='application/json', status=400)
+
+@app.route("/consultations", methods = ['POST'])
+def consultations():
+    consultation = request.get_json()
+    #create consultation
+    return Response(consultation, mimetype='application/json', status=200)
+
 
 
 if __name__ == "__main__":
