@@ -2,6 +2,8 @@ import os
 import pathlib
 
 import requests
+import time
+import threading
 from flask import Flask, session, abort, redirect, request, Response
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
@@ -16,6 +18,9 @@ os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1" # to allow Http traffic for loca
 GOOGLE_CLIENT_ID = "928732582264-u78i3eoakbrsppi84ris4g2qke2ra868.apps.googleusercontent.com"
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
 
+user_timeout_table = {}
+on_exit = True
+
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email", "openid"],
@@ -25,22 +30,18 @@ flow = Flow.from_client_secrets_file(
 
 def login_is_required(function):
     def wrapper(*args, **kwargs):
-        if "google_id" not in session:
+        if session["state"] not in user_timeout_table:
             return abort(401)  # Authorization required
         else:
             return function()
 
     return wrapper
 
-
 @app.route("/login")
 def login():
     authorization_url, state = flow.authorization_url()
     session["state"] = state
     return redirect(authorization_url)
-
-
-
 
 
 
@@ -63,6 +64,8 @@ def callback():
         request=token_request,
         audience=GOOGLE_CLIENT_ID
     )
+    user_timeout_table[session["state"]] = time.time()
+    app.logger.info(user_timeout_table)
 
     session["google_id"] = id_info.get("sub")
     session["name"] = id_info.get("name")
@@ -83,6 +86,7 @@ def index():
 @app.route("/protected_area")
 @login_is_required
 def protected_area():
+    app.logger.info(session)
     return f"Hello {session['name']}! <br/> <a href='/logout'><button>Logout</button></a>"
 
 
@@ -129,13 +133,33 @@ def privileges():
         return Response("Privilege Created", mimetype='application/json', status=200)
     return Response("Error", mimetype='application/json', status=400)
 
+
 @app.route("/consultations", methods = ['POST'])
 def consultations():
     consultation = request.get_json()
     #create consultation
     return Response(consultation, mimetype='application/json', status=200)
 
+def timeout_manager_func():
+    while(on_exit):
+        print(user_timeout_table)
+        time.sleep(1)
+        to_delete = []
+        for user in user_timeout_table:
+            if user_timeout_table[user] < time.time()-10:
+                to_delete.append(user)
+        for user in to_delete:
+            del user_timeout_table[user]
+
+def timeout_update_func():
+    if session["state"] in user_timeout_table:
+        user_timeout_table[session["state"]] = time.time()
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    timeout_manager = threading.Thread(target=timeout_manager_func)
+    timeout_manager.start()
+    app.run(host='127.0.0.1', port=8080, debug=True)
+    on_exit = False
+    timeout_manager.join()
+
