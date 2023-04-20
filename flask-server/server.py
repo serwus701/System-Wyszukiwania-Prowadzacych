@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import os
 import pathlib
 
@@ -51,7 +52,7 @@ def callback():
     flow.fetch_token(authorization_response=request.url)
 
     if not session["state"] == request.args["state"]:
-        abort(500)  
+        abort(500)
         # State does not match!
 
     credentials = flow.credentials
@@ -162,4 +163,3 @@ if __name__ == "__main__":
     app.run(host='127.0.0.1', port=8080, debug=True)
     on_exit = False
     timeout_manager.join()
-
