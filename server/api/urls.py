@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.getByName, name='routes'),
+    path('', views.getTimeTableByName, name='routes'),
 ]
