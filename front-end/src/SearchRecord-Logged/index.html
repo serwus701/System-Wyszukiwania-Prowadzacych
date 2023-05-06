@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <title>SWP</title>
+        <title>Prowadzący PWR</title>
         <link rel="stylesheet" href="style.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,16 +14,51 @@
     </head>
     <body>
 
+        <script>
+            // JavaScript code to populate the calendar with schedule data
+            const monday7 = document.querySelector('#calendar .cell:nth-child(6)');
+            monday7.textContent = 'Meeting';
+            
+            const tuesday8 = document.querySelector('#calendar .cell:nth-child(12)');
+            tuesday8.textContent = 'Presentation';
+        </script>
+
+
         <nav>
             <ul>
               <li><a class="navbar-item" href="#">Profil</a></li>
               <li><a class="navbar-item" href="#">Konsultacje</a></li>
               <li><a class="navbar-item" href="#">Rezerwacje</a></li>
               <li><a class="navbar-item" href="#">Administracja</a></li>
-              <li><input type="text" placeholder="Marek Bawiec" class="search-bar"></li>
-              <li><a class="wyloguj-button">wyloguj</a></li>
+              <li><input type="text" placeholder="wyszukany Prowadzący" class="search-bar"></li>
+              <li><a class="wyloguj-button">Wyloguj</a></li>
             </ul>
           </nav>
+
+          <div class="container">
+            <div class="left-third">
+                <div class="green-div">
+                    <span>godzina oraz parzystość</span>
+                    <span>Nazwa kursu</span>
+                    <span>sala</span>
+                </div>
+                <div class="blue-div">
+                    <span>Prowadzący</span>
+                    <span>katedra</span>
+                </div>
+                <div class="blue-div">
+                    <span>ogloszenie</span>
+                </div>
+                <div class="blue-div">
+                    <span>zoom:</span>
+                    <span>teams:</span>
+                    <span>web:</span>
+                </div>
+            </div>
+            <div class="right-two-thirds">
+                <span>dupa</span>                  
+            </div>
+          </div>
 
     </body>
 </html>
