@@ -1,0 +1,100 @@
+body {
+    background-color: #2F8F9D;
+}
+
+input[type=text], select {
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #036371;
+    overflow: hidden;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  nav li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+
+.navbar-item{
+
+    width: 129px;
+    height: 39px;
+
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+
+    color: #FFFFFF;
+
+    text-decoration: none;
+}
+
+.wyloguj-button{
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    width: 129px;
+    height: 39px;
+
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+
+    color: #FFFFFF;
+
+    text-decoration: none;
+    
+}
+
+.search-bar{
+
+    margin-top: 1%;
+    margin-bottom: 1%;
+    
+    text-align: center;
+    box-sizing: border-box;
+
+    width: auto;
+    height: 60px;
+    top: 268px;
+
+
+    background: #B3E8E5;
+    border: 5px solid #036371;
+    border-radius: 75px;
+
+    background-image: url('searchicon.png');
+    
+}
