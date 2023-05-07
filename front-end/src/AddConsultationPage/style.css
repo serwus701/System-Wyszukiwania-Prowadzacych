@@ -217,74 +217,61 @@ li a {
     text-decoration: none;
 }
 
-.component{
-    margin-top: 1%;
-    margin-bottom: 1%;
-    
+.component, .component-wide{
     text-align: right;
     box-sizing: border-box;
 
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    width: auto;
-    height: 58px;
+    border-radius: 75px;
     
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 700;
     font-size: 28px;
     line-height: 39px;
+}
+
+.component{
+    margin-top: 1%;
+    margin-bottom: 1%;
+
+    width: auto;
+    height: 58px;
 
     color: #036371;
 
     background: #B3E8E5;
     border: 3px solid #8D9293;
-    border-radius: 75px;   
 }
 
-
 .component-wide{
-    text-align: right;
-    box-sizing: border-box;
-
     padding-right: 0%;
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
     width: 150%;
     height: 64px;
-    
-    font-family: 'Montserrat';
-    font-style: italic;
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 39px;
 
     color: #036371;
 
     background: #B3E8E5;
     border: 3px solid #036371;
-    border-radius: 75px;
+}
+
+.component-line, .component-line-right{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
 }
 
 .component-line{
     margin-left: 12%;
     width: 74%;
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    align-items: stretch;
 }
 
 .component-line-right{
     width: 100%;
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    align-items: stretch;
 }
 
 .component-block{
@@ -317,12 +304,19 @@ li a {
 }
 
 .column1, .column2 {
-    flex-basis: 50%;
     flex-grow: 1;
     flex-shrink: 1;
     box-sizing: border-box;
     padding: 10px;
   }
+
+.column1 {
+    flex-basis: 65%;
+}
+
+.column2 {
+    flex-basis: 35%;
+}
 
 .date-down{
     position: relative;
@@ -330,7 +324,7 @@ li a {
     height: fill;
 }
 
-.icon-pen{
+.icon-pen, .icon-bin{
     box-sizing: border-box;
 
     margin-left: 0%;
@@ -350,87 +344,46 @@ li a {
     border: 3px solid #036371;
     border-radius: 75px;
 
-    background-image: url('assets/penicon.png');
     background-repeat: no-repeat;
     background-size: 30px;
     background-position: center;
-    /* Inside auto layout */
+
     flex: none;
     order: 4;
     flex-grow: 0;
+}
+
+.icon-pen{
+    background-image: url('assets/penicon.png');
 }
 
 .icon-bin{
-    box-sizing: border-box;
+    background-image: url('assets/binicon.png');
+}
 
-    margin-left: 0%;
-    
-    text-align: right;
-    box-sizing: border-box;
-    
+.date-first-item, .date-main-item{
+    width: auto;
     display: flex;
     position: relative;
-    justify-content: center;
-    align-items: center;
+    width: auto;
+    height: auto;
+    text-align: left;
+    justify-content: left;
 
-    width: 65px;
-    height: 65px;
-
-    background: #B3E8E5;
-    border: 3px solid #036371;
-    border-radius: 75px;
-
-    background-image: url('assets/binicon.png');
-    background-repeat: no-repeat;
-    background-size: 30px;
-    background-position: center;
-    /* Inside auto layout */
-    flex: none;
-    order: 4;
-    flex-grow: 0;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    line-height: auto;
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 .date-first-item{
-    width: 100%;
-    position: relative;
-    display: flex;
-    justify-content: left;
-    align-items: stretch;
-    
-    margin-right: 0%;
-    margin-top: 0%;
-    display: flex;
-    position: relative;
-    width: auto;
-    height: auto;
-    text-align: left;
-
-    font-family: 'Montserrat';
-    font-weight: 700;
     font-size: 20px;
-    line-height: auto;
-
-    color: #FFFFFF;
-
-    text-decoration: none;
 }
 
 .date-main-item{
-    display: flex;
-    position: relative;
-    width: auto;
-    height: auto;
-    text-align: left;
-
-    font-family: 'Montserrat';
     font-style: bold;
-    font-weight: 700;
     font-size: 24px;
-    line-height: auto;
-
-    color: #FFFFFF;
-
-    text-decoration: none;
 }
 
 .scroll{
