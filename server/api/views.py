@@ -1,7 +1,7 @@
 import json
 
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from datetime import datetime
 import json
 import sys
@@ -16,14 +16,28 @@ usos = USOSAPIConnection(usosapi_base_url, consumer_key, consumer_secret)
 
 
 def getByName(request):
+    if request.method != 'GET':
+        return HttpResponse(status=405)
     query = json.loads(request.body.decode('utf-8'))
     params = {'format': 'json', 'lang': 'pl', 'fields': 'items', 'query': query}
     response = usos.get('services/users/search2', **params)
 
     return JsonResponse(response)
 
+def createFoldersForNewUsers(request):
+    if request.method != 'GET':
+        return HttpResponse(status=405)
+    lecurers = json.loads("./cache/lecturers.json")
+    for lecturer in lecurers:
+        if int(lecturer['id']) > 300 and int(lecturer['id']) < 400:
+            if not os.path.exists('./lecturers/'+lecturer['id']):
+                os.makedirs('./lecturers/'+lecturer['id'])
+    return JsonResponse("ok")
+
 
 def getTimeTableByName(request):
+    if request.method != 'GET':
+        return HttpResponse(status=405)
     lecturer_response = json.loads(getByName(request).content)
     id = lecturer_response["items"][0]["user"]["id"]
     params = {'format': 'json', 'user_id': id}
@@ -32,6 +46,8 @@ def getTimeTableByName(request):
     return JsonResponse(response, safe=False)
 
 def getAllClassroms(request):
+    if request.method != 'GET':
+        return HttpResponse(status=405)
     merged_dict = {}
     for j in range(10,25):
         query = ""
@@ -46,9 +62,11 @@ def getAllClassroms(request):
         time.sleep(0.5)
     with open('./cache/classrooms.json', 'w') as f:
         json.dump(merged_dict, f)
-    return JsonResponse("ok", safe=False)
+    return HttpResponse(status=200)
 
 def getClassroom(request):
+    if request.method != 'GET':
+        return HttpResponse(status=405)
     room_id = json.loads(request.body.decode('utf-8'))
     params = {'format': 'json', 'room_id': room_id}
     response = usos.get('services/tt/room', **params)
@@ -56,6 +74,8 @@ def getClassroom(request):
 
 
 def getAllLecturers(request):
+    if request.method != 'GET':
+        return HttpResponse(status=405)
     with open('./cache/lecturers_tmp.json', 'w') as f:
         for j in range(0, 4000):
             query = ""
@@ -81,4 +101,4 @@ def getAllLecturers(request):
     
     os.remove('./cache/lecturers_tmp.json')
 
-    return JsonResponse("ok", safe=False)
+    return HttpResponse(status=200)
