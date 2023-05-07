@@ -48,6 +48,13 @@ def getAllClassroms(request):
         json.dump(merged_dict, f)
     return JsonResponse("ok", safe=False)
 
+def getClassroom(request):
+    room_id = json.loads(request.body.decode('utf-8'))
+    params = {'format': 'json', 'room_id': room_id}
+    response = usos.get('services/tt/room', **params)
+    return JsonResponse(response, safe=False)
+
+
 def getAllLecturers(request):
     with open('./cache/lecturers_tmp.json', 'w') as f:
         for j in range(0, 4000):
