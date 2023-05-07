@@ -27,12 +27,11 @@ def getByName(request):
 def createFoldersForNewUsers(request):
     if request.method != 'GET':
         return HttpResponse(status=405)
-    lecurers = json.loads("./cache/lecturers.json")
-    for lecturer in lecurers:
-        if int(lecturer['id']) > 300 and int(lecturer['id']) < 400:
-            if not os.path.exists('./lecturers/'+lecturer['id']):
-                os.makedirs('./lecturers/'+lecturer['id'])
-    return JsonResponse("ok")
+    lecturers = json.loads(open('./cache/lecturers.json').read())
+    for lecturer in lecturers:
+        if not os.path.exists('./lecturers/'+lecturer["id"]):
+            os.makedirs('./lecturers/'+lecturer["id"])
+    return JsonResponse("ok", safe=False)
 
 
 def getTimeTableByName(request):
@@ -76,29 +75,27 @@ def getClassroom(request):
 def getAllLecturers(request):
     if request.method != 'GET':
         return HttpResponse(status=405)
-    with open('./cache/lecturers_tmp.json', 'w') as f:
-        for j in range(0, 4000):
+
+    with open('./cache/lecturers.json', 'w') as file:
+        is_first_saved = False
+        file.write("[")
+        chunk_size = 100
+        for j in range(0, 400000, chunk_size):
             query = ""
-            for i in range(j*100,j*100+100):
+            for i in range(j, j + chunk_size):
                 query = query + str(i)
-                if i != j*100+100-1:
-                    query = query + "|"
-            params = {'user_ids': str(query), 'fields': 'id|first_name|last_name', 'format': 'json'}
+                if i != j + chunk_size - 1:
+                    query += "|"
+            params = {'user_ids': query, 'fields': 'id|first_name|last_name', 'format': 'json'}
             response = usos.get('services/users/users', **params)
-            if bool(response):
-                filtered_json = {k:v for k, v in response.items() if v is not None}
-                json.dump(filtered_json, f)
-                f.write('\n')
+            if response:
+                filtered_json = [v for k, v in response.items() if v is not None]
+                for lecturer in filtered_json:
+                    if is_first_saved:
+                        file.write(',\n')
+                    json.dump(lecturer, file)
+                    is_first_saved = True
             time.sleep(0.34)
-
-    with open('./cache/lecturers_tmp.json', 'r') as f:
-        lines = f.readlines()
-
-    with open('./cache/lecturers.json', 'w') as f:
-        for line in lines:
-            if line.strip() and line.strip() != '{}':
-                f.write(line)
-    
-    os.remove('./cache/lecturers_tmp.json')
+        file.write("]")
 
     return HttpResponse(status=200)
