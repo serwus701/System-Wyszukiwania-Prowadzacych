@@ -80,7 +80,7 @@ def getAllLecturers(request):
         is_first_saved = False
         file.write("[")
         chunk_size = 100
-        for j in range(0, 400000, chunk_size):
+        for j in range(0, 1000000, chunk_size):
             query = ""
             for i in range(j, j + chunk_size):
                 query = query + str(i)
