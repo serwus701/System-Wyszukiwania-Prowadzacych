@@ -1,0 +1,178 @@
+body {
+    background-color: #B3E8E5;
+}
+
+input[type=text], select {
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+}
+
+.pwr-logo{
+  width: auto;
+  height: 70px;
+  margin: 5px;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #036371;
+    overflow: hidden;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  nav li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+
+.navbar-item{
+
+    width: 129px;
+    height: 39px;
+
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+
+    color: #FFFFFF;
+
+    text-decoration: none;
+}
+
+.wyloguj-button{
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    width: 129px;
+    height: 39px;
+
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+
+    color: #FFFFFF;
+
+    text-decoration: none;
+    
+}
+
+.search-bar{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    
+    text-align: center;
+    box-sizing: border-box;
+    width: 130%;
+    height: 60px;
+    top: 268px;
+
+
+    background: #B3E8E5;
+    border: 5px solid #036371;
+    border-radius: 75px;
+
+    background-image: url('searchicon.png');
+    
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 90vh;
+  margin-top: 4%;
+}
+
+.left-third {
+  margin: 1%;
+  flex-basis: 25%;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 20px;
+
+}
+
+.left-third > div {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+
+  width: 95%;
+  height: 95%;
+}
+
+.green-div{
+  background: #2F9D74;
+  border: 3px solid #036371;
+  border-radius: 15px;
+  }
+
+.blue-div{
+  background: #2F8F9D;
+  border: 3px solid #036371;
+  border-radius: 15px;
+  }
+
+.left-third > div > span {
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 24px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+}
+
+.right-two-thirds {
+  margin: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+
+  width: 70%;
+  height: 95%;
+
+  background: #2F8F9D;
+  border: 3px solid #036371;
+  border-radius: 15px;
+}
