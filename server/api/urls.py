@@ -6,5 +6,7 @@ urlpatterns = [
     path('classrooms', views.getAllClassroms, name='allClassrooms'),
     path('classroom', views.getClassroom, name='classroom'),
     path('lecturers', views.getAllLecturers, name='allLecturers'),
-    path('createfolders', views.createFoldersForNewUsers, name='createFolders')
+    path('createfolders', views.createFoldersForNewUsers, name='createFolders'),
+    path('consultations', views.consultations, name='consultations'),
+    path('setbanner', views.setBanner, name='setBanner')
 ]
