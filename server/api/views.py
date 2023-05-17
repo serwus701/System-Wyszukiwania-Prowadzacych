@@ -24,13 +24,14 @@ def getByName(request):
 
     return JsonResponse(response)
 
+
 def createFoldersForNewUsers(request):
     if request.method != 'GET':
         return HttpResponse(status=405)
     lecturers = json.loads(open('./cache/lecturers.json').read())
     for lecturer in lecturers:
-        if not os.path.exists('./lecturers/'+lecturer["id"]):
-            os.makedirs('./lecturers/'+lecturer["id"])
+        if not os.path.exists('./lecturers/' + lecturer["id"]):
+            os.makedirs('./lecturers/' + lecturer["id"])
     return JsonResponse("ok", safe=False)
 
 
@@ -39,29 +40,33 @@ def getTimeTableByName(request):
         return HttpResponse(status=405)
     lecturer_response = json.loads(getByName(request).content)
     id = lecturer_response["items"][0]["user"]["id"]
-    params = {'format': 'json', 'user_id': id}
+
+    params = {'format': 'json', 'user_id': id,
+              'fields': 'start_time|end_time|name|room_number|building_name|classtype_name|classtype_name|classtype_name'}
     response = usos.get('services/tt/staff', **params)
 
     return JsonResponse(response, safe=False)
+
 
 def getAllClassroms(request):
     if request.method != 'GET':
         return HttpResponse(status=405)
     merged_dict = {}
-    for j in range(10,25):
+    for j in range(10, 25):
         query = ""
-        for i in range(j*100, j*100+100):
-                query = query + str(i)
-                if i != j*100+100-1:
-                    query = query + "|"
+        for i in range(j * 100, j * 100 + 100):
+            query = query + str(i)
+            if i != j * 100 + 100 - 1:
+                query = query + "|"
         params = {'format': 'json', 'fields': 'id|number|building_id|building_name', 'room_ids': str(query)}
         response = usos.get('services/geo/rooms', **params)
-        filtered_json = {k:v for k, v in response.items() if v is not None}
+        filtered_json = {k: v for k, v in response.items() if v is not None}
         merged_dict.update(filtered_json)
         time.sleep(0.5)
     with open('./cache/classrooms.json', 'w') as f:
         json.dump(merged_dict, f)
     return HttpResponse(status=200)
+
 
 def getClassroom(request):
     if request.method != 'GET':
@@ -70,6 +75,65 @@ def getClassroom(request):
     params = {'format': 'json', 'room_id': room_id}
     response = usos.get('services/tt/room', **params)
     return JsonResponse(response, safe=False)
+
+
+def consultations(request):
+    if request.method == 'DELETE':
+        new_data = json.loads(request.body.decode('utf-8'))
+        path = './lecturers/' + str(new_data['lecturer_id']) + '/data.json'
+        if not os.path.exists(path):
+            return HttpResponse(status=400)
+        file = open(path, 'r')
+        data = json.load(file)
+        file.close()
+        file = open(path, 'w')
+        data['body']['consultations']['occurrences'] = [
+            occurrence for occurrence in data['body']['consultations']['occurrences']
+            if occurrence['id'] != new_data['body']['consultations']['occurrences'][0]['id']
+        ]
+        json.dump(data, file)
+        file.close()
+        return HttpResponse(status=200)
+    if request.method == 'POST':
+        new_data = json.loads(request.body.decode('utf-8'))
+        path = './lecturers/' + str(new_data['lecturer_id']) + '/data.json'
+        if os.path.exists(path):
+            file = open(path, 'r')
+            data = json.load(file)
+            file.close()
+            file = open(path, 'w')
+            data['body']['consultations']['occurrences'].extend(new_data['body']['consultations']['occurrences'])
+            json.dump(data, file)
+            file.close()
+        else:
+            new_data['banner'] = ""
+            file = open(path, 'w')
+            json.dump(new_data, file)
+            file.close()
+        return HttpResponse(status=200)
+    else:
+        return HttpResponse(status=405)
+
+
+def setBanner(request):
+    if request.method != 'POST':
+        return HttpResponse(status=405)
+    new_data = json.loads(request.body.decode('utf-8'))
+    path = './lecturers/' + str(new_data['lecturer_id']) + '/data.json'
+    if os.path.exists(path):
+        file = open(path, 'r')
+        data = json.load(file)
+        file.close()
+        file = open(path, 'w')
+        data['body']['banner'] = new_data['body']['banner']
+        json.dump(data, file)
+        file.close()
+    else:
+        new_data['body']['consultations'] = {'occurrences': []}
+        file = open(path, 'w')
+        json.dump(new_data, file)
+        file.close()
+    return HttpResponse(status=200)
 
 
 def getAllLecturers(request):
