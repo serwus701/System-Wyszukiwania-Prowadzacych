@@ -287,7 +287,7 @@ li a {
 
     position: absolute;
     width: 23%;
-    height: 200px;
+    height: fit-content;
     right: 5%;
     top: 100px;
 
@@ -324,7 +324,6 @@ li a {
     padding: 10px;
     align-items: flex-end;
     margin-top: auto;
-    bottom: 0;
 }
 
 .icon-pen, .icon-bin{
