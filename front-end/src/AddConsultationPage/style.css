@@ -300,7 +300,6 @@ li a {
     position: relative;
     width: fill;
     display: flex;
-    flex-wrap: wrap;
 }
 
 .column1, .column2 {
@@ -322,6 +321,10 @@ li a {
     position: relative;
     width: fill;
     height: fill;
+    padding: 10px;
+    align-items: flex-end;
+    margin-top: auto;
+    bottom: 0;
 }
 
 .icon-pen, .icon-bin{
@@ -337,15 +340,15 @@ li a {
     justify-content: center;
     align-items: center;
 
-    width: 65px;
-    height: 65px;
+    width: 50px;
+    height: 50px;
 
     background: #B3E8E5;
     border: 3px solid #036371;
     border-radius: 75px;
 
     background-repeat: no-repeat;
-    background-size: 30px;
+    background-size: 25px;
     background-position: center;
 
     flex: none;
@@ -375,6 +378,9 @@ li a {
     line-height: auto;
     color: #FFFFFF;
     text-decoration: none;
+
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .date-first-item{
@@ -384,6 +390,26 @@ li a {
 .date-main-item{
     font-style: bold;
     font-size: 24px;
+}
+
+.date-second-item{
+    width: auto;
+    display: flex;
+    position: relative;
+    width: auto;
+    height: auto;
+    text-align: left;
+    justify-content: left;
+
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 20px;
+    line-height: auto;
+    color: #FFFFFF;
+    text-decoration: none;
+
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .scroll{
