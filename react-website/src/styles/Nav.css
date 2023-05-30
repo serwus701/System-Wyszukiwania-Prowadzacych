@@ -1,0 +1,19 @@
+@import "Constants.css";
+Nav {
+    background-color: var(--primary-color-dark);
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+}
+a {
+    text-decoration:none;
+}
