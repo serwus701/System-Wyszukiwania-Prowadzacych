@@ -1,26 +1,36 @@
-:root{
+:root {
     --primary-color: #7AC13E;
+    /* tło kalerndarza */
     --primary-color-light: #D2EABE;
+    /* jasne tło */
     --primary-color-dark: #426821;
+    /* wszelkie ramki i górnuy p[asek */
     --secondary-color: #3E7AC1;
+    /* konsule (akcent1) */
     --tetriary-color: #C13E7A;
+    /* rezerwacje (akcent2) */
 
     --squircle-corner: 15px;
+    /* zaokrąglenie kwadratowych (kafelki na planie, klomponenty) */
     --pill-corner: 75px;
+    /* zaokrąglenie okrągłych (panel wyszukiwania) */
 }
+
 body {
     background-color: var(--primary-color);
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
+
 h1 {
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 700;
-    font-size: 32px; 
+    font-size: 32px;
     text-align: center;
     color: #FFFFFF
-  }
+}
+
 h2 {
     font-family: 'Montserrat';
     font-style: normal;
@@ -28,12 +38,14 @@ h2 {
     font-size: 20px;
 
 }
+
 h3 {
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 400;
     font-size: 28px;
 }
+
 @media (min-width: 768px) {
     .navbar-expand-md .navbar-collapse {
         height: auto !important;

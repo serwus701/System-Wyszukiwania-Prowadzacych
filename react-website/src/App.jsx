@@ -2,16 +2,16 @@ import React from 'react';
 import './styles/App.css';
 import { BrowserRouter as Router, Routes, Route }
     from 'react-router-dom';
-import Home from './pages/home';
+import Home from './pages/Home';
 import Login from './pages/login';
-import Result from './pages/result';
+import Result from './pages/Result';
 import Profile from './pages/profile';
 import Administration from './pages/administration';
 import Reservations from './pages/reservations';
 import Consultations from './pages/consultations';
 import Logout from './pages/logout';
 import Bar from './components/Navbar'
- 
+
 function App() {
     return (
         <Router>
@@ -30,5 +30,5 @@ function App() {
         </Router>
     );
 }
- 
+
 export default App;

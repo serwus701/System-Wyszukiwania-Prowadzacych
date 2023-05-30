@@ -1,5 +1,5 @@
 import React from 'react';
- 
+
 const Login = () => {
     return (
         <div>
@@ -7,5 +7,5 @@ const Login = () => {
         </div>
     );
 };
- 
+
 export default Login;
