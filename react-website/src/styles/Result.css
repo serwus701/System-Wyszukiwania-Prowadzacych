@@ -1,0 +1,20 @@
+@import "Constants.css";
+
+.result-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: 85vh;
+}
+
+.result-box>div:first-child {
+    width: 25%;
+}
+
+.result-box>div {
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 70%;
+    background: rebeccapurple;
+}
