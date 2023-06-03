@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from datetime import datetime
@@ -71,10 +72,27 @@ def getAllClassroms(request):
 def getClassroom(request):
     if request.method != 'GET':
         return HttpResponse(status=405)
-    room_id = json.loads(request.body.decode('utf-8'))
-    params = {'format': 'json', 'room_id': room_id}
+    data = json.loads(request.body.decode('utf-8'))
+    params = {'format': 'json', 'room_id': data['room_id'], 'start': data['start']}
     response = usos.get('services/tt/room', **params)
     return JsonResponse(response, safe=False)
+
+@login_required
+def assign_permissions(request):
+    user = request.user
+    email = user.email
+    print(user, email)
+def getRoomConsultations(request):
+    if request.method != 'GET':
+        return HttpResponse(status=405)
+    new_data = json.loads(request.body.decode('utf-8'))
+    path = './rooms/' + str(new_data['room_id']) + '/data.json'
+    if os.path.exists(path):
+        file = open(path, 'r')
+        data = json.load(file)
+        file.close()
+        return JsonResponse(data, safe=False)
+    return HttpResponse(status=500)
 
 
 def consultations(request):
@@ -82,21 +100,45 @@ def consultations(request):
         new_data = json.loads(request.body.decode('utf-8'))
         path = './lecturers/' + str(new_data['lecturer_id']) + '/data.json'
         if not os.path.exists(path):
-            return HttpResponse(status=400)
+            return HttpResponse(status=500)
         file = open(path, 'r')
         data = json.load(file)
         file.close()
         file = open(path, 'w')
+        room_id = 0
+        for occurrence in data['body']['consultations']['occurrences']:
+            if occurrence['id'] == new_data['body']['consultations']['occurrences'][0]['id']:
+                room_id = occurrence['room_id']
+
         data['body']['consultations']['occurrences'] = [
             occurrence for occurrence in data['body']['consultations']['occurrences']
             if occurrence['id'] != new_data['body']['consultations']['occurrences'][0]['id']
         ]
         json.dump(data, file)
         file.close()
+
+        path = './rooms/' + str(room_id) + '/data.json'
+        if not os.path.exists(path):
+            return HttpResponse(status=500)
+        file = open(path, 'r')
+        data = json.load(file)
+        file.close()
+        file = open(path, 'w')
+
+        data = [
+            consultation for consultation in data
+            if consultation['id'] != new_data['body']['consultations']['occurrences'][0]['id'] and consultation[
+                'lecturer_id'] != new_data['lecturer_id']
+        ]
+        json.dump(data, file)
+        file.close()
+
         return HttpResponse(status=200)
-    if request.method == 'POST':
+    elif request.method == 'POST':
         new_data = json.loads(request.body.decode('utf-8'))
         path = './lecturers/' + str(new_data['lecturer_id']) + '/data.json'
+        if not os.path.exists('./lecturers/' + str(new_data['lecturer_id'])):
+            os.mkdir('./lecturers/' + str(new_data['lecturer_id']))
         if os.path.exists(path):
             file = open(path, 'r')
             data = json.load(file)
@@ -110,7 +152,36 @@ def consultations(request):
             file = open(path, 'w')
             json.dump(new_data, file)
             file.close()
+
+        for consultation in new_data['body']['consultations']['occurrences']:
+            room_path = './rooms/' + str(consultation['room_id']) + '/data.json'
+            consultation["lecturer_id"] = new_data['lecturer_id']
+            if not os.path.exists('./rooms/' + str(consultation['room_id'])):
+                os.mkdir('./rooms/' + str(consultation['room_id']))
+            if os.path.exists(room_path):
+                file = open(room_path, 'r')
+                data = json.load(file)
+                file.close()
+                file = open(room_path, 'w')
+                data.append(consultation)
+                json.dump(data, file)
+                file.close()
+            else:
+                file = open(room_path, 'w')
+                data = [consultation]
+                json.dump(data, file)
+                file.close()
+
         return HttpResponse(status=200)
+    elif request.method == 'GET':
+        new_data = json.loads(request.body.decode('utf-8'))
+        path = './lecturers/' + str(new_data['lecturer_id']) + '/data.json'
+        if os.path.exists(path):
+            file = open(path, 'r')
+            data = json.load(file)
+            file.close()
+            return JsonResponse(data)
+        return HttpResponse(status=500)
     else:
         return HttpResponse(status=405)
 
