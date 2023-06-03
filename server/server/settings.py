@@ -28,6 +28,7 @@ ALLOWED_HOSTS = []
 
 CSRF_COOKIE_SECURE = True
 
+#AUTH_USER_MODEL = 'api.CustomUser'
 
 # Application definition
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
