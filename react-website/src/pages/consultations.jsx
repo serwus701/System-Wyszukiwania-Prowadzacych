@@ -7,12 +7,36 @@ import '../styles/Home.css';
  
 const Consultations = () => {
     const listItems = {
-    "dane o rezerwacji": {
-        'Data': '01.05 | 13:00 - 15:00',
-        'Nazwa przedmiotu': "Spotkanie z Bolvo",
-        'Sala': 'Zoom',
-        'Opis': 'Zapraszam ogolnie to duzy tekst tu ma sie jakis znalezc zawijajacy wiec tak'
-    }
+        "termin1": {
+            'Data': '01.05 | 13:00 - 15:00',
+            'Nazwa przedmiotu': "Konsultacje",
+            'Sala': 'Zoom',
+            'Opis': 'Zapraszam ogolnie to duzy tekst tu ma sie jakis znalezc zawijajacy wiec tak'
+        },
+        "termin2": {
+            'Data': '02.05 | 13:00 - 15:00',
+            'Nazwa przedmiotu': "Konsultacje",
+            'Sala': 'Zoom',
+            'Opis': 'Zapraszam ogolnie to duzy tekst tu ma sie jakis znalezc zawijajacy wiec tak'
+        },
+        "termin3": {
+            'Data': '03.05 | 13:00 - 15:00',
+            'Nazwa przedmiotu': "Konsultacje",
+            'Sala': 'Zoom',
+            'Opis': 'Zapraszam ogolnie to duzy tekst tu ma sie jakis znalezc zawijajacy wiec tak'
+        },
+        "termin4": {
+            'Data': '04.05 | 13:00 - 15:00',
+            'Nazwa przedmiotu': "Konsultacje",
+            'Sala': 'Zoom',
+            'Opis': 'Zapraszam ogolnie to duzy tekst tu ma sie jakis znalezc zawijajacy wiec tak'
+        },
+        "termin5": {
+            'Data': '05.05 | 13:00 - 15:00',
+            'Nazwa przedmiotu': "Konsultacje",
+            'Sala': 'Zoom',
+            'Opis': 'Zapraszam ogolnie to duzy tekst tu ma sie jakis znalezc zawijajacy wiec tak'
+        }
 };
 
     return (
