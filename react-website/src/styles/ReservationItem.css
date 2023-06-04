@@ -19,7 +19,7 @@
     font-weight: 700;
 }
 
-.reservation-item>div:nth-child(2)>div:nth-child(1) {
+.reservation-item>div>div:nth-child(2) {
     font-weight: 700;
 }
 
