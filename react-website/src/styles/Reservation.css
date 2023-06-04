@@ -1,0 +1,185 @@
+@import "Constants.css";
+
+input[type=text], select {
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+}
+
+.date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: 85vh;
+}
+
+.date>div:first-child {
+    width: 69%;
+}
+
+.date>div {
+    margin-left: 1%;
+    margin-right: 5%;
+    width: 25%;
+}
+
+.reservation-edit {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.reservation-edit>div:first-child {
+    background: #2F9D74;
+}
+
+.reservation-edit>div:first-child>div:nth-child(2) {
+    font-weight: 700;
+}
+
+.reservation-edit>div:nth-child(2)>div:nth-child(1) {
+    font-weight: 700;
+}
+
+.reservation-edit>div {    
+    text-align: center;
+    width: auto;
+    height: 80%;
+
+    background: #2F8F9D;
+    border: 3px solid #036371;
+    border-radius: 15px;
+}
+
+.stupid-button{
+    width: auto;
+    height: 58px;
+    left: 572px;
+    top: 190px;
+
+    background: #B3E8E5;
+    border-radius: 75px;
+}
+
+.stupid-button-gray{
+
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+
+    color: #8D9293;
+
+
+}
+
+.stupid-button-mode{
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+
+    color: #036371;
+}
+
+.search-bar{
+
+    margin: auto;
+    
+    text-align: center;
+    box-sizing: border-box;
+
+    width: 60%;
+    height: 75px;
+    top: 268px;
+
+    background: #B3E8E5;
+    border: 5px solid #036371;
+    border-radius: 75px;
+
+    background-image: url('../assets/search_icon.png');
+    
+}
+
+.search-bar-input{
+    position: absolute;
+    width: 1000px;
+    height: 50px;
+    left: 30px;
+    top: 25px;
+
+    background: #FFFFFF;
+    border: 5px solid #036371;
+    border-radius: 75px;
+    
+}
+
+.main-text{
+    top: 5%;
+    margin: auto;
+    width: auto;
+    height: 100px;
+    display: center;
+    position: relative;
+
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 36px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+.secondary-text{
+    top: 5%;
+    margin: auto;
+    width: auto;
+    height: 100px;
+    display: center;
+    position: relative;
+
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 36px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+.input-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.input-box>div {
+    margin-left: 1%;
+    margin-right: 1%;
+    padding: 1%;
+    
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 32px;
+    text-align: center;
+    color: #FFFFFF;
+    text-align: right;
+}
+
+.input-box>div span {
+    margin-right: 10%;
+  }
