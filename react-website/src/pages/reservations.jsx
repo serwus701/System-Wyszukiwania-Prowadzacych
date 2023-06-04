@@ -20,7 +20,7 @@ const Reservations = () => {
     return (
         <div className='date'>
             <div>
-                <ReservationEdit listItems={listItems} />
+                <ReservationEdit/>
             </div>
             <div>
                 <h1>Podgląd:</h1>
