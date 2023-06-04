@@ -4,79 +4,7 @@
     "consultations": {
       "occurrences": [
         {
-          "id": 2,
-          "dayOfWeek": "3",
-          "frequency": "TN",
-          "startTime": "12:05",
-          "endTime": "15:00",
-          "room_id": "1"
-        },
-        {
-          "id": 2,
-          "dayOfWeek": "3",
-          "frequency": "TN",
-          "startTime": "12:05",
-          "endTime": "15:00",
-          "room_id": "1"
-        },
-        {
-          "id": 2,
-          "dayOfWeek": "3",
-          "frequency": "TN",
-          "startTime": "12:05",
-          "endTime": "15:00",
-          "room_id": "1"
-        },
-        {
-          "id": 2,
-          "dayOfWeek": "3",
-          "frequency": "TN",
-          "startTime": "12:05",
-          "endTime": "15:00",
-          "room_id": "1"
-        },
-        {
-          "id": 2,
-          "dayOfWeek": "3",
-          "frequency": "TN",
-          "startTime": "12:05",
-          "endTime": "15:00",
-          "room_id": "1"
-        },
-        {
-          "id": 2,
-          "dayOfWeek": "3",
-          "frequency": "TN",
-          "startTime": "12:05",
-          "endTime": "15:00",
-          "room_id": "1"
-        },
-        {
-          "id": 2,
-          "dayOfWeek": "3",
-          "frequency": "TN",
-          "startTime": "12:05",
-          "endTime": "15:00",
-          "room_id": "1"
-        },
-        {
-          "id": 2,
-          "dayOfWeek": "3",
-          "frequency": "TN",
-          "startTime": "12:05",
-          "endTime": "15:00",
-          "room_id": "1"
-        },
-        {
-          "id": 1,
-          "dayOfWeek": "4",
-          "frequency": "TN",
-          "startTime": "9:30",
-          "endTime": "11:20",
-          "room_id": "1"
-        },
-        {
-          "id": 2,
+          "id": 4,
           "dayOfWeek": "3",
           "frequency": "TN",
           "startTime": "12:05",
@@ -85,6 +13,6 @@
         }
       ]
     },
-    "banner": "BBBBBBBB"
+    "banner": ""
   }
 }
