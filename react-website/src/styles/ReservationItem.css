@@ -1,5 +1,7 @@
 @import "Constants.css";
 
+
+
 .reservation-item {
     height: 85vh;
     display: flex;
@@ -32,8 +34,29 @@
     gap: 10px;
     width: 95%;
     height: 18%;
+    margin-bottom: 1%;
 
-    background: #2F8F9D;
+    background: #2F9D74;
     border: 3px solid #036371;
     border-radius: 15px;
+}
+
+.edit-button, .delete-button{
+    background: var(--primary-color-light);
+    background-size: 27px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 3px solid #036371;
+    border-radius: 30px;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+}
+
+.edit-button{
+    background-image: url('../assets/pen_icon.png');
+}
+
+.delete-button{
+    background-image: url('../assets/bin_icon.png');
 }
