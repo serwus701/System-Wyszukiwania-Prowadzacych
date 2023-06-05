@@ -3,7 +3,6 @@
 .calendar {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
     padding: 2rem;
     border: 3px solid var(--primary-color-dark);
     background-color: var(--primary-color);
