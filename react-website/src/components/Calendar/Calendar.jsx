@@ -17,7 +17,7 @@ const Calendar = () => {
         {
             type: "W",
             name: "Konsultacje",
-            day: 1,
+            day: 2,
             timeStart: 8,
             timeEnd: 10,
             timeDisplay: "8:00 - 10:00",

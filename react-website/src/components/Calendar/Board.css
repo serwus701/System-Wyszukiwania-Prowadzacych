@@ -26,14 +26,9 @@
 
 .event {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 20%;
-    height: 7%;
     background-color: #2F589D;
     border-radius: var(--squircle-corner);
     text-align: left;
-    padding-left: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
