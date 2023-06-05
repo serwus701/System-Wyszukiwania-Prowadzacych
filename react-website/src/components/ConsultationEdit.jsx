@@ -16,7 +16,7 @@ function ConsultationEdit(props) {
     const [comment, setComment] = useState('');
 
     const handleSubmit = () => {
-    if (!type || !lecturer || !room_id || !date || !comment) {
+    if (!type || !lecturer || !room_id || !date) {
       return;
     }
 

@@ -10,7 +10,7 @@ const Reservations = () => {
     "dane o rezerwacji": {
         'Data': '01.05 | 13:00 - 15:00',
         'Nazwa przedmiotu': "Spotkanie z Bolvo",
-        'Sala': 'Zoom',
+        'Sala': 'C-3 : 229',
         'Opis': 'Zapraszam ogolnie to duzy tekst tu ma sie jakis znalezc zawijajacy wiec tak'
     }
 };
