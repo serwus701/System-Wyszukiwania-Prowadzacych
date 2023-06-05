@@ -15,6 +15,7 @@ const Calendar = () => {
 
     const events = [
         {
+            type: "W",
             name: "Konsultacje",
             day: 1,
             timeStart: 8,
@@ -25,9 +26,9 @@ const Calendar = () => {
         {
             name: "AK2",
             day: 1,
-            timeStart: 8,
-            timeEnd: 10,
-            timeDisplay: "8:00 - 10:00",
+            timeStart: 13,
+            timeEnd: 15,
+            timeDisplay: "13:00 - 15:00",
             location: "C-16:L2.1"
         }
     ];
@@ -65,7 +66,7 @@ const Calendar = () => {
                             </div>
                         ))}
                     </div>
-                    <Board />
+                    <Board events={events} />
                 </div>
             </div>
         </div>

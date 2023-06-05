@@ -1,4 +1,7 @@
+@import "../../styles/Constants.css";
+
 .grid-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     grid-template-columns: repeat(5, 1fr);
@@ -19,4 +22,19 @@
     flex: 1;
     border: 1px solid black;
     width: 40px;
+}
+
+.event {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 7%;
+    background-color: #2F589D;
+    border-radius: var(--squircle-corner);
+    text-align: left;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
