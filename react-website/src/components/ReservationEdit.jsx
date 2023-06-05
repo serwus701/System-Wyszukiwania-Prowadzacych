@@ -13,6 +13,7 @@ function ReservationEdit(props) {
     const [room_id, setRoom_id] = useState('');
     const [date, setDate] = useState('');
     const [comment, setComment] = useState('');
+    const [jsonData, setJsonData] = useState(null);
 
     const handleSubmit = () => {
     if (!title || !lecturer || !room_id || !date) {
@@ -33,6 +34,28 @@ function ReservationEdit(props) {
 
     props(newReservation);
     navigate('/');
+
+    const data = {
+        "lecturer_id": 5,
+        "body": {
+          "consultations": {
+            "occurrences": [
+              {
+                "id": 1,
+                "dayOfWeek": "4",
+                "frequency": "TN",
+                "startTime": "9:30",
+                "endTime": "11:20",
+                "room_id": room_id
+              }
+            ]
+          },
+          "banner": "BBBBBBBB"
+        }
+      } 
+
+        const jsonText = JSON.stringify(data, null, 2);
+        setJsonData(jsonText);
     };
 
     return (
