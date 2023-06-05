@@ -28,6 +28,9 @@ input[type=text], select {
 
 .reservation-edit {
     height: 85vh;
+}
+
+.reservation-edit, .reservation-edit-bigger {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -38,25 +41,21 @@ input[type=text], select {
     font-size: 20px;
 }
 
-.reservation-edit>div:first-child {
-    background: #2F9D74;
-}
-
-.reservation-edit>div:first-child>div:nth-child(2) {
+.reservation-edit>div:first-child>div:nth-child(2), .reservation-edit-bigger>div:first-child>div:nth-child(2) {
     font-weight: 700;
 }
 
-.reservation-edit>div:nth-child(2)>div:nth-child(1) {
+.reservation-edit>div:nth-child(2)>div:nth-child(1), .reservation-edit-bigger>div:nth-child(2)>div:nth-child(1) {
     font-weight: 700;
 }
 
-.reservation-edit>div {    
+.reservation-edit>div,.reservation-edit-bigger>div {    
     text-align: center;
     width: auto;
     height: 80%;
 
-    background: #2F8F9D;
-    border: 3px solid #036371;
+    background: #2F9D74;
+    border: 3px solid var(--primary-color-dark);
     border-radius: 15px;
 }
 
@@ -66,7 +65,7 @@ input[type=text], select {
     left: 572px;
     top: 190px;
 
-    background: #B3E8E5;
+    background: var(--primary-color-light);
     border-radius: 75px;
 }
 
@@ -93,6 +92,23 @@ input[type=text], select {
     color: #036371;
 }
 
+.button-submit{
+    width: auto;
+    height: 58px;
+    top: 190px;
+
+    background: var(--primary-color-light);
+    border-radius: 75px;
+
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+
+    color: #036371;
+}
+
 .search-bar{
 
     margin: auto;
@@ -105,7 +121,7 @@ input[type=text], select {
     top: 268px;
 
     background: #B3E8E5;
-    border: 5px solid #036371;
+    border: 5px solid var(--primary-color-dark);
     border-radius: 75px;
 
     background-image: url('../assets/search_icon.png');
@@ -120,7 +136,7 @@ input[type=text], select {
     top: 25px;
 
     background: #FFFFFF;
-    border: 5px solid #036371;
+    border: 5px solid var(--primary-color-dark);
     border-radius: 75px;
     
 }
@@ -182,4 +198,8 @@ input[type=text], select {
 
 .input-box>div span {
     margin-right: 10%;
+  }
+
+  .reservation-edit-bigger{
+    height: 90vh;
   }
