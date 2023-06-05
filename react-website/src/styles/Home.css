@@ -1,5 +1,6 @@
 @import "Constants.css";
 
+
 input[type=text], select {
     font-family: 'Montserrat';
     font-style: italic;
@@ -34,6 +35,7 @@ input[type=text], select {
     margin: auto;
     width: auto;
     padding: 100px;
+    background-color: var(--primary-color);
 
 }
 
