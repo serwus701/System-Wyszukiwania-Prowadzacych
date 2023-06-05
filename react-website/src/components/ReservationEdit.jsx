@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../styles/Reservation.css";
 
-function ReservationEdit(props) {const navigate = useNavigate();
+function ReservationEdit(props) {
+    const navigate = useNavigate();
     const [id, setId] = useState('');
     const [title, setTitle] = useState('');
     const [day, setDay] = useState('');
