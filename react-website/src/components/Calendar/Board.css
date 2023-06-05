@@ -1,0 +1,22 @@
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    gap: 1px;
+    border: 1px solid black;
+    width: auto;
+    height: 41.7rem;
+    background-color: aquamarine;
+}
+
+.grid-row {
+    height: 50px;
+    display: flex;
+}
+
+.grid-item {
+    flex: 1;
+    border: 1px solid black;
+    width: 40px;
+}
