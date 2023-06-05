@@ -4,8 +4,8 @@
     display: flex;
     flex-direction: column;
     margin-top: 30px;
-    padding: 0 1rem;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 2rem;
+    border: 3px solid var(--primary-color-dark);
     background-color: var(--primary-color);
     border-radius: var(--squircle-corner);
 }
@@ -43,7 +43,7 @@
 
 .navigation-bar>button {
     padding: 10px;
-    background-color: #B3E8E5;
+    background-color:   var(--primary-color-light);
     border-radius: var(--squircle-corner);
     border: none;
 }
