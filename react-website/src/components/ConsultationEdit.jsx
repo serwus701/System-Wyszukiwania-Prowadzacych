@@ -43,12 +43,14 @@ function ConsultationEdit(props) {
                 <div class="main-text">
                     Dodaj Konsultacje
                 </div>
+                <div class="pill-buttons">
                 <button class="stupid-button stupid-button-mode" onClick={()=>setType(1)}>
                     Zdalnie
                 </button>
                 <button class="stupid-button stupid-button-gray" onClick={()=>setType(0)}>
                     Stacjonarnie
                 </button>
+                </div>
                 <div class="input-box">
                     <div>
                         <span>Prowadzący:</span>

@@ -1,13 +1,13 @@
 :root {
-    --primary-color: #7AC13E;
+    --primary-color: #2F8F9D;
     /* tło kalerndarza */
-    --primary-color-light: #D2EABE;
+    --primary-color-light: #B3E8E5;
     /* jasne tło */
-    --primary-color-dark: #426821;
+    --primary-color-dark: #036371;
     /* wszelkie ramki i górnuy p[asek */
-    --secondary-color: #3E7AC1;
+    --secondary-color: #2F589D;
     /* konsule (akcent1) */
-    --tetriary-color: #C13E7A;
+    --tetriary-color: #2F9D74;
     /* rezerwacje (akcent2) */
 
     --squircle-corner: 15px;

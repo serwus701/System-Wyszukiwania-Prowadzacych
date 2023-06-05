@@ -1,11 +1,12 @@
 import React from 'react';
 import '../styles/Home.css';
+import '../assets/pwrlogo.png'
 
 const Home = () => {
     return (
         <div class="hero-panel">
             <div>
-                <img src="../assets/pwrlogo.png" alt="Politechnika Wrocławska" class="pwr-logo" />
+                <img src="./resources/logo.png" alt="Politechnika Wrocławska" class="pwr-logo" />
             </div>
             <div>
                 <button class="stupid-button stupid-button-room">

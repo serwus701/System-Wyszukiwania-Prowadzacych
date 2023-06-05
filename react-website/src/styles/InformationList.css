@@ -12,10 +12,6 @@
     font-size: 20px;
 }
 
-.information-list>div:first-child {
-    background: #2F9D74;
-}
-
 .information-list>div:first-child>div:nth-child(2) {
     font-weight: 700;
 }
@@ -34,7 +30,7 @@
     width: 95%;
     height: 15%;
 
-    background: #2F8F9D;
-    border: 3px solid #036371;
+    background: var(--primary-color);
+    border: 3px solid var(--primary-color-dark);
     border-radius: 15px;
 }

@@ -1,5 +1,10 @@
 @import "Constants.css";
-
+body {
+    background-color: var(--primary-color-light);
+}
+.black {
+    color: black;
+}
 input[type=text], select {
     font-family: 'Montserrat';
     font-style: italic;
@@ -27,7 +32,8 @@ input[type=text], select {
 }
 
 .reservation-edit {
-    height: 85vh;
+    height: auto;
+    margin: 40px
 }
 
 .reservation-edit, .reservation-edit-bigger {
@@ -54,19 +60,26 @@ input[type=text], select {
     width: auto;
     height: 80%;
 
-    background: #2F9D74;
+    background: var(--primary-color);
     border: 3px solid var(--primary-color-dark);
     border-radius: 15px;
 }
 
 .stupid-button{
     width: auto;
-    height: 58px;
-    left: 572px;
-    top: 190px;
+    height: auto;
+    border: none;
+    margin: 10px;
+    padding: 10px;
+    font-size: 32px;
+    line-height: 60px;
+    align-self:flex-start;
 
     background: var(--primary-color-light);
     border-radius: 75px;
+}
+.stupid-button:checked{
+    border: 5px solid var(--primary-color-dark);
 }
 
 .stupid-button-gray{
@@ -75,7 +88,6 @@ input[type=text], select {
     font-style: italic;
     font-weight: 700;
     font-size: 32px;
-    line-height: 39px;
 
     color: #8D9293;
 
@@ -87,16 +99,17 @@ input[type=text], select {
     font-style: italic;
     font-weight: 700;
     font-size: 32px;
-    line-height: 39px;
 
     color: #036371;
 }
 
 .button-submit{
     width: auto;
-    height: 58px;
+    height: auto;
     top: 190px;
-
+    border: 5px solid var(--primary-color-dark);
+    margin: 10px;
+    padding: 10px;
     background: var(--primary-color-light);
     border-radius: 75px;
 
@@ -104,7 +117,7 @@ input[type=text], select {
     font-style: italic;
     font-weight: 700;
     font-size: 32px;
-    line-height: 39px;
+    line-height: 60px;
 
     color: #036371;
 }
@@ -119,7 +132,7 @@ input[type=text], select {
     height: 75px;
     top: 268px;
 
-    background: #B3E8E5;
+    background: var(--primary-color-light);
     border: 5px solid var(--primary-color-dark);
     border-radius: 75px;
 
@@ -155,6 +168,7 @@ input[type=text], select {
     height: 100px;
     display: center;
     position: relative;
+    padding: 20px;
 
     font-family: 'Montserrat';
     font-style: italic;
@@ -208,5 +222,6 @@ input[type=text], select {
   }
 
 .reservation-edit-bigger{
-    height: 90vh;
+    height: auto;
+    margin: 40px
 }
