@@ -31,7 +31,6 @@
 }
 
 .hours-panel>div {
-
     height: 44.5px;
 }
 
@@ -43,7 +42,7 @@
 
 .navigation-bar>button {
     padding: 10px;
-    background-color:   var(--primary-color-light);
+    background-color: var(--primary-color-light);
     border-radius: var(--squircle-corner);
     border: none;
 }

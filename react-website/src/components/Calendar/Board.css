@@ -6,7 +6,6 @@
     flex-direction: column;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(15, 1fr);
-    gap: 1px;
     border: 1px solid black;
     width: auto;
     height: 41.7rem;
@@ -32,4 +31,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.event-content {
+    margin-left: 10px;
 }

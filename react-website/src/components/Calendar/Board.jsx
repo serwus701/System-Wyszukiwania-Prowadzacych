@@ -2,25 +2,6 @@ import React from 'react';
 import './Board.css';
 
 function Board(props) {
-
-
-    // function editRecord(event, id) {
-    //     let divTop = (event.timeStart - 7) * 100 / 14;
-    //     let height = (event.timeEnd - event.timeStart) * 100 / 14;
-
-    //     let editedDiv = document.getElementById(id);
-
-    //     editedDiv.style.top = `${divTop}%`;
-    //     editedDiv.style.left = "0px";
-    //     editedDiv.style.width = '20%';
-    //     editedDiv.style.height = `${height}%`;
-    //     editedDiv.style.backgroundColor = "#2F589D";
-
-    //     // let targetDiv = document.querySelector('#grid-container');
-    //     // targetDiv.appendChild(editedDiv);
-    // }
-
-
     return (
         <div className="grid-container" id="grid-container">
             {Array(15)
@@ -44,12 +25,14 @@ function Board(props) {
                                 left: `${(event.day - 1) * 20}%`,
                                 width: '20%',
                                 height: `${(event.timeEnd - event.timeStart) * 6.666}%`
-                            }}
-                        >
-                            <div>{event.name}</div>
-                            <div>{event.timeDisplay}</div>
-                            <div>{event.location}</div>
+                            }}>
+                            <div className='event-content' >
+                                <div>{event.name}</div>
+                                <div>{event.timeDisplay}</div>
+                                <div>{event.location}</div>
+                            </div>
                         </div>
+
                     );
                     return eventElement;
                 })
