@@ -23,7 +23,7 @@ const Reservations = () => {
                 <ReservationEdit/>
             </div>
             <div>
-                <h1>Podgląd:</h1>
+                <h1 class="black">Podgląd:</h1>
                 <ReservationItem listItems={listItems} />
             </div>
         </div>

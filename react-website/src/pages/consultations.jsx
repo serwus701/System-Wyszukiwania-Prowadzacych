@@ -45,7 +45,7 @@ const Consultations = () => {
                 <ConsultationEdit/>
             </div>
             <div>
-                <h1>Terminy:</h1>
+                <h1 class="black">Terminy:</h1>
                 <ConsultationList listItems={listItems} />
             </div>
         </div>
