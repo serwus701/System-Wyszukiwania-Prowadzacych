@@ -37,11 +37,11 @@ const Calendar = () => {
         <div className="calendar">
             <div className="navigation-bar">
                 <button>
-                    {"<"}
+                    <b>{"<"}</b>
                 </button>
-                <div>Plan zajęć i konsultacji</div>
+                <h1>Plan zajęć i konsultacji</h1>
                 <button>
-                    {">"}
+                <b>{">"}</b>
                 </button>
             </div>
 
