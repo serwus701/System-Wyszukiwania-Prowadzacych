@@ -28,6 +28,9 @@ input[type=text], select {
 
 .reservation-edit {
     height: 85vh;
+}
+
+.reservation-edit, .reservation-edit-bigger {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -38,15 +41,15 @@ input[type=text], select {
     font-size: 20px;
 }
 
-.reservation-edit>div:first-child>div:nth-child(2) {
+.reservation-edit>div:first-child>div:nth-child(2), .reservation-edit-bigger>div:first-child>div:nth-child(2) {
     font-weight: 700;
 }
 
-.reservation-edit>div:nth-child(2)>div:nth-child(1) {
+.reservation-edit>div:nth-child(2)>div:nth-child(1), .reservation-edit-bigger>div:nth-child(2)>div:nth-child(1) {
     font-weight: 700;
 }
 
-.reservation-edit>div {    
+.reservation-edit>div,.reservation-edit-bigger>div {    
     text-align: center;
     width: auto;
     height: 80%;
@@ -195,4 +198,8 @@ input[type=text], select {
 
 .input-box>div span {
     margin-right: 10%;
+  }
+
+  .reservation-edit-bigger{
+    height: 90vh;
   }

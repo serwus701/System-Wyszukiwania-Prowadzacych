@@ -29,13 +29,13 @@ const Consultations = () => {
             'Data': '04.05 | 13:00 - 15:00',
             'Nazwa przedmiotu': "Konsultacje",
             'Sala': 'Zoom',
-            'Opis': 'Zapraszam ogolnie to duzy tekst tu ma sie jakis znalezc zawijajacy wiec tak'
+            'Opis': 'Zapraszam a tu zdalnie'
         },
         "termin5": {
             'Data': '05.05 | 13:00 - 15:00',
             'Nazwa przedmiotu': "Konsultacje",
-            'Sala': 'Zoom',
-            'Opis': 'Zapraszam ogolnie to duzy tekst tu ma sie jakis znalezc zawijajacy wiec tak'
+            'Sala': 'MSTeams',
+            'Opis': 'Zapraszam w sumie tu też zdalnie, ale inaczej'
         }
 };
 
