@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import "../styles/Reservation.css";
+import "../pages/Reservation/Reservation.css";
 
 function ConsultationEdit(props) {
     const navigate = useNavigate();
@@ -16,25 +16,25 @@ function ConsultationEdit(props) {
     const [comment, setComment] = useState('');
 
     const handleSubmit = () => {
-    if (!type || !lecturer || !room_id || !date) {
-      return;
-    }
+        if (!type || !lecturer || !room_id || !date) {
+            return;
+        }
 
-    const newConsultation = {
-        lecturer: lecturer,
-        id: id,
-        type: type,
-        day: day,
-        frequency: frequency,
-        startTime: startTime,
-        endTime: endTime,
-        room_id: room_id,
-        date: date,
-        comment: comment
-    };
+        const newConsultation = {
+            lecturer: lecturer,
+            id: id,
+            type: type,
+            day: day,
+            frequency: frequency,
+            startTime: startTime,
+            endTime: endTime,
+            room_id: room_id,
+            date: date,
+            comment: comment
+        };
 
-    props(newConsultation);
-    navigate('/');
+        props(newConsultation);
+        navigate('/');
     };
 
     return (
@@ -44,12 +44,12 @@ function ConsultationEdit(props) {
                     Dodaj Konsultacje
                 </div>
                 <div class="pill-buttons">
-                <button class="stupid-button stupid-button-mode" onClick={()=>setType(1)}>
-                    Zdalnie
-                </button>
-                <button class="stupid-button stupid-button-gray" onClick={()=>setType(0)}>
-                    Stacjonarnie
-                </button>
+                    <button class="stupid-button stupid-button-mode" onClick={() => setType(1)}>
+                        Zdalnie
+                    </button>
+                    <button class="stupid-button stupid-button-gray" onClick={() => setType(0)}>
+                        Stacjonarnie
+                    </button>
                 </div>
                 <div class="input-box">
                     <div>
@@ -76,7 +76,7 @@ function ConsultationEdit(props) {
                 </div>
             </div>
         </div>
-      );
-    }
+    );
+}
 
 export default ConsultationEdit;

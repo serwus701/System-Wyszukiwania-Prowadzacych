@@ -1,8 +1,8 @@
 import React from "react";
 
-import "../pages/Reservation/ReservationItem.css";
+import "./ReservationItem.css";
 
-function ConsultationList(props) {
+function ReservationItem(props) {
   return (
     <div className="reservation-item">
       {Object.entries(props.listItems).map(([sectionName, sectionItems]) => {
@@ -19,7 +19,7 @@ function ConsultationList(props) {
         } else {
           return (
             <div>
-              {Object.entries(sectionItems).map(([itemName, itemValue], index) => (
+              {Object.entries(sectionItems).map(([itemName, itemValue]) => (
                 <div>
                   {itemValue}
                 </div>
@@ -32,4 +32,4 @@ function ConsultationList(props) {
   );
 }
 
-export default ConsultationList;
+export default ReservationItem;

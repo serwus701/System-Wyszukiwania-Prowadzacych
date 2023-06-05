@@ -2,9 +2,9 @@ import React from 'react';
 import ConsultationList from '../components/ConsultationList.jsx';
 import ConsultationEdit from '../components/ConsultationEdit.jsx';
 
-import '../styles/Reservation.css';
-import '../styles/Home.css';
- 
+import '../pages/Reservation/Reservation.css';
+import './Home/Home.css';
+
 const Consultations = () => {
     const listItems = {
         "termin1": {
@@ -37,12 +37,12 @@ const Consultations = () => {
             'Sala': 'MSTeams',
             'Opis': 'Zapraszam w sumie tu też zdalnie, ale inaczej'
         }
-};
+    };
 
     return (
         <div className='date'>
             <div>
-                <ConsultationEdit/>
+                <ConsultationEdit />
             </div>
             <div>
                 <h1 class="black">Terminy:</h1>
@@ -51,5 +51,5 @@ const Consultations = () => {
         </div>
     );
 };
- 
+
 export default Consultations;
