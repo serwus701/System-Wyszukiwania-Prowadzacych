@@ -109,14 +109,13 @@ input[type=text], select {
     color: #036371;
 }
 
-.search-bar{
+.search-bar, .login-bar{
 
     margin: auto;
     
     text-align: center;
     box-sizing: border-box;
 
-    width: 60%;
     height: 75px;
     top: 268px;
 
@@ -126,6 +125,14 @@ input[type=text], select {
 
     background-image: url('../assets/search_icon.png');
     
+}
+
+.search-bar{
+    width: 60%;
+}
+
+.login-bar{
+    width: 80%;
 }
 
 .search-bar-input{
@@ -200,6 +207,6 @@ input[type=text], select {
     margin-right: 10%;
   }
 
-  .reservation-edit-bigger{
+.reservation-edit-bigger{
     height: 90vh;
-  }
+}
