@@ -1,6 +1,6 @@
 import React from 'react';
-import '../styles/Home.css';
-import '../assets/pwrlogo.png'
+import './Home.css';
+import '../../assets/pwrlogo.png'
 
 const Home = () => {
     return (

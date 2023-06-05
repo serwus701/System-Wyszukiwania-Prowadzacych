@@ -1,19 +1,21 @@
-@import "Constants.css";
+@import "../../styles/Constants.css";
 
-input[type=text], select {
+input[type=text],
+select {
     font-style: italic;
     font-weight: 700;
     font-size: 32px;
     line-height: 39px;
 }
 
-input[type=password], select {
+input[type=password],
+select {
     font-weight: 700;
     font-size: 32px;
     line-height: 39px;
 }
 
-.login-main{
+.login-main {
     align-items: center;
     text-align: center;
     display: flex;
@@ -21,7 +23,7 @@ input[type=password], select {
     justify-content: space-evenly;
 }
 
-.login-again{
+.login-again {
     width: 45%;
     text-align: center;
     align-items: center;

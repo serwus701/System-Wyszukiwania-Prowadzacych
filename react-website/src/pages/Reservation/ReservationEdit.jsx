@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import "../styles/Reservation.css";
+import "./Reservation.css";
 
 function ReservationEdit(props) {
     const navigate = useNavigate();
@@ -16,43 +16,43 @@ function ReservationEdit(props) {
     const [jsonData, setJsonData] = useState(null);
 
     const handleSubmit = () => {
-    if (!title || !lecturer || !room_id || !date) {
-      return;
-    }
-
-    const newReservation = {
-        lecturer: lecturer,
-        id: id,
-        title: title,
-        day: day,
-        startTime: startTime,
-        endTime: endTime,
-        room_id: room_id,
-        date: date,
-        comment: comment
-    };
-
-    props(newReservation);
-    navigate('/');
-
-    const data = {
-        "lecturer_id": 5,
-        "body": {
-          "consultations": {
-            "occurrences": [
-              {
-                "id": 1,
-                "dayOfWeek": "4",
-                "frequency": "TN",
-                "startTime": "9:30",
-                "endTime": "11:20",
-                "room_id": room_id
-              }
-            ]
-          },
-          "banner": "BBBBBBBB"
+        if (!title || !lecturer || !room_id || !date) {
+            return;
         }
-      } 
+
+        const newReservation = {
+            lecturer: lecturer,
+            id: id,
+            title: title,
+            day: day,
+            startTime: startTime,
+            endTime: endTime,
+            room_id: room_id,
+            date: date,
+            comment: comment
+        };
+
+        props(newReservation);
+        navigate('/');
+
+        const data = {
+            "lecturer_id": 5,
+            "body": {
+                "consultations": {
+                    "occurrences": [
+                        {
+                            "id": 1,
+                            "dayOfWeek": "4",
+                            "frequency": "TN",
+                            "startTime": "9:30",
+                            "endTime": "11:20",
+                            "room_id": room_id
+                        }
+                    ]
+                },
+                "banner": "BBBBBBBB"
+            }
+        }
 
         const jsonText = JSON.stringify(data, null, 2);
         setJsonData(jsonText);
@@ -93,7 +93,7 @@ function ReservationEdit(props) {
                 </div>
             </div>
         </div>
-      );
-    }
+    );
+}
 
 export default ReservationEdit;

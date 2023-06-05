@@ -1,8 +1,8 @@
 import React from 'react';
-import InformationList from '../components/InformationList.jsx';
-import Calendar from '../components/Calendar/Calendar.jsx';
+import InformationList from '../../components/InformationList.jsx';
+import Calendar from '../../components/Calendar/Calendar.jsx';
 
-import '../styles/Result.css';
+import './Result.css';
 
 const Result = () => {
     const listItems = {

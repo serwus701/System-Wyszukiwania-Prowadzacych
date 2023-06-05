@@ -1,4 +1,4 @@
-@import "Constants.css";
+@import "../../styles/Constants.css";
 
 
 
@@ -38,7 +38,8 @@
     border-radius: 15px;
 }
 
-.edit-button, .delete-button{
+.edit-button,
+.delete-button {
     background: var(--primary-color-light);
     background-size: 27px;
     background-repeat: no-repeat;
@@ -50,14 +51,15 @@
     height: 50px;
 }
 
-.edit-button{
-    background-image: url('../assets/pen_icon.png');
+.edit-button {
+    background-image: url('../../assets/pen_icon.png');
 }
 
-.delete-button{
-    background-image: url('../assets/bin_icon.png');
+.delete-button {
+    background-image: url('../../assets/bin_icon.png');
 }
-.pill-buttons{
-    text-align  : right;
+
+.pill-buttons {
+    text-align: right;
     margin-right: 20px;
 }

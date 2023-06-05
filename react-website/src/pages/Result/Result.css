@@ -1,4 +1,4 @@
-@import "Constants.css";
+@import "../../styles/Constants.css";
 
 .result-box {
     display: flex;
@@ -11,7 +11,7 @@
 }
 
 .result-box>div {
-    
+
     margin: 40px;
     width: 75%;
 }

@@ -1,7 +1,8 @@
-@import "Constants.css";
+@import "../../styles/Constants.css";
 
 
-input[type=text], select {
+input[type=text],
+select {
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 700;
@@ -9,7 +10,7 @@ input[type=text], select {
     line-height: 39px;
 }
 
-.zaloguj-button{
+.zaloguj-button {
 
     flex: none;
     order: 0;
@@ -27,10 +28,10 @@ input[type=text], select {
     color: #FFFFFF;
 
     text-decoration: none;
-    
+
 }
 
-.hero-panel{
+.hero-panel {
     text-align: center;
     margin: auto;
     width: auto;
@@ -39,12 +40,12 @@ input[type=text], select {
 
 }
 
-.pwr-logo{
+.pwr-logo {
     width: auto;
     height: 160px;
 }
 
-.stupid-button{
+.stupid-button {
     width: auto;
     height: 58px;
     left: 572px;
@@ -54,7 +55,7 @@ input[type=text], select {
     border-radius: 75px;
 }
 
-.stupid-button-green{
+.stupid-button-green {
 
     font-family: 'Montserrat';
     font-style: italic;
@@ -67,7 +68,7 @@ input[type=text], select {
 
 }
 
-.stupid-button-room{
+.stupid-button-room {
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 700;
@@ -77,10 +78,10 @@ input[type=text], select {
     color: #036371;
 }
 
-.search-bar{
+.search-bar {
 
     margin: auto;
-    
+
     text-align: center;
     box-sizing: border-box;
 
@@ -92,11 +93,11 @@ input[type=text], select {
     border: 5px solid #036371;
     border-radius: 75px;
 
-    background-image: url('../assets/search_icon.png');
-    
+    background-image: url('../../assets/search_icon.png');
+
 }
 
-.search-bar-input{
+.search-bar-input {
     position: absolute;
     width: 1000px;
     height: 50px;
@@ -106,10 +107,10 @@ input[type=text], select {
     background: #FFFFFF;
     border: 5px solid #036371;
     border-radius: 75px;
-    
+
 }
 
-.search-bar-icon{
+.search-bar-icon {
     box-sizing: border-box;
 
     left: 15.1%;
@@ -121,7 +122,7 @@ input[type=text], select {
     border: 5px solid #036371;
 }
 
-.hint{
+.hint {
     margin: auto;
     width: 1059px;
     height: 136px;
@@ -139,4 +140,3 @@ input[type=text], select {
 
     color: #000000;
 }
-

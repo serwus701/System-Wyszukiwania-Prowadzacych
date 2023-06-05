@@ -1,11 +1,15 @@
-@import "Constants.css";
+@import "../../styles/Constants.css";
+
 body {
     background-color: var(--primary-color-light);
 }
+
 .black {
     color: black;
 }
-input[type=text], select {
+
+input[type=text],
+select {
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 700;
@@ -36,7 +40,8 @@ input[type=text], select {
     margin: 40px
 }
 
-.reservation-edit, .reservation-edit-bigger {
+.reservation-edit,
+.reservation-edit-bigger {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -47,15 +52,18 @@ input[type=text], select {
     font-size: 20px;
 }
 
-.reservation-edit>div:first-child>div:nth-child(2), .reservation-edit-bigger>div:first-child>div:nth-child(2) {
+.reservation-edit>div:first-child>div:nth-child(2),
+.reservation-edit-bigger>div:first-child>div:nth-child(2) {
     font-weight: 700;
 }
 
-.reservation-edit>div:nth-child(2)>div:nth-child(1), .reservation-edit-bigger>div:nth-child(2)>div:nth-child(1) {
+.reservation-edit>div:nth-child(2)>div:nth-child(1),
+.reservation-edit-bigger>div:nth-child(2)>div:nth-child(1) {
     font-weight: 700;
 }
 
-.reservation-edit>div,.reservation-edit-bigger>div {    
+.reservation-edit>div,
+.reservation-edit-bigger>div {
     text-align: center;
     width: auto;
     height: 80%;
@@ -65,7 +73,7 @@ input[type=text], select {
     border-radius: 15px;
 }
 
-.stupid-button{
+.stupid-button {
     width: auto;
     height: auto;
     border: none;
@@ -73,16 +81,17 @@ input[type=text], select {
     padding: 10px;
     font-size: 32px;
     line-height: 60px;
-    align-self:flex-start;
+    align-self: flex-start;
 
     background: var(--primary-color-light);
     border-radius: 75px;
 }
-.stupid-button:checked{
+
+.stupid-button:checked {
     border: 5px solid var(--primary-color-dark);
 }
 
-.stupid-button-gray{
+.stupid-button-gray {
 
     font-family: 'Montserrat';
     font-style: italic;
@@ -94,7 +103,7 @@ input[type=text], select {
 
 }
 
-.stupid-button-mode{
+.stupid-button-mode {
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 700;
@@ -103,7 +112,7 @@ input[type=text], select {
     color: #036371;
 }
 
-.button-submit{
+.button-submit {
     width: auto;
     height: auto;
     top: 190px;
@@ -122,10 +131,11 @@ input[type=text], select {
     color: #036371;
 }
 
-.search-bar, .login-bar{
+.search-bar,
+.login-bar {
 
     margin: auto;
-    
+
     text-align: center;
     box-sizing: border-box;
 
@@ -136,19 +146,19 @@ input[type=text], select {
     border: 5px solid var(--primary-color-dark);
     border-radius: 75px;
 
-    background-image: url('../assets/search_icon.png');
-    
+    background-image: url('../../assets/search_icon.png');
+
 }
 
-.search-bar{
+.search-bar {
     width: 60%;
 }
 
-.login-bar{
+.login-bar {
     width: 80%;
 }
 
-.search-bar-input{
+.search-bar-input {
     position: absolute;
     width: 1000px;
     height: 50px;
@@ -158,10 +168,10 @@ input[type=text], select {
     background: #FFFFFF;
     border: 5px solid var(--primary-color-dark);
     border-radius: 75px;
-    
+
 }
 
-.main-text{
+.main-text {
     top: 5%;
     margin: auto;
     width: auto;
@@ -179,7 +189,7 @@ input[type=text], select {
     color: #FFFFFF;
 }
 
-.secondary-text{
+.secondary-text {
     top: 5%;
     margin: auto;
     width: auto;
@@ -196,7 +206,7 @@ input[type=text], select {
     color: #FFFFFF;
 }
 
-.input-box{
+.input-box {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -207,7 +217,7 @@ input[type=text], select {
     margin-left: 1%;
     margin-right: 1%;
     padding: 1%;
-    
+
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 700;
@@ -219,9 +229,9 @@ input[type=text], select {
 
 .input-box>div span {
     margin-right: 10%;
-  }
+}
 
-.reservation-edit-bigger{
+.reservation-edit-bigger {
     height: auto;
     margin: 40px
 }
