@@ -1,0 +1,55 @@
+@import "../../styles/Constants.css";
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    padding: 0 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: var(--primary-color);
+    border-radius: var(--squircle-corner);
+}
+
+.calendar-itself {
+    display: flex;
+    flex-direction: row;
+}
+
+.calendar-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.hours-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-right: 3px;
+}
+
+.hours-panel>div {
+
+    height: 44.5px;
+}
+
+.navigation-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation-bar>button {
+    padding: 10px;
+    background-color: #B3E8E5;
+    border-radius: var(--squircle-corner);
+    border: none;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
