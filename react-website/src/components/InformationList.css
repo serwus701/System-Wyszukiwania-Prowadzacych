@@ -1,10 +1,10 @@
-@import "Constants.css";
+@import "../styles/Constants.css";
 
 .information-list {
-    height: 85vh;
+    height: 120vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
     font-family: 'Montserrat';
     font-style: normal;
