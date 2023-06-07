@@ -54,19 +54,19 @@ function ConsultationEdit(props) {
                 <div class="input-box">
                     <div>
                         <span>Prowadzący:</span>
-                        <input type="text" class="search-bar" value={lecturer} onChange={(event) => setLecturer(event.target.value)} />
+                        <input type="text" class="search-bar" value={lecturer} onChange={(event) => setLecturer(event.target.value)} placeholder="np. dr inż. Imię Nazwisko"/>
                     </div>
                     <div>
                         <span>Sala:</span>
-                        <input type="text" class="search-bar" value={room_id} onChange={(event) => setRoom_id(event.target.value)} />
+                        <input type="text" class="search-bar" value={room_id} onChange={(event) => setRoom_id(event.target.value)} placeholder="np. C3:229"/>
                     </div>
                     <div>
                         <span>Termin:</span>
-                        <input type="text" class="search-bar" value={date} onChange={(event) => setDate(event.target.value)} />
+                        <input type="text" class="search-bar" value={date} onChange={(event) => setDate(event.target.value)} placeholder="np. Styczen 1, 2023 01:15-03:15"/>
                     </div>
                     <div>
                         <span>Komentarz:</span>
-                        <input type="text" class="search-bar" value={comment} onChange={(event) => setComment(event.target.value)} />
+                        <input type="text" class="search-bar" value={comment} onChange={(event) => setComment(event.target.value)} placeholder="np. Zapraszam"/>
                     </div>
                 </div>
                 <div>
