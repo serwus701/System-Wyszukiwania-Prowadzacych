@@ -5,15 +5,15 @@ import "./Reservation.css";
 function ReservationEdit(props) {
     const navigate = useNavigate();
     const [id, setId] = useState('');
-    const [title, setTitle] = useState('np. Wykład z Volvo');
+    const [title, setTitle] = useState('');
     const [day, setDay] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
-    const [lecturer, setLecturer] = useState('np. dr inż. Marek Bawiec');
-    const [room_id, setRoom_id] = useState('np. C3:229');
-    const [date, setDate] = useState('np. Styczen 1, 2023 01:15-03:15');
+    const [lecturer, setLecturer] = useState('');
+    const [room_id, setRoom_id] = useState('');
+    const [date, setDate] = useState('');
     const [newDate, setNewDate] = useState('');
-    const [comment, setComment] = useState('np. Zapraszam');
+    const [comment, setComment] = useState('');
     const [jsonData, setJsonData] = useState(null);
 
     
@@ -83,23 +83,23 @@ function ReservationEdit(props) {
                 <div class="input-box">
                     <div>
                         <span>Tytuł:</span>
-                        <input type="text" class="search-bar" value={title} onChange={(event) => setTitle(event.target.value)} />
+                        <input type="text" class="search-bar" value={title} onChange={(event) => setTitle(event.target.value)} placeholder="np. Wykład z Volvo"/>
                     </div>
                     <div>
                         <span>Prowadzący:</span>
-                        <input type="text" class="search-bar" value={lecturer} onChange={(event) => setLecturer(event.target.value)} />
+                        <input type="text" class="search-bar" value={lecturer} onChange={(event) => setLecturer(event.target.value)} placeholder="np. dr inż. Imię Nazwisko"/>
                     </div>
                     <div>
                         <span>Sala:</span>
-                        <input type="text" class="search-bar" value={room_id} onChange={(event) => setRoom_id(event.target.value)} />
+                        <input type="text" class="search-bar" value={room_id} onChange={(event) => setRoom_id(event.target.value)} placeholder="np. C3:229"/>
                     </div>
                     <div>
                         <span>Termin:</span>
-                        <input type="text" class="search-bar" value={date} onChange={(event) => setDate(event.target.value)} />
+                        <input type="text" class="search-bar" value={date} onChange={(event) => setDate(event.target.value)} placeholder="np. Styczen 1, 2023 01:15-03:15"/>
                     </div>
                     <div>
                         <span>Komentarz:</span>
-                        <input type="text" class="search-bar" value={comment} onChange={(event) => setComment(event.target.value)} />
+                        <input type="text" class="search-bar" value={comment} onChange={(event) => setComment(event.target.value)} placeholder="np. Zapraszam"/>
                     </div>
                 </div>
                 <div>

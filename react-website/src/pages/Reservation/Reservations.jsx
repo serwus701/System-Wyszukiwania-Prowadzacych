@@ -15,8 +15,6 @@ const Reservations = () => {
         }
     };
 
-
-
     return (
         <div className='date'>
             <div>
