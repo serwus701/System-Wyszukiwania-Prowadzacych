@@ -3,7 +3,7 @@
 
 
 .reservation-item {
-    height: 85vh;
+    height: auto;
     display: flex;
     flex-direction: column;
 

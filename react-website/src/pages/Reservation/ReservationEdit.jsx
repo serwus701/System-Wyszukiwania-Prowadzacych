@@ -5,15 +5,18 @@ import "./Reservation.css";
 function ReservationEdit(props) {
     const navigate = useNavigate();
     const [id, setId] = useState('');
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState('np. Wykład z Volvo');
     const [day, setDay] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
-    const [lecturer, setLecturer] = useState('');
-    const [room_id, setRoom_id] = useState('');
-    const [date, setDate] = useState('');
-    const [comment, setComment] = useState('');
+    const [lecturer, setLecturer] = useState('np. dr inż. Marek Bawiec');
+    const [room_id, setRoom_id] = useState('np. C3:229');
+    const [date, setDate] = useState('np. Styczen 1, 2023 01:15-03:15');
+    const [newDate, setNewDate] = useState('');
+    const [comment, setComment] = useState('np. Zapraszam');
     const [jsonData, setJsonData] = useState(null);
+
+    
 
     const handleSubmit = () => {
         if (!title || !lecturer || !room_id || !date) {
@@ -35,6 +38,19 @@ function ReservationEdit(props) {
         props(newReservation);
         navigate('/');
 
+        newDate = date.replace("Styczen", "January");
+        newDate = date.replace("Luty", "February");
+        newDate = date.replace("Marzec", "March");
+        newDate = date.replace("Kwiecien", "April");
+        newDate = date.replace("Maj", "May");
+        newDate = date.replace("Czerwiec", "June");
+        newDate = date.replace("Lipiec", "July");
+        newDate = date.replace("Sierpien", "August");
+        newDate = date.replace("Wrzesien", "September");
+        newDate = date.replace("Pazdziernik", "October");
+        newDate = date.replace("Listopad", "November");
+        newDate = date.replace("Grudzien", "December");
+
         const data = {
             "lecturer_id": 5,
             "body": {
@@ -42,7 +58,7 @@ function ReservationEdit(props) {
                     "occurrences": [
                         {
                             "id": 1,
-                            "dayOfWeek": "4",
+                            "dayOfWeek": newDate.getDay(),
                             "frequency": "TN",
                             "startTime": "9:30",
                             "endTime": "11:20",

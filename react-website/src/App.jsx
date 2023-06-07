@@ -8,7 +8,7 @@ import Result from './pages/Result/Result.jsx';
 import Profile from './pages/profile';
 import Administration from './pages/administration';
 import Reservations from './pages/Reservation/Reservations';
-import Consultations from './pages/Consultations';
+import Consultations from './pages/consultations';
 import Logout from './pages/Logout/Logout';
 import Navbar from './components/Navbar/Navbar.jsx'
 
