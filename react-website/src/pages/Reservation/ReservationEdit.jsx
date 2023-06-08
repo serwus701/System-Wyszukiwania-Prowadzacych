@@ -12,7 +12,6 @@ function ReservationEdit(props) {
     const [lecturer, setLecturer] = useState('');
     const [room_id, setRoom_id] = useState('');
     const [date, setDate] = useState('');
-    const [newDate, setNewDate] = useState('');
     const [comment, setComment] = useState('');
     const [jsonData, setJsonData] = useState(null);
 
@@ -38,18 +37,35 @@ function ReservationEdit(props) {
         props(newReservation);
         navigate('/');
 
-        newDate = date.replace("Styczen", "January");
-        newDate = date.replace("Luty", "February");
-        newDate = date.replace("Marzec", "March");
-        newDate = date.replace("Kwiecien", "April");
-        newDate = date.replace("Maj", "May");
-        newDate = date.replace("Czerwiec", "June");
-        newDate = date.replace("Lipiec", "July");
-        newDate = date.replace("Sierpien", "August");
-        newDate = date.replace("Wrzesien", "September");
-        newDate = date.replace("Pazdziernik", "October");
-        newDate = date.replace("Listopad", "November");
-        newDate = date.replace("Grudzien", "December");
+        const translateMonth = (month) => {
+            const monthTranslations = {
+              Styczen: 'January',
+              Luty: 'February',
+              Marzec: 'March',
+              Kwiecien: 'April',
+              Maj: 'May',
+              Czerwiec: 'June',
+              Lipiec: 'July',
+              Sierpien: 'August',
+              Wrzesien: 'September',
+              Pazdziernik: 'October',
+              Listopad: 'November',
+              Grudzien: 'December',
+            };
+        
+            if (monthTranslations.hasOwnProperty(month)) {
+              return monthTranslations[month];
+            }
+            return month;
+        };
+
+        const translatedText = date.replace(/\b(\w+)\b/g, (match) =>
+            translateMonth(match)
+        );
+        setDate(translatedText);
+
+        const parts = translatedText.split("-");
+        setEndTime(parts[1]);
 
         const data = {
             "lecturer_id": 5,
@@ -58,10 +74,10 @@ function ReservationEdit(props) {
                     "occurrences": [
                         {
                             "id": 1,
-                            "dayOfWeek": newDate.getDay(),
+                            "dayOfWeek": date.getDay(),
                             "frequency": "TN",
                             "startTime": "9:30",
-                            "endTime": "11:20",
+                            "endTime": endTime,
                             "room_id": room_id
                         }
                     ]
