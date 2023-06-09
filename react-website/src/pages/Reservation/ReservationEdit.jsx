@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { getISOWeek, isEven } from 'date-fns';
 import "./Reservation.css";
 
 function ReservationEdit(props) {
@@ -67,6 +68,9 @@ function ReservationEdit(props) {
         const parts = translatedText.split("-");
         setEndTime(parts[1]);
 
+        const weekNumber = getISOWeek(date);
+        const weekType = isEven(weekNumber) ? 'TP' : 'TN';
+
         const data = {
             "lecturer_id": 5,
             "body": {
@@ -75,7 +79,7 @@ function ReservationEdit(props) {
                         {
                             "id": 1,
                             "dayOfWeek": date.getDay(),
-                            "frequency": "TN",
+                            "frequency": weekType,
                             "startTime": "9:30",
                             "endTime": endTime,
                             "room_id": room_id
