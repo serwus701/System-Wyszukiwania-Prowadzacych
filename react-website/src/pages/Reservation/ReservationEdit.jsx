@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { getISOWeek, isEven } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import "./Reservation.css";
 
 function ReservationEdit(props) {
@@ -8,7 +9,6 @@ function ReservationEdit(props) {
     const [id, setId] = useState('');
     const [title, setTitle] = useState('');
     const [day, setDay] = useState('');
-    const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     const [lecturer, setLecturer] = useState('');
     const [room_id, setRoom_id] = useState('');
@@ -28,7 +28,6 @@ function ReservationEdit(props) {
             id: id,
             title: title,
             day: day,
-            startTime: startTime,
             endTime: endTime,
             room_id: room_id,
             date: date,
@@ -71,6 +70,9 @@ function ReservationEdit(props) {
         const weekNumber = getISOWeek(date);
         const weekType = isEven(weekNumber) ? 'TP' : 'TN';
 
+        const parsedDate = parseISO(date.toISOString());
+        const startTime = format(parsedDate, 'HH:mm');
+
         const data = {
             "lecturer_id": 5,
             "body": {
@@ -80,7 +82,7 @@ function ReservationEdit(props) {
                             "id": 1,
                             "dayOfWeek": date.getDay(),
                             "frequency": weekType,
-                            "startTime": "9:30",
+                            "startTime": startTime,
                             "endTime": endTime,
                             "room_id": room_id
                         }
