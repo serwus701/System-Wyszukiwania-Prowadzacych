@@ -68,7 +68,8 @@ function ReservationEdit(props) {
         setEndTime(parts[1]);
 
         const weekNumber = getISOWeek(date);
-        const weekType = isEven(weekNumber) ? 'TP' : 'TN';
+        const isEvenWeek = weekNumber % 2 === 0;
+        const weekType = isEvenWeek ? 'TP' : 'TN';
 
         const parsedDate = parseISO(date.toISOString());
         const startTime = format(parsedDate, 'HH:mm');
@@ -88,7 +89,7 @@ function ReservationEdit(props) {
                         }
                     ]
                 },
-                "banner": "BBBBBBBB"
+                "banner": comment
             }
         }
 
