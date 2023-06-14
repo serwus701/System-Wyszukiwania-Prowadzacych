@@ -8,6 +8,5 @@ urlpatterns = [
     path('lecturers', views.getAllLecturers, name='allLecturers'),
     path('createfolders', views.createFoldersForNewUsers, name='createFolders'),
     path('consultations', views.consultations, name='consultations'),
-    path('setbanner', views.setBanner, name='setBanner'),
-    path('ttbyid, views.getTimeTableById', name='ttbyid')
+    path('setbanner', views.setBanner, name='setBanner')
 ]
