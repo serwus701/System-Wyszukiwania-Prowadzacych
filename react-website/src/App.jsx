@@ -3,7 +3,7 @@ import './styles/App.css';
 import { BrowserRouter as Router, Routes, Route }
     from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
-import Login from './pages/login';
+import Login from './pages/Login';
 import Result from './pages/Result/Result.jsx';
 import Profile from './pages/profile';
 import Administration from './pages/administration';
@@ -11,10 +11,13 @@ import Reservations from './pages/Reservation/Reservations';
 import Consultations from './pages/consultations';
 import Logout from './pages/Logout/Logout';
 import Navbar from './components/Navbar/Navbar.jsx'
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
 import { ReferenceDataContextProvider } from './ReferenceDataContext';
+const queryClient = new QueryClient()
 
 function App() {
     return (
+        <QueryClientProvider client={queryClient} contextSharing={true}>
         <ReferenceDataContextProvider>
             <Router>
                 <Navbar />
@@ -31,6 +34,7 @@ function App() {
                 </Routes>
             </Router>
         </ReferenceDataContextProvider>
+        </QueryClientProvider>
 
     );
 }
