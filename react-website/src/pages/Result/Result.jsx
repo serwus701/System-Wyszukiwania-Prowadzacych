@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { ReferenceDataContext, ReferenceDataContextProvider } from '../../ReferenceDataContext';
+import React, { useContext } from 'react';
+import { ReferenceDataContext } from '../../ReferenceDataContext';
 import InformationList from '../../components/InformationList.jsx';
 import Calendar from '../../components/Calendar/Calendar.jsx';
 
@@ -8,7 +8,7 @@ import './Result.css';
 
 const Result = () => {
 
-    const { lecturerCourses, setLecturerCourses } = useContext(ReferenceDataContext);
+    const { lecturerCourses } = useContext(ReferenceDataContext);
 
     const listItems = {
         "dane o kursie": {

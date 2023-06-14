@@ -7,7 +7,7 @@ import { ReferenceDataContext, ReferenceDataContextProvider } from '../../Refere
 
 const Home = () => {
     const navigate = useNavigate();
-    const { lecturerCourses, setLecturerCourses } = useContext(ReferenceDataContext);
+    const { setLecturerCourses } = useContext(ReferenceDataContext);
     const [searchText, setSearchSearch] = useState('');
 
     const [classesList, setClassesList] = useState([]);
