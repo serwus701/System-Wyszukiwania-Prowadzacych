@@ -1,10 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import InformationList from '../../components/InformationList.jsx';
 import Calendar from '../../components/Calendar/Calendar.jsx';
 
 import './Result.css';
 
 const Result = () => {
+    // const [courseData, setCourseData] = useState(null);
+    // const [calendarData, setCalendarData] = useState(null);
+
+    // const fetchCourseData = async () => {
+    //     const response = await fetch("http://127.0.0.1:8000/api/ttbyname", {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //     });
+    //     const data = await response.json();
+    //     setData(data);
+    // }
+
+    // useEffect(() => {
+    //     dynamicListItems();
+    // }, []);
+
+    // const fetchCalendarData = async () => {
+    //     const response = await fetch("http://127.0.0.1:8000/api/ttbyname", {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //     });
+    //     const data = await response.json();
+    //     setData(data);
+    // }
+
+    // useEffect(() => {
+    //     dynamicListItems();
+    // }, []);
+
     const listItems = {
         "dane o kursie": {
             'Godziny zajęć': '8 - 16',

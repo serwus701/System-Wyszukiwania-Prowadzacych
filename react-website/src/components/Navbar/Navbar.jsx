@@ -14,7 +14,7 @@ class BarElement extends React.Component {
 const Bar = () => {
   return (
     <Navbar>
-      <Container classname="Navbar">
+      <Container className="Navbar">
         <Nav className="links">
           <img src='/resources/logo.png' alt="logo"></img>
           <BarElement value="profile" name='Profil' ></BarElement>
