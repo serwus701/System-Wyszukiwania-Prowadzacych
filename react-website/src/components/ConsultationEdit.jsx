@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { getISOWeek } from 'date-fns';
-import { format, parseISO } from 'date-fns';
 import "../pages/Reservation/Reservation.css";
 
 function ConsultationEdit(props) {
@@ -13,8 +11,6 @@ function ConsultationEdit(props) {
     const [endTime, setEndTime] = useState('');
     const [lecturer, setLecturer] = useState('');
     const [room_id, setRoom_id] = useState('');
-    const [date, setDate] = useState('');
-    const [comment, setComment] = useState('');
     const [jsonData, setJsonData] = useState(null);
 
     const [isTPSelected, setIsTPSelected] = useState(false);
@@ -39,7 +35,7 @@ function ConsultationEdit(props) {
       };
 
     const handleSubmit = () => {
-        if (!frequency || !lecturer || !room_id || !date) {
+        if (!frequency || !lecturer || !room_id || !day) {
             return;
         }
 
@@ -51,41 +47,35 @@ function ConsultationEdit(props) {
             startTime: startTime,
             endTime: endTime,
             room_id: room_id,
-            date: date,
-            comment: comment
         };
 
         props(newConsultation);
         navigate('/');
 
-        const translateMonth = (month) => {
-            const monthTranslations = {
-              Styczen: 'January',
-              Luty: 'February',
-              Marzec: 'March',
-              Kwiecien: 'April',
-              Maj: 'May',
-              Czerwiec: 'June',
-              Lipiec: 'July',
-              Sierpien: 'August',
-              Wrzesien: 'September',
-              Pazdziernik: 'October',
-              Listopad: 'November',
-              Grudzien: 'December',
+        const translateDay = (dayNum) => {
+            const dayTranslations = {
+              Poniedziałek: '0',
+              Wtorek: '1',
+              Środa: '2',
+              Czwartek: '3',
+              Piątek: '4',
+              Sobota: '5',
+              Niedziela: '6'
             };
         
-            if (monthTranslations.hasOwnProperty(month)) {
-              return monthTranslations[month];
+            if (dayTranslations.hasOwnProperty(dayNum)) {
+              return dayTranslations[dayNum];
             }
-            return month;
+            return dayNum;
         };
 
-        const translatedText = date.replace(/\b(\w+)\b/g, (match) =>
-            translateMonth(match)
+        const translatedText = day.replace(/\b(\w+)\b/g, (match) =>
+            translateDay(match)
         );
-        setDate(translatedText);
+        setDay(translatedText);
 
-        const parts = translatedText.split("-");
+        const parts = startTime.split("-");
+        setStartTime(parts[0]);
         setEndTime(parts[1]);
 
         if (isTPSelected && isTNSelected) {
@@ -96,9 +86,6 @@ function ConsultationEdit(props) {
             setFrequency('TN');
         }
 
-        const parsedDate = parseISO(date.toISOString());
-        const startTime = format(parsedDate, 'HH:mm');
-
         const data = {
             "lecturer_id": 5,
             "body": {
@@ -106,7 +93,7 @@ function ConsultationEdit(props) {
                     "occurrences": [
                         {
                             "id": 1,
-                            "dayOfWeek": date.getDay(),
+                            "dayOfWeek": day,
                             "frequency": frequency,
                             "startTime": startTime,
                             "endTime": endTime,
@@ -129,13 +116,13 @@ function ConsultationEdit(props) {
                     Dodaj Konsultacje
                 </div>
                 <div class="pill-buttons">
-                    <button class={`stupid-button stupid-button-mode ${isTNSelected ? 'selected' : ''}`} onClick={handleButtonTN} style={{ color: isTPSelected ? '#8D9293' : '#036371' }} >
+                    <button class={`stupid-button stupid-button-mode ${isTNSelected ? 'selected' : ''}`} onClick={handleButtonTN} style={{ color: isTNSelected ? '#036371' : '#8D9293' }} >
                         TN
                     </button>
                     <button class={`stupid-button stupid-button-mode ${isTPSelected && isTNSelected ? 'selected' : ''}`} onClick={handleButtonBoth} style={{ color: isTNSelected && isTPSelected ? '#036371' : '#8D9293' }}>
                         T
                     </button>
-                    <button class={`stupid-button stupid-button-mode ${isTPSelected ? 'selected' : ''}`} onClick={handleButtonTP} style={{ color: isTNSelected ? '#8D9293' : '#036371' }} >
+                    <button class={`stupid-button stupid-button-mode ${isTPSelected ? 'selected' : ''}`} onClick={handleButtonTP} style={{ color: isTPSelected ? '#036371' : '#8D9293' }} >
                         TP
                     </button>
                 </div>
@@ -149,12 +136,12 @@ function ConsultationEdit(props) {
                         <input type="text" class="search-bar" value={room_id} onChange={(event) => setRoom_id(event.target.value)} placeholder="np. C3:229"/>
                     </div>
                     <div>
-                        <span>Termin:</span>
-                        <input type="text" class="search-bar" value={date} onChange={(event) => setDate(event.target.value)} placeholder="np. Styczen 1, 2023 01:15-03:15"/>
+                        <span>Dzień:</span>
+                        <input type="text" class="search-bar" value={day} onChange={(event) => setDay(event.target.value)} placeholder="np. Środa"/>
                     </div>
                     <div>
-                        <span>Komentarz:</span>
-                        <input type="text" class="search-bar" value={comment} onChange={(event) => setComment(event.target.value)} placeholder="np. Zapraszam"/>
+                        <span>Godzina:</span>
+                        <input type="text" class="search-bar" value={startTime} onChange={(event) => setStartTime(event.target.value)} placeholder="np. 09:15-11:15"/>
                     </div>
                 </div>
                 <div>
