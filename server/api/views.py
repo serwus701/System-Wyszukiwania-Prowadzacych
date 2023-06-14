@@ -16,7 +16,7 @@ usos = USOSAPIConnection(usosapi_base_url, consumer_key, consumer_secret)
 
 
 def getByName(request):
-    if request.method != 'GET':
+    if request.method != 'POST':
         return HttpResponse(status=405)
     query = json.loads(request.body.decode('utf-8'))
     params = {'format': 'json', 'lang': 'pl', 'fields': 'items', 'query': query}
@@ -26,7 +26,7 @@ def getByName(request):
 
 
 def createFoldersForNewUsers(request):
-    if request.method != 'GET':
+    if request.method != 'POST':
         return HttpResponse(status=405)
     lecturers = json.loads(open('./cache/lecturers.json').read())
     for lecturer in lecturers:
@@ -36,7 +36,7 @@ def createFoldersForNewUsers(request):
 
 
 def getTimeTableByName(request):
-    if request.method != 'GET':
+    if request.method != 'POST':
         return HttpResponse(status=405)
     lecturer_response = json.loads(getByName(request).content)
     id = lecturer_response["items"][0]["user"]["id"]
@@ -49,7 +49,7 @@ def getTimeTableByName(request):
 
 
 def getAllClassroms(request):
-    if request.method != 'GET':
+    if request.method != 'POST':
         return HttpResponse(status=405)
     merged_dict = {}
     for j in range(10, 25):
@@ -69,18 +69,12 @@ def getAllClassroms(request):
 
 
 def getClassroom(request):
-    if request.method != 'GET':
+    if request.method != 'POST':
         return HttpResponse(status=405)
     data = json.loads(request.body.decode('utf-8'))
     params = {'format': 'json', 'room_id': data['room_id'], 'start': data['start']}
     response = usos.get('services/tt/room', **params)
     return JsonResponse(response, safe=False)
-
-@login_required
-def assign_permissions(request):
-    user = request.user
-    email = user.email
-    print(user, email)
 
 
 def consultations(request):
@@ -92,7 +86,7 @@ def setBanner(request):
 
 
 def getAllLecturers(request):
-    if request.method != 'GET':
+    if request.method != 'POST':
         return HttpResponse(status=405)
 
     with open('./cache/lecturers.json', 'w') as file:
