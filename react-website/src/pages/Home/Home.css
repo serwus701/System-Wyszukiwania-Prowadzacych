@@ -140,3 +140,20 @@ select {
 
     color: #000000;
 }
+
+.search-button {
+    margin: auto;
+    width: 129px;
+    height: 39px;
+    left: 572px;
+    top: 190px;
+
+    background: #B3E8E5;
+    border: 3px solid #036371;
+    border-radius: var(--pill-corner);
+
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+}
