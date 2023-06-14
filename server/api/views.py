@@ -48,6 +48,17 @@ def getTimeTableByName(request):
     return JsonResponse(response, safe=False)
 
 
+def getTimeTableById(request):
+    if request.method != 'POST':
+        return HttpResponse(status=405)
+    data = json.loads(request.body.decode('utf-8'))
+    params = {'format': 'json', 'user_id': data['id'],
+              'fields': 'start_time|end_time|name|room_number|building_name|classtype_name|classtype_name|classtype_name'}
+    response = usos.get('services/tt/staff', **params)
+
+    return JsonResponse(response, safe=False)
+
+
 def getAllClassroms(request):
     if request.method != 'POST':
         return HttpResponse(status=405)
