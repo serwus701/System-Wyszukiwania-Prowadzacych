@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, createSearchParams } from 'react-router-dom';
 import './Home.css';
 import '../../assets/pwrlogo.png';
+import { ReferenceDataContext, ReferenceDataContextProvider } from '../../ReferenceDataContext';
 
 const Home = () => {
     const navigate = useNavigate();
+    const { lecturerCourses, setLecturerCourses } = useContext(ReferenceDataContext);
     const [searchText, setSearchSearch] = useState('');
 
     const [classesList, setClassesList] = useState([]);
@@ -20,7 +22,7 @@ const Home = () => {
             body: JSON.stringify({ "id": lecturerId })
         });
         const data = await response.json();
-        console.log(data);
+        return data;
     }
 
     function GetClassroms(searchString, searchData) {
@@ -37,7 +39,7 @@ const Home = () => {
     }
 
     function GetLecturers(searchString, searchData) {
-        if (searchString === '') return [];
+        if (!searchString) return [];
         const lecturer = searchData.filter(lecturer => {
             return (
                 lecturer.first_name.toLowerCase().includes(searchString.toLowerCase()) ||
@@ -45,6 +47,14 @@ const Home = () => {
             )
         });
         return lecturer.slice(0, 5);
+    }
+
+    const handleNavigate = (lecturerId) => {
+        fetchLecturerCourses(lecturerId).then(data => {
+            console.log(data);
+            setLecturerCourses(data);
+            navigate('/result');
+        });
     }
 
     useEffect(() => {
@@ -73,9 +83,7 @@ const Home = () => {
             });
     }, []);
 
-    const handleNavigate = () => {
-        navigate('/result', { searchText: searchText });
-    }
+
 
     return (
         <div class="hero-panel">
@@ -104,7 +112,7 @@ const Home = () => {
                     ))}
                     {GetLecturers(searchText, lecturersList).map((item) => (
                         <button
-                            onClick={() => fetchLecturerCourses(item.id)}
+                            onClick={() => handleNavigate(item.id)}
                         >
                             {item.first_name} {item.last_name}
                         </button>

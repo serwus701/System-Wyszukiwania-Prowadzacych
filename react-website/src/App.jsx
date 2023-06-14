@@ -11,23 +11,27 @@ import Reservations from './pages/Reservation/Reservations';
 import Consultations from './pages/consultations';
 import Logout from './pages/Logout/Logout';
 import Navbar from './components/Navbar/Navbar.jsx'
+import { ReferenceDataContextProvider } from './ReferenceDataContext';
 
 function App() {
     return (
-        <Router>
-            <Navbar />
-            <Routes>
-                {/* TO DO - przejścia pomiedzy routami, żeby ekran nie migał */}
-                <Route path='/' element={<Home />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/result' element={<Result />} />
-                <Route path='/profile' element={<Profile />} />
-                <Route path='/administration' element={<Administration />} />
-                <Route path='/reservations' element={<Reservations />} />
-                <Route path='/consultations' element={<Consultations />} />
-                <Route path='/logout' element={<Logout />} />
-            </Routes>
-        </Router>
+        <ReferenceDataContextProvider>
+            <Router>
+                <Navbar />
+                <Routes>
+                    {/* TO DO - przejścia pomiedzy routami, żeby ekran nie migał */}
+                    <Route path='/' element={<Home />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/result' element={<Result />} />
+                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/administration' element={<Administration />} />
+                    <Route path='/reservations' element={<Reservations />} />
+                    <Route path='/consultations' element={<Consultations />} />
+                    <Route path='/logout' element={<Logout />} />
+                </Routes>
+            </Router>
+        </ReferenceDataContextProvider>
+
     );
 }
 
