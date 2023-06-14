@@ -1,0 +1,17 @@
+@import "../../styles/Constants.css";
+
+.result-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.result-box>div:first-child {
+    width: 25%;
+}
+
+.result-box>div {
+
+    margin: 40px;
+    width: 75%;
+}

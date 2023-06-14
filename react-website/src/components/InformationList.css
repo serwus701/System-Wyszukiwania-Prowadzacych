@@ -1,0 +1,36 @@
+@import "../styles/Constants.css";
+
+.information-list {
+    height: 120vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.information-list>div:first-child>div:nth-child(2) {
+    font-weight: 700;
+}
+
+.information-list>div:nth-child(2)>div:nth-child(1) {
+    font-weight: 700;
+}
+
+.information-list>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 10px;
+    width: 95%;
+    height: 15%;
+
+    background: var(--primary-color);
+    border: 3px solid var(--primary-color-dark);
+    border-radius: 15px;
+}

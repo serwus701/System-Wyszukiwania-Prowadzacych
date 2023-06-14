@@ -1,0 +1,47 @@
+@import "../../styles/Constants.css";
+
+.grid-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    border: 1px solid black;
+    width: auto;
+    height: 41.7rem;
+    background-color: var(--primary-color-light);
+}
+
+.grid-row {
+    height: 50px;
+    display: flex;
+}
+
+.grid-item {
+    flex: 1;
+    border: 1px solid black;
+    width: 40px;
+}
+
+.event {
+    color: aliceblue;
+    position: absolute;
+    background-color: var(--secondary-color);
+    border-radius: var(--squircle-corner);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.event-content>div:nth-child(1) {
+    font-weight: 200;
+}
+
+.event-content>div:nth-child(3) {
+    font-weight: 200;
+}
+
+.event-content {
+    margin-left: 10px;
+}
