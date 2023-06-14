@@ -9,10 +9,10 @@ def consultations(request):
     data = json.loads(request.body.decode('utf-8'))
     if request.method == 'DELETE':
         return HttpResponse(status=200) if _deleteConsultations(data) else HttpResponse(status=500)
-    elif request.method == 'POST':
+    elif request.method == 'PUT':
         _addConsultations(data)
         return HttpResponse(status=200)
-    elif request.method == 'GET':
+    elif request.method == 'POST':
         retrieved = _getConsultations(data)
         if retrieved is not None:
             return JsonResponse(retrieved, safe=False)
@@ -22,7 +22,7 @@ def consultations(request):
 
 
 def setBanner(request):
-    if request.method != 'POST':
+    if request.method != 'PUT':
         return HttpResponse(status=405)
     new_data = json.loads(request.body.decode('utf-8'))
     path = './lecturers/' + str(new_data['lecturer_id']) + '/data.json'
