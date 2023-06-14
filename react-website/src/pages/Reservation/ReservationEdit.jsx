@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { getISOWeek, isEven } from 'date-fns';
+import { getISOWeek } from 'date-fns';
 import { format, parseISO } from 'date-fns';
 import "./Reservation.css";
 
@@ -15,8 +15,6 @@ function ReservationEdit(props) {
     const [date, setDate] = useState('');
     const [comment, setComment] = useState('');
     const [jsonData, setJsonData] = useState(null);
-
-    
 
     const handleSubmit = () => {
         if (!title || !lecturer || !room_id || !date) {
