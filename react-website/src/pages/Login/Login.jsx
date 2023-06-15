@@ -39,16 +39,11 @@ function Login() {
 
   const handleGoogleLogin = () => {
     fetchGoogleAuth();
+    console.log(profile.data);
   };
 
   return (
-    <div className="App">
-      {profile ? (
-        <h1>Hello {profile.firstName}!</h1>
-      ) : (
-        <button onClick={handleGoogleLogin}>Login with Google</button>
-      )}
-    </div>
+    handleGoogleLogin
   );
 }
 
