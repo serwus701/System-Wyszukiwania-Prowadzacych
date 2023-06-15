@@ -3,7 +3,7 @@ import './styles/App.css';
 import { BrowserRouter as Router, Routes, Route }
     from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
-import Login from './pages/Login';
+import Login from './pages/Login/Login.jsx';
 import Result from './pages/Result/Result.jsx';
 import Profile from './pages/Profile';
 import Administration from './pages/Administration';
@@ -22,7 +22,6 @@ function App() {
                 <Router>
                     <Navbar />
                     <Routes>
-                        {/* TO DO - przejścia pomiedzy routami, żeby ekran nie migał */}
                         <Route path='/' element={<Home />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/result' element={<Result />} />
