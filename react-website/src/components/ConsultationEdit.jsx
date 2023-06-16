@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../pages/Reservation/Reservation.css";
+import lecturersData from '../../../public/cache/lecturers.json';
 
 function ConsultationEdit(props) {
     const navigate = useNavigate();
@@ -18,6 +19,18 @@ function ConsultationEdit(props) {
     const [isTPSelected, setIsTPSelected] = useState(false);
     const [isTNSelected, setIsTNSelected] = useState(false);
 
+    const searchPerson = (firstName, lastName) => {
+        const foundPerson = lecturersData.find(person =>
+          person.first_name === firstName && person.last_name === lastName
+        );
+    
+        if (foundPerson) {
+          console.log('Znaleziono osobę:', foundPerson);
+          setId(foundPerson.id);
+        } else {
+          console.log('Nie znaleziono osoby o podanym imieniu i nazwisku.');
+        }
+    };
     
     const preview = {
         "termin1": {
