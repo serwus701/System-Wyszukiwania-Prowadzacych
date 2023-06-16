@@ -1,5 +1,5 @@
 import React from 'react';
- 
+
 const Profile = () => {
     return (
         <div>
@@ -7,5 +7,5 @@ const Profile = () => {
         </div>
     );
 };
- 
+
 export default Profile;
