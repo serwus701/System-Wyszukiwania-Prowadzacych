@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import "../pages/Reservation/Reservation.css";
-import lecturersData from '../../../public/cache/lecturers.json';
 
 function ConsultationEdit(props) {
     const navigate = useNavigate();
@@ -19,6 +19,9 @@ function ConsultationEdit(props) {
     const [isTPSelected, setIsTPSelected] = useState(false);
     const [isTNSelected, setIsTNSelected] = useState(false);
 
+    
+    const [lecturersData, setLecturersData] = useState(null);
+
     const searchPerson = (firstName, lastName) => {
         const foundPerson = lecturersData.find(person =>
           person.first_name === firstName && person.last_name === lastName
@@ -32,6 +35,16 @@ function ConsultationEdit(props) {
         }
     };
     
+    useEffect(() => {
+        axios.get('/cache/lecturers.json')
+            .then(response => {
+                setLecturersData(response);
+            })
+            .catch(error => {
+                console.error('Error in fetching:', error);
+            });
+    }, []);
+
     const preview = {
         "termin1": {
             'Data': startTime,
