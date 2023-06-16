@@ -14,11 +14,12 @@ function ConsultationEdit(props) {
     const [endTime, setEndTime] = useState('');
     const [lecturer, setLecturer] = useState('');
     const [room_id, setRoom_id] = useState('');
+    const [building_id, setBuilding_id] = useState('');
+    const [number, setNumberd] = useState('');
     const [jsonData, setJsonData] = useState(null);
 
     const [isTPSelected, setIsTPSelected] = useState(false);
     const [isTNSelected, setIsTNSelected] = useState(false);
-
     
     const [lecturersData, setLecturersData] = useState(null);
 
@@ -44,6 +45,30 @@ function ConsultationEdit(props) {
                 console.error('Error in fetching:', error);
             });
     }, []);
+
+    const searchRoomID = (building_id, number) => {
+        const foundRoomID = lecturersData.find(room =>
+            room.building_id === building_id && room.number === number
+        );
+    
+        if (foundRoomID) {
+          console.log('Znaleziono osobę:', foundRoomID);
+          setId(foundRoomID.id);
+        } else {
+          console.log('Nie znaleziono osoby o podanym imieniu i nazwisku.');
+        }
+    };
+    
+    useEffect(() => {
+        axios.get('/cache/classrooms.json')
+            .then(response => {
+                searchRoomID(response);
+            })
+            .catch(error => {
+                console.error('Error in fetching:', error);
+            });
+    }, []);
+
 
     const preview = {
         "termin1": {
