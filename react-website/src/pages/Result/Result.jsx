@@ -8,6 +8,8 @@ import './Result.css';
 
 const Result = () => {
 
+    // const storedLecturerCourses = localStorage.getItem('lecturerCourses');
+
     const { lecturerCourses } = useContext(ReferenceDataContext);
 
     const listItems = {
