@@ -5,6 +5,8 @@ import "../pages/Reservation/Reservation.css";
 function ConsultationEdit(props) {
     const navigate = useNavigate();
     const [id, setId] = useState('');
+    const [conId, setConId] = useState('');
+    const [banner, setBanner] = useState('');
     const [day, setDay] = useState('');
     const [frequency, setFrequency] = useState('');
     const [startTime, setStartTime] = useState('');
@@ -15,6 +17,15 @@ function ConsultationEdit(props) {
 
     const [isTPSelected, setIsTPSelected] = useState(false);
     const [isTNSelected, setIsTNSelected] = useState(false);
+
+    
+    const preview = {
+        "termin1": {
+            'Data': startTime,
+            'Nazwa przedmiotu': "Konsultacje",
+            'Sala': room_id
+        }
+    }
 
     const handleButtonTN = () => {
         setIsTPSelected(false);
@@ -33,6 +44,10 @@ function ConsultationEdit(props) {
         setIsTNSelected(true);
         setFrequency('T');
       };
+
+    const handlePreviewData = () => {
+        props.onPreviewData(preview);
+    };
 
     const handleSubmit = () => {
         if (!frequency || !lecturer || !room_id || !day) {
@@ -87,12 +102,12 @@ function ConsultationEdit(props) {
         }
 
         const data = {
-            "lecturer_id": 5,
+            "lecturer_id": id,
             "body": {
                 "consultations": {
                     "occurrences": [
                         {
-                            "id": 1,
+                            "id": conId+1,
                             "dayOfWeek": day,
                             "frequency": frequency,
                             "startTime": startTime,
@@ -101,7 +116,7 @@ function ConsultationEdit(props) {
                         }
                     ]
                 },
-                "banner": "cos z tablicy"
+                "banner": banner
             }
         }
 
@@ -145,7 +160,7 @@ function ConsultationEdit(props) {
                     </div>
                 </div>
                 <div>
-                    <button type="submit" class="button-submit" onClick={handleSubmit}>
+                    <button type="submit" class="button-submit" onClick={handlePreviewData}>
                         Podgląd
                     </button>
                     <button type="submit" class="button-submit" onClick={handleSubmit}>

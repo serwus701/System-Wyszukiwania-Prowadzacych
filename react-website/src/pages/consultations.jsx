@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ConsultationList from '../components/ConsultationList.jsx';
 import ConsultationEdit from '../components/ConsultationEdit.jsx';
 
@@ -6,46 +6,25 @@ import '../pages/Reservation/Reservation.css';
 import './Home/Home.css';
 
 const Consultations = () => {
-    const listItems = {
+    const [listItems, setListItems] = useState({
         "termin1": {
-            'Data': '01.05 | 13:00 - 15:00',
+            'Data': '- | -',
             'Nazwa przedmiotu': "Konsultacje",
-            'Sala': 'Zoom',
-            'Opis': 'Zapraszam ogolnie to duzy tekst tu ma sie jakis znalezc zawijajacy wiec tak'
-        },
-        "termin2": {
-            'Data': '02.05 | 13:00 - 15:00',
-            'Nazwa przedmiotu': "Konsultacje",
-            'Sala': 'Zoom',
-            'Opis': 'Zapraszam ogolnie to duzy tekst tu ma sie jakis znalezc zawijajacy wiec tak'
-        },
-        "termin3": {
-            'Data': '03.05 | 13:00 - 15:00',
-            'Nazwa przedmiotu': "Konsultacje",
-            'Sala': 'Zoom',
-            'Opis': 'Zapraszam ogolnie to duzy tekst tu ma sie jakis znalezc zawijajacy wiec tak'
-        },
-        "termin4": {
-            'Data': '04.05 | 13:00 - 15:00',
-            'Nazwa przedmiotu': "Konsultacje",
-            'Sala': 'Zoom',
-            'Opis': 'Zapraszam a tu zdalnie'
-        },
-        "termin5": {
-            'Data': '05.05 | 13:00 - 15:00',
-            'Nazwa przedmiotu': "Konsultacje",
-            'Sala': 'MSTeams',
-            'Opis': 'Zapraszam w sumie tu też zdalnie, ale inaczej'
+            'Sala': '-'
         }
+    });
+
+    const handleListItemsUpdate = (updatedItems) => {
+        setListItems(updatedItems);
     };
 
     return (
         <div className='date'>
             <div>
-                <ConsultationEdit />
+                <ConsultationEdit onListItemsUpdate={handleListItemsUpdate} />
             </div>
             <div>
-                <h1 class="black">Terminy:</h1>
+                <h1 class="black">Podgląd:</h1>
                 <ConsultationList listItems={listItems} />
             </div>
         </div>
