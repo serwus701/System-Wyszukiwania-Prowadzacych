@@ -49,10 +49,10 @@ const Home = () => {
         return lecturer.slice(0, 5);
     }
 
-    const handleNavigate = (lecturerId) => {
+    const handleLecturersNavigate = (lecturerId) => {
         fetchLecturerCourses(lecturerId).then(data => {
-            console.log(data);
             setLecturerCourses(data);
+            sessionStorage.setItem("lecturerCourses", JSON.stringify(data))
             navigate('/result');
         });
     }
@@ -71,7 +71,6 @@ const Home = () => {
 
         axios.get('/cache/classrooms.json')
             .then(response => {
-                console.log("dupa");
                 var classesList = [];
 
                 for (var prop in response.data) {
@@ -114,7 +113,7 @@ const Home = () => {
                     ))}
                     {GetLecturers(searchText, lecturersList).map((item) => (
                         <button
-                            onClick={() => handleNavigate(item.id)}
+                            onClick={() => handleLecturersNavigate(item.id)}
                         >
                             {item.first_name} {item.last_name}
                         </button>
