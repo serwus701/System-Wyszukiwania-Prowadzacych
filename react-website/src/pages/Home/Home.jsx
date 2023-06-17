@@ -49,18 +49,26 @@ const Home = () => {
         return lecturer.slice(0, 5);
     }
 
-    const handleNavigate = (lecturerId) => {
+    const handleLecturersNavigate = (lecturerId) => {
         fetchLecturerCourses(lecturerId).then(data => {
-            console.log(data);
             setLecturerCourses(data);
+            sessionStorage.setItem("lecturerCourses", JSON.stringify(data))
             navigate('/result');
         });
+    }
+
+    const handleClassroomsNavigate = (lecturerId) => {//TODO
+        // fetchLecturerCourses(lecturerId).then(data => {
+        //     setLecturerCourses(data);
+        //     sessionStorage.setItem("lecturerCourses", JSON.stringify(data))
+        //     navigate('/result');
+        // });
     }
 
     useEffect(() => {
         axios.get('/cache/lecturers.json')
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 const dataWithIds = response.data.map((item) => (
                     { ...item }));
                 setLecturersList(dataWithIds);
@@ -71,7 +79,6 @@ const Home = () => {
 
         axios.get('/cache/classrooms.json')
             .then(response => {
-                console.log("dupa");
                 var classesList = [];
 
                 for (var prop in response.data) {
@@ -114,7 +121,7 @@ const Home = () => {
                     ))}
                     {GetLecturers(searchText, lecturersList).map((item) => (
                         <button
-                            onClick={() => handleNavigate(item.id)}
+                            onClick={() => handleLecturersNavigate(item.id)}
                         >
                             {item.first_name} {item.last_name}
                         </button>
@@ -123,7 +130,7 @@ const Home = () => {
                 <div >
                     <button
                         className="search-button"
-                        onClick={() => handleNavigate}
+                        onClick={() => handleClassroomsNavigate}
                     >
                         Search
                     </button>

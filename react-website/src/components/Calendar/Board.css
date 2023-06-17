@@ -34,8 +34,29 @@
     justify-content: center;
 }
 
+.event-hover {
+    color: aliceblue;
+    position: absolute;
+    background-color: var(--secondary-color);
+    border-radius: var(--squircle-corner);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.event-content {
+    height: 100%;
+}
+
+.event-content>div {
+    font-size: 0.8rem;
+    font-stretch: 100%;
+}
+
 .event-content>div:nth-child(1) {
     font-weight: 200;
+    font-size: 0.8rem;
 }
 
 .event-content>div:nth-child(3) {

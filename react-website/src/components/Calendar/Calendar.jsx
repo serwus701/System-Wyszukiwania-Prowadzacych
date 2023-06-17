@@ -3,14 +3,14 @@ import Board from "./Board";
 import "./Calendar.css"
 
 const Calendar = ({ lecturerCourses }) => {
-
     const today = new Date();
     const [weekStart, setWeekStart] = useState(
         new Date(
             today.getFullYear(),
             today.getMonth(),
             today.getDate() - today.getDay() + 1
-        ))
+        )
+    )
 
     const weekNames = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek"];
 
@@ -20,6 +20,31 @@ const Calendar = ({ lecturerCourses }) => {
         "15:00", "16:00", "17:00", "18:00",
         "19:00", "20:00", "21:00"
     ];
+
+    const weekEvenIndicator = () => {
+        let year = new Date(weekStart.getFullYear(), 0, 1);
+        let days = Math.floor((weekStart - year) / (24 * 60 * 60 * 1000));
+        let week = Math.ceil((weekStart.getDay() + 1 + days) / 7);
+        return week % 2 === 1 ? "P" : "N";
+    }
+
+    function moveNextWeek() {
+        setWeekStart(new Date(
+            weekStart.getFullYear(),
+            weekStart.getMonth(),
+            weekStart.getDate() + 7
+        ));
+    }
+
+    function movePreviousWeek() {
+        setWeekStart(new Date(
+            weekStart.getFullYear(),
+            weekStart.getMonth(),
+            weekStart.getDate() - 7
+        ));
+    }
+
+
 
     const events =
         lecturerCourses ? lecturerCourses.map((course) => {
@@ -39,8 +64,6 @@ const Calendar = ({ lecturerCourses }) => {
             const timeEnd =
                 parseInt(strTimeEnd.split(':')[0]) + parseInt(strTimeEnd.split(':')[1]) / 60;
 
-            console.log(strTimeStart.split(':')[0] + ":" + strTimeStart.split(':')[1])
-            // const timeStartDisp = strTimeStart.split(' ')[0]
 
             const dispTimeStart = strTimeStart.split(':')[0] + ":" + strTimeStart.split(':')[1]
             const dispTimeEnd = strTimeEnd.split(':')[0] + ":" + strTimeEnd.split(':')[1]
@@ -65,19 +88,22 @@ const Calendar = ({ lecturerCourses }) => {
     return (
         <div className="calendar">
             <div className="navigation-bar">
-                <button>
+                <button
+                    onClick={movePreviousWeek}>
                     <b>{"<"}</b>
                 </button>
                 <h1>Plan zajęć i konsultacji</h1>
-                <button>
+                <button
+                    onClick={moveNextWeek}
+                >
                     <b>{">"}</b>
                 </button>
             </div>
 
             <div className="calendar-itself">
                 <div className="hours-panel">
-                    {hours.map((hour) => (
-                        <div>
+                    {hours.map((hour, key) => (
+                        <div key={key}>
                             {hour}
                         </div>
                     ))}
@@ -85,7 +111,7 @@ const Calendar = ({ lecturerCourses }) => {
                 <div className="calendar-grid">
                     <div className="calendar-header">
                         {weekNames.map((dayName, key) => (
-                            <div>
+                            <div key={key}>
                                 <div>
                                     {dayName}
                                 </div>
@@ -101,7 +127,7 @@ const Calendar = ({ lecturerCourses }) => {
                             </div>
                         ))}
                     </div>
-                    <Board events={events} />
+                    <Board events={events} weekEvenIndicator={weekEvenIndicator()} />
                 </div>
             </div>
         </div>
