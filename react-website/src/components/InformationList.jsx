@@ -5,10 +5,10 @@ import "./InformationList.css";
 function InformationList(props) {
   return (
     <div className="information-list">
-      {Object.entries(props.listItems).map(([sectionName, sectionItems]) => {
+      {Object.entries(props.listItems).map(([sectionName, sectionItems], key) => {
         if (sectionName === "Konsultacje") {
           return (
-            <div>
+            <div key={key}>
               {Object.entries(sectionItems).map(([itemName, itemValue]) => (
                 <div>
                   {itemName}: {itemValue}
@@ -18,7 +18,7 @@ function InformationList(props) {
           );
         } else {
           return (
-            <div>
+            <div key={key}>
               {Object.entries(sectionItems).map(([itemName, itemValue]) => (
                 <div>
                   {itemValue}

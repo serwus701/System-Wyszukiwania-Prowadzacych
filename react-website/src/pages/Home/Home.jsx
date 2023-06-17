@@ -57,10 +57,18 @@ const Home = () => {
         });
     }
 
+    const handleClassroomsNavigate = (lecturerId) => {//TODO
+        // fetchLecturerCourses(lecturerId).then(data => {
+        //     setLecturerCourses(data);
+        //     sessionStorage.setItem("lecturerCourses", JSON.stringify(data))
+        //     navigate('/result');
+        // });
+    }
+
     useEffect(() => {
         axios.get('/cache/lecturers.json')
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 const dataWithIds = response.data.map((item) => (
                     { ...item }));
                 setLecturersList(dataWithIds);
@@ -122,7 +130,7 @@ const Home = () => {
                 <div >
                     <button
                         className="search-button"
-                        onClick={() => handleNavigate}
+                        onClick={() => handleClassroomsNavigate}
                     >
                         Search
                     </button>

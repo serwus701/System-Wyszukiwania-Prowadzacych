@@ -2,6 +2,7 @@ import React from 'react';
 import './Board.css';
 
 function Board(props) {
+    // console.log(props.events);
     return (
         <div className="grid-container" id="grid-container">
             {Array(15)
@@ -17,21 +18,47 @@ function Board(props) {
                 ))}
             {
                 props.events.map((event, key) => {
+                    // console.log(props.weekEvenIndicator);
+                    // console.log(event);
+                    if (props.weekEvenIndicator !== event.type) {
+                        return null;
+                    }
                     let eventElement = (
-                        <div className='event'
-                            style={{
-                                backgroundColor: "#2F589D",
-                                top: `${(event.timeStart - 7) * 6.666}%`,
-                                left: `${(event.day - 1) * 20}%`,
-                                width: '20%',
-                                height: `${(event.timeEnd - event.timeStart) * 6.666}%`
-                            }}>
-                            <div className='event-content' >
-                                <div>{event.name}</div>
-                                <div>{event.timeDisplay}</div>
-                                <div>{event.location}</div>
+                        <div
+                            key={key}
+                        // className='event-hover'
+                        // style={{
+                        //     backgroundColor: "red",
+                        //     top: `${(event.timeStart - 7) * 6.666}%`,
+                        //     left: `${(event.day - 1) * 20}%`,
+                        //     width: '20%',
+                        //     height: `${(event.timeEnd - event.timeStart) * 6.666}%`
+                        // }}
+                        >
+
+
+                            <div>
+
+                            </div>
+                            <div
+                                className='event'
+
+                                style={{
+                                    backgroundColor: "#2F589D",
+                                    top: `${(event.timeStart - 7) * 6.666}%`,
+                                    left: `${(event.day - 1) * 20}%`,
+                                    width: '20%',
+                                    height: `${(event.timeEnd - event.timeStart) * 6.666}%`
+                                }}
+                            >
+                                <div className='event-content' >
+                                    <div>{event.name}</div>
+                                    <div>{event.timeDisplay}</div>
+                                    <div>{event.location}</div>
+                                </div>
                             </div>
                         </div>
+
 
                     );
                     return eventElement;
