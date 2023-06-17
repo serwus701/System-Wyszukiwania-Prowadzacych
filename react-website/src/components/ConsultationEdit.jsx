@@ -22,6 +22,7 @@ function ConsultationEdit(props) {
     const [isTNSelected, setIsTNSelected] = useState(false);
 
     const [lecturersData, setLecturersData] = useState(null);
+    const [roomData, setRoomData] = useState(null);
 
     const searchPerson = (firstName, lastName) => {
         const foundPerson = lecturersData.find(person =>
@@ -29,7 +30,7 @@ function ConsultationEdit(props) {
         );
 
         if (foundPerson) {
-            console.log('Znaleziono osobę:', foundPerson);
+            console.log('Person found:', foundPerson);
             setId(foundPerson.id);
         } else {
             console.log('Nie znaleziono osoby o podanym imieniu i nazwisku.');
@@ -47,22 +48,22 @@ function ConsultationEdit(props) {
     }, []);
 
     const searchRoomID = (building_id, number) => {
-        const foundRoomID = lecturersData.find(room =>
+        const foundRoomID = roomData.find(room =>
             room.building_id === building_id && room.number === number
         );
 
         if (foundRoomID) {
-            console.log('Znaleziono osobę:', foundRoomID);
+            console.log('Room found:', foundRoomID);
             setId(foundRoomID.id);
         } else {
-            console.log('Nie znaleziono osoby o podanym imieniu i nazwisku.');
+            console.log('Nie znaleziono sali o podanym identyfikatorze.');
         }
     };
 
     useEffect(() => {
         axios.get('/cache/classrooms.json')
             .then(response => {
-                searchRoomID(response);
+                setRoomData(response);
             })
             .catch(error => {
                 console.error('Error in fetching:', error);
@@ -152,7 +153,8 @@ function ConsultationEdit(props) {
             setFrequency('TN');
         }
 
-        
+        const tempRoom = room_id.split(":");
+        setRoom_id(searchRoomID(tempRoom[0], tempRoom[1]));
 
         const data = {
             "lecturer_id": id,
