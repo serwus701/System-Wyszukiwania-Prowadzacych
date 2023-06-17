@@ -152,6 +152,8 @@ function ConsultationEdit(props) {
             setFrequency('TN');
         }
 
+        
+
         const data = {
             "lecturer_id": id,
             "body": {
