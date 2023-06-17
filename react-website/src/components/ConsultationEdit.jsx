@@ -20,22 +20,22 @@ function ConsultationEdit(props) {
 
     const [isTPSelected, setIsTPSelected] = useState(false);
     const [isTNSelected, setIsTNSelected] = useState(false);
-    
+
     const [lecturersData, setLecturersData] = useState(null);
 
     const searchPerson = (firstName, lastName) => {
         const foundPerson = lecturersData.find(person =>
-          person.first_name === firstName && person.last_name === lastName
+            person.first_name === firstName && person.last_name === lastName
         );
-    
+
         if (foundPerson) {
-          console.log('Znaleziono osobę:', foundPerson);
-          setId(foundPerson.id);
+            console.log('Znaleziono osobę:', foundPerson);
+            setId(foundPerson.id);
         } else {
-          console.log('Nie znaleziono osoby o podanym imieniu i nazwisku.');
+            console.log('Nie znaleziono osoby o podanym imieniu i nazwisku.');
         }
     };
-    
+
     useEffect(() => {
         axios.get('/cache/lecturers.json')
             .then(response => {
@@ -50,15 +50,15 @@ function ConsultationEdit(props) {
         const foundRoomID = lecturersData.find(room =>
             room.building_id === building_id && room.number === number
         );
-    
+
         if (foundRoomID) {
-          console.log('Znaleziono osobę:', foundRoomID);
-          setId(foundRoomID.id);
+            console.log('Znaleziono osobę:', foundRoomID);
+            setId(foundRoomID.id);
         } else {
-          console.log('Nie znaleziono osoby o podanym imieniu i nazwisku.');
+            console.log('Nie znaleziono osoby o podanym imieniu i nazwisku.');
         }
     };
-    
+
     useEffect(() => {
         axios.get('/cache/classrooms.json')
             .then(response => {
@@ -83,7 +83,7 @@ function ConsultationEdit(props) {
         setIsTNSelected(true);
         setFrequency('TN');
     };
-  
+
     const handleButtonTP = () => {
         setIsTPSelected(true);
         setIsTNSelected(false);
@@ -94,7 +94,7 @@ function ConsultationEdit(props) {
         setIsTPSelected(true);
         setIsTNSelected(true);
         setFrequency('T');
-      };
+    };
 
     const handlePreviewData = () => {
         props.onPreviewData(preview);
@@ -120,17 +120,17 @@ function ConsultationEdit(props) {
 
         const translateDay = (dayNum) => {
             const dayTranslations = {
-              Poniedziałek: '0',
-              Wtorek: '1',
-              Środa: '2',
-              Czwartek: '3',
-              Piątek: '4',
-              Sobota: '5',
-              Niedziela: '6'
+                Poniedziałek: '0',
+                Wtorek: '1',
+                Środa: '2',
+                Czwartek: '3',
+                Piątek: '4',
+                Sobota: '5',
+                Niedziela: '6'
             };
-        
+
             if (dayTranslations.hasOwnProperty(dayNum)) {
-              return dayTranslations[dayNum];
+                return dayTranslations[dayNum];
             }
             return dayNum;
         };
@@ -160,7 +160,7 @@ function ConsultationEdit(props) {
                 "consultations": {
                     "occurrences": [
                         {
-                            "id": conId+1,
+                            "id": conId + 1,
                             "dayOfWeek": day,
                             "frequency": frequency,
                             "startTime": startTime,
@@ -197,19 +197,19 @@ function ConsultationEdit(props) {
                 <div class="input-box">
                     <div>
                         <span>Prowadzący:</span>
-                        <input type="text" class="search-bar" value={lecturer} onChange={(event) => setLecturer(event.target.value)} placeholder="np. dr inż. Imię Nazwisko"/>
+                        <input type="text" class="search-bar" value={lecturer} onChange={(event) => setLecturer(event.target.value)} placeholder="np. dr inż. Imię Nazwisko" />
                     </div>
                     <div>
                         <span>Sala:</span>
-                        <input type="text" class="search-bar" value={room_id} onChange={(event) => setRoom_id(event.target.value)} placeholder="np. C3:229"/>
+                        <input type="text" class="search-bar" value={room_id} onChange={(event) => setRoom_id(event.target.value)} placeholder="np. C3:229" />
                     </div>
                     <div>
                         <span>Dzień:</span>
-                        <input type="text" class="search-bar" value={day} onChange={(event) => setDay(event.target.value)} placeholder="np. Środa"/>
+                        <input type="text" class="search-bar" value={day} onChange={(event) => setDay(event.target.value)} placeholder="np. Środa" />
                     </div>
                     <div>
                         <span>Godzina:</span>
-                        <input type="text" class="search-bar" value={startTime} onChange={(event) => setStartTime(event.target.value)} placeholder="np. 09:15-11:15"/>
+                        <input type="text" class="search-bar" value={startTime} onChange={(event) => setStartTime(event.target.value)} placeholder="np. 09:15-11:15" />
                     </div>
                 </div>
                 <div>

@@ -39,7 +39,15 @@ const Calendar = ({ lecturerCourses }) => {
             const timeEnd =
                 parseInt(strTimeEnd.split(':')[0]) + parseInt(strTimeEnd.split(':')[1]) / 60;
 
-            const timeDisplay = `${timeStart}:00 - ${timeEnd}:00`;
+            console.log(strTimeStart.split(':')[0] + ":" + strTimeStart.split(':')[1])
+            // const timeStartDisp = strTimeStart.split(' ')[0]
+
+            const dispTimeStart = strTimeStart.split(':')[0] + ":" + strTimeStart.split(':')[1]
+            const dispTimeEnd = strTimeEnd.split(':')[0] + ":" + strTimeEnd.split(':')[1]
+
+
+            const timeDisplay = `${dispTimeStart} - ${dispTimeEnd}`;
+
 
             const location = course.room_number;
 

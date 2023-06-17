@@ -60,6 +60,7 @@ const Home = () => {
     useEffect(() => {
         axios.get('/cache/lecturers.json')
             .then(response => {
+                console.log(response.data);
                 const dataWithIds = response.data.map((item) => (
                     { ...item }));
                 setLecturersList(dataWithIds);
@@ -70,6 +71,7 @@ const Home = () => {
 
         axios.get('/cache/classrooms.json')
             .then(response => {
+                console.log("dupa");
                 var classesList = [];
 
                 for (var prop in response.data) {
