@@ -1,0 +1,11 @@
+[
+    {
+        "id": 6,
+        "dayOfWeek": "4",
+        "frequency": "TP",
+        "startTime": "12:05",
+        "endTime": "15:00",
+        "room_id": 3,
+        "lecturer_id": 5
+    }
+]

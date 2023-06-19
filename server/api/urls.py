@@ -9,5 +9,6 @@ urlpatterns = [
     path('createfolders', views.createFoldersForNewUsers, name='createFolders'),
     path('consultations', views.consultations, name='consultations'),
     path('setbanner', views.setBanner, name='setBanner'),
-    path('ttbyid', views.getTimeTableById, name='ttbyid')
+    path('ttbyid', views.getTimeTableById, name='ttbyid'),
+    path('title', views.getTitle, name='getTitle'),
 ]

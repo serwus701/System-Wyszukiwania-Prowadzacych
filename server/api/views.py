@@ -123,3 +123,11 @@ def getAllLecturers(request):
         file.write("]")
 
     return HttpResponse(status=200)
+
+def getTitle(request):
+    if request.method != 'POST':
+        return HttpResponse(status=405)
+    data = json.loads(request.body.decode('utf-8'))
+    params = {'format': 'json', 'user_id': data['id'], 'fields': 'titles'}
+    response = usos.get('services/users/user', **params)
+    return JsonResponse(response, safe=False)
