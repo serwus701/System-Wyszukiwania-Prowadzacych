@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Board from "./Board";
 import "./Calendar.css"
 
-const Calendar = ({ lecturerCourses }) => {
+const Calendar = (props) => {
     const today = new Date();
     const [weekStart, setWeekStart] = useState(
         new Date(
@@ -44,10 +44,8 @@ const Calendar = ({ lecturerCourses }) => {
         ));
     }
 
-
-
     const events =
-        lecturerCourses ? lecturerCourses.map((course) => {
+        props.lecturerCourses ? props.lecturerCourses.map((course) => {
             const type = course.classtype_name.pl.charAt(0).toUpperCase();
 
             const name = course.name.pl;
@@ -64,10 +62,8 @@ const Calendar = ({ lecturerCourses }) => {
             const timeEnd =
                 parseInt(strTimeEnd.split(':')[0]) + parseInt(strTimeEnd.split(':')[1]) / 60;
 
-
             const dispTimeStart = strTimeStart.split(':')[0] + ":" + strTimeStart.split(':')[1]
             const dispTimeEnd = strTimeEnd.split(':')[0] + ":" + strTimeEnd.split(':')[1]
-
 
             const timeDisplay = `${dispTimeStart} - ${dispTimeEnd}`;
 
@@ -87,6 +83,7 @@ const Calendar = ({ lecturerCourses }) => {
 
     return (
         <div className="calendar">
+
             <div className="navigation-bar">
                 <button
                     onClick={movePreviousWeek}>
@@ -127,7 +124,10 @@ const Calendar = ({ lecturerCourses }) => {
                             </div>
                         ))}
                     </div>
-                    <Board events={events} weekEvenIndicator={weekEvenIndicator()} />
+                    <Board events={events}
+                        weekEvenIndicator={weekEvenIndicator()}
+                        handleCourseClick={props.handleCourseClick}
+                    />
                 </div>
             </div>
         </div>

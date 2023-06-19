@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Board.css';
+import { th } from 'date-fns/locale';
 
 function Board(props) {
+
+    function handleCourseChoice(event) {
+        console.log(event);
+        () => props.handleCourseClick(event)
+    }
+
     // console.log(props.events);
     return (
         <div className="grid-container" id="grid-container">
@@ -18,8 +25,6 @@ function Board(props) {
                 ))}
             {
                 props.events.map((event, key) => {
-                    // console.log(props.weekEvenIndicator);
-                    // console.log(event);
                     if (props.weekEvenIndicator !== event.type) {
                         return null;
                     }
@@ -35,14 +40,9 @@ function Board(props) {
                         //     height: `${(event.timeEnd - event.timeStart) * 6.666}%`
                         // }}
                         >
-
-
-                            <div>
-
-                            </div>
                             <div
                                 className='event'
-
+                                // onClick={props.handleCourseClick(event)}
                                 style={{
                                     backgroundColor: "#2F589D",
                                     top: `${(event.timeStart - 7) * 6.666}%`,
@@ -50,7 +50,14 @@ function Board(props) {
                                     width: '20%',
                                     height: `${(event.timeEnd - event.timeStart) * 6.666}%`
                                 }}
+
                             >
+                                <button
+                                    // onClick={isLoaded ? props.handleCourseClick(event) : null}
+                                    onClick={() => handleCourseChoice(event)}
+                                >
+                                    dupa
+                                </button>
                                 <div className='event-content' >
                                     <div>{event.name}</div>
                                     <div>{event.timeDisplay}</div>
