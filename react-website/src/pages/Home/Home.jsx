@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import "../../assets/pwrlogo.png";
 import { ReferenceDataContext } from "../../ReferenceDataContext";
+import { set } from "date-fns";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { setLecturerCourses } = useContext(ReferenceDataContext);
+  const { setLecturerCourses, setLecturerData } =
+    useContext(ReferenceDataContext);
   const [searchText, setSearchSearch] = useState("");
 
   const [classesList, setClassesList] = useState([]);
@@ -61,6 +63,12 @@ const Home = () => {
     fetchLecturerCourses(lecturerId, lecturer).then((data) => {
       setLecturerCourses(data);
       sessionStorage.setItem("lecturerCourses", JSON.stringify(data));
+      const lecturerData = {
+        id: lecturerId,
+        name: lecturer,
+      };
+      sessionStorage.setItem("lecturerData", JSON.stringify(lecturerData));
+      setLecturerData(lecturerData);
       navigate("/result");
     });
   };

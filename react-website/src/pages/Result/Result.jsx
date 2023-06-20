@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ReferenceDataContext } from "../../ReferenceDataContext";
 import InformationList from "../../components/InformationList.jsx";
 import Calendar from "../../components/Calendar/Calendar.jsx";
@@ -6,33 +6,24 @@ import Calendar from "../../components/Calendar/Calendar.jsx";
 import "./Result.css";
 
 const Result = () => {
-  const [chosenCourse, setChosenCourse] = useState(null);
-
   const { lecturerCourses } = useContext(ReferenceDataContext);
 
-  const getLecturerInformation = async (lecturerId) => {
-    const response = await fetch("http://127.0.0.1:8000/api/ttbyid", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ lecturer_id: lecturerId }),
-    });
-    const data = await response.json();
-  };
+  const [chosenCourse, setChosenCourse] = useState(null);
+  const lecturerInformation = JSON.parse(
+    sessionStorage.getItem("lecturerData")
+  );
 
   function handleCourseClick(course) {
-    console.log(course);
     const mapedCourse = course
       ? () => {
           return {
-            "dane o kursie": {
-              "Godziny zajęć": course.timeDisplay,
-              "Nazwa przedmiotu": course.name,
-              sala: course.location,
+            course: {
+              time: course.timeDisplay,
+              name: course.name,
+              location: course.location,
             },
-            "dane o prowadzącym": {
-              "Imię i nazwisko": course.lecturer,
+            lecturer: {
+              name: course.lecturer,
               katedra: "course.department",
             },
             Ogloszenie: {
@@ -52,7 +43,11 @@ const Result = () => {
   return (
     <div className="result-box">
       <div>
-        <InformationList listItems={chosenCourse} />
+        {console.log(chosenCourse)}
+        <InformationList
+          chosenCourseInfo={chosenCourse}
+          lecturerData={lecturerInformation}
+        />
       </div>
       <div>
         <Calendar

@@ -3,7 +3,7 @@ import "./Board.css";
 
 function Board(props) {
   function handleCourseChoice(event) {
-    // console.log(event);
+    console.log(event);
     props.handleCourseClick(event);
   }
 
