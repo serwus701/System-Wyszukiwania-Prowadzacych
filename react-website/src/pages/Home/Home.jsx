@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import "../../assets/pwrlogo.png";
 import { ReferenceDataContext } from "../../ReferenceDataContext";
-import { set } from "date-fns";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -33,14 +32,29 @@ const Home = () => {
     return data;
   };
 
+  const fetchClassCourses = async (lecturerId, lecturer) => {
+    // const response = await fetch("http://127.0.0.1:8000/api/ttbyid", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ id: lecturerId }),
+    // });
+    // const data = await response.json();
+    // data.forEach((element) => {
+    //   element.lecturer = lecturer;
+    //   element.id = lecturerId;
+    // });
+    // return data;
+  };
+
   function GetClassroms(searchString, searchData) {
     if (searchString === "") return [];
     const classes = searchData.filter((class_) => {
       return (
         class_.number === searchString ||
-        class_.building_id.toLowerCase().includes(searchString.toLowerCase())
-        // class_.building_name.pl.toLowerCase().includes(searchString.toLowerCase()) ||
-        // class_.building_name.en.toLowerCase().includes(searchString.toLowerCase())
+        class_.building_id.toLowerCase().includes(searchString.toLowerCase()) ||
+        class_.number.toLowerCase().includes(searchString.toLowerCase())
       );
     });
     return classes.slice(0, 5);
@@ -73,21 +87,22 @@ const Home = () => {
     });
   };
 
-  const handleClassroomsNavigate = (lecturerId) => {
-    //TODO
-    // fetchLecturerCourses(lecturerId).then(data => {
-    //     setLecturerCourses(data);
-    //     sessionStorage.setItem("lecturerCourses", JSON.stringify(data))
-    //     navigate('/result');
-    // });
+  const handleClassroomsNavigate = (classroomId) => {
+    sessionStorage.setItem(
+      "classroomId",
+      JSON.stringify({
+        id: classroomId,
+      })
+    );
+
+    navigate("/classResult");
   };
 
   useEffect(() => {
     axios
       .get("/cache/lecturers.json")
       .then((response) => {
-        // console.log(response.data);
-        const dataWithIds = response.data.map((item) => ({ ...item }));
+        const dataWithIds = response.data;
         setLecturersList(dataWithIds);
       })
       .catch((error) => {
@@ -130,7 +145,13 @@ const Home = () => {
         />
         <div>
           {GetClassroms(searchText, classesList).map((item) => (
-            <button>{item.building_id}</button>
+            <button
+              onClick={() => {
+                handleClassroomsNavigate(item.id);
+              }}
+            >
+              {item.building_id + " " + item.number}
+            </button>
           ))}
           {GetLecturers(searchText, lecturersList).map((item) => (
             <button
@@ -144,14 +165,6 @@ const Home = () => {
               {item.first_name} {item.last_name}
             </button>
           ))}
-        </div>
-        <div>
-          <button
-            className="search-button"
-            onClick={() => handleClassroomsNavigate}
-          >
-            Search
-          </button>
         </div>
       </div>
       <div class="hint">

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { ReferenceDataContext } from "../../ReferenceDataContext";
 import InformationList from "../../components/InformationList.jsx";
 import Calendar from "../../components/Calendar/Calendar.jsx";
@@ -22,18 +22,6 @@ const Result = () => {
               name: course.name,
               location: course.location,
             },
-            lecturer: {
-              name: course.lecturer,
-              katedra: "course.department",
-            },
-            Ogloszenie: {
-              Ogloszenie: "course.announcement",
-            },
-            Konsultacje: {
-              zoom: "course.zoom",
-              teams: "course.teams",
-              web: "course.web",
-            },
           };
         }
       : [];
@@ -43,7 +31,6 @@ const Result = () => {
   return (
     <div className="result-box">
       <div>
-        {console.log(chosenCourse)}
         <InformationList
           chosenCourseInfo={chosenCourse}
           lecturerData={lecturerInformation}
