@@ -43,6 +43,8 @@ const Bar = () => {
           <BarElement value="consultations" name='Konsultacje' access='private'></BarElement>
           <BarElement value="reservations" name='Rezerwacje' access='private'></BarElement>
           <BarElement value="administration" name='Administracja' access='private'></BarElement>
+          
+          <BarElement value="/" name='Szukaj' access='private'></BarElement>
           <BarElement value="/" name='Wyloguj' access='private'></BarElement>
           <BarElement value="login" name='Zaloguj' access='public'></BarElement>
         </Nav>
