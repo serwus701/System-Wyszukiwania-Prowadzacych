@@ -5,8 +5,8 @@ const useGoogleAuthLink = () =>
   useQuery({
     queryKey: ["google_oauth"],
     queryFn: getGoogleAuthLink,
-    cacheTime: 1000,
-    enabled: true,
+    cacheTime: 0,
+    enabled: false,
   });
 
 export default useGoogleAuthLink;

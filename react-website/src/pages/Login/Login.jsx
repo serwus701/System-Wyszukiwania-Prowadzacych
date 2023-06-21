@@ -1,50 +1,55 @@
-import React, { useEffect } from "react";
-import useGoogleAuthToken from "./hooks/useGoogleAuthToken";
-import useGoogleAuthLink from "./hooks/useGoogleAuthLink";
-import useProfile from "./hooks/useProfile";
+import React, { useEffect } from "react"
+import useGoogleAuthToken from "../../hooks/useGoogleAuthToken"
+import useGoogleAuthLink from "../../hooks/useGoogleAuthLink"
+import useProfile from "../../hooks/useProfile"
 
 function Login() {
-  const { data: profile, refetch: fetchProfile } = useProfile();
-  const { data: googleAuth, refetch: fetchGoogleAuth } = useGoogleAuthLink();
-  const { mutate, isSuccess } = useGoogleAuthToken();
+  const { data: profile, refetch: fetchProfile } = useProfile()
+  const { data: googleAuth, refetch: fetchGoogleAuth } = useGoogleAuthLink()
+  const { mutate, isSuccess } = useGoogleAuthToken()
 
   useEffect(() => {
     if (googleAuth) {
-      window.location.replace(googleAuth.authorizationUrl);
+      window.location.replace(googleAuth.authorizationUrl)
     }
-  }, [googleAuth]);
+  }, [googleAuth])
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(document.location.search);
+    const searchParams = new URLSearchParams(document.location.search)
 
-    const code = searchParams.get("code");
-    const state = searchParams.get("state");
+    const code = searchParams.get("code")
+    const state = searchParams.get("state")
 
     if (code && state) {
-      mutate({ code, state });
+      mutate({ code, state })
     }
-  }, [mutate]);
+  }, [mutate])
 
   useEffect(() => {
     if (isSuccess) {
-      fetchProfile();
+      fetchProfile()
     }
-  }, [isSuccess, fetchProfile]);
+  }, [isSuccess, fetchProfile])
 
   useEffect(() => {
     if (googleAuth) {
-      window.location.replace(googleAuth.authorizationUrl);
+      window.location.replace(googleAuth.authorizationUrl)
     }
-  }, [googleAuth]);
+  }, [googleAuth])
 
   const handleGoogleLogin = () => {
-    fetchGoogleAuth();
-    console.log(profile.data);
-  };
+    fetchGoogleAuth()
+  }
 
   return (
-    handleGoogleLogin
-  );
+    <div className="App">
+      {profile ? (
+        <h1>Hello {profile.firstName}!</h1>
+      ) : (
+        <button onClick={handleGoogleLogin}>Login with Google</button>
+      )}
+    </div>
+  )
 }
 
-export default Login;
+export default Login
