@@ -5,17 +5,17 @@ import "../pages/Reservation/Reservation.css";
 
 function ConsultationEdit(props) {
     const navigate = useNavigate();
-    const [id, setId] = useState('');
-    const [conId, setConId] = useState('');
+    const [id, setId] = useState(null);
+    const [conId, setConId] = useState(null);
     const [banner, setBanner] = useState('');
-    const [day, setDay] = useState('');
-    const [frequency, setFrequency] = useState('');
-    const [startTime, setStartTime] = useState('');
-    const [endTime, setEndTime] = useState('');
-    const [lecturer, setLecturer] = useState('');
-    const [room_id, setRoom_id] = useState('');
-    const [building_id, setBuilding_id] = useState('');
-    const [number, setNumberd] = useState('');
+    const [day, setDay] = useState(null);
+    const [frequency, setFrequency] = useState(null);
+    const [startTime, setStartTime] = useState(null);
+    const [endTime, setEndTime] = useState(null);
+    const [lecturer, setLecturer] = useState(null);
+    const [room_id, setRoom_id] = useState(null);
+    const [building_id, setBuilding_id] = useState(null);
+    const [number, setNumberd] = useState(null);
     const [oldData, setOldData] = useState(null);
     const [jsonData, setJsonData] = useState(null);
 
@@ -34,6 +34,8 @@ function ConsultationEdit(props) {
     const [finalData , setFinalData] = useState(null);
     const [lecturerBody , setLecturerBody] = useState(null);
     const [troomId , setTroomId] = useState(null);
+    const [tempRoom , setTempRoom] = useState(null);
+    const [isButtonClicked, setIsButtonClicked] = useState(false);
 
 
     const searchPerson = (firstName, lastName) => {
@@ -66,8 +68,8 @@ function ConsultationEdit(props) {
       
         if (foundRoomID) {
           console.log('Room found:', foundRoomID);
-          setTroomId(foundRoomID.id);
-          console.log(troomId);
+          setRoom_id(foundRoomID.id);
+          console.log(room_id);
         } else {
           console.log('Nie znaleziono sali o podanym identyfikatorze.');
         }
@@ -152,6 +154,24 @@ function ConsultationEdit(props) {
         setFrequency('T');
     };
 
+    
+    const translateDay = (dayNum) => {
+        const dayTranslations = {
+            Poniedziałek: '0',
+            Wtorek: '1',
+            Środa: '2',
+            Czwartek: '3',
+            Piątek: '4',
+            Sobota: '5',
+            Niedziela: '6'
+        };
+
+        if (dayTranslations.hasOwnProperty(dayNum)) {
+            return dayTranslations[dayNum];
+        }
+        return dayNum;
+    };
+
     const handlePreviewData = () => {
         props.onListItemsUpdate(preview);
     };
@@ -163,18 +183,18 @@ function ConsultationEdit(props) {
         const tempRoom = room_id.split(":");
         setTroomId(searchRoomID(tempRoom[0], tempRoom[1]));
         
-        console.log(id);
-        console.log(lecturer);
-        console.log(room_id);
-        console.log(troomId);
-        console.log('before fetch');
-        fetchConsultationsData(id).then((data) => {
-            setOldData(data);
-        });
-        console.log('fetched');
+        // console.log(id);
+        // console.log(lecturer);
+        // console.log(room_id);
+        // console.log(troomId);
+        // console.log('before fetch');
+        // fetchConsultationsData(id).then((data) => {
+        //     setOldData(data);
+        // });
+        // console.log('fetched');
 
-        const occurrences = oldData && oldData.body && oldData.body.consultations ? oldData.body.consultations.occurrences : [];
-        const maxId = Math.max(...occurrences.map(occurrence => occurrence.id));
+        // const occurrences = oldData && oldData.body && oldData.body.consultations ? oldData.body.consultations.occurrences : [];
+        // const maxId = Math.max(...occurrences.map(occurrence => occurrence.id));
 
         const translateDay = (dayNum) => {
             const dayTranslations = {
@@ -210,46 +230,117 @@ function ConsultationEdit(props) {
             setFrequency('TN');
         }
 
-        console.log('parity checked');
-        const conId = maxId + 1;
+        // console.log('parity checked');
+        // const conId = maxId + 1;
 
-        const tempFinalinalData = {
-            "lecturer_id": oldData.lecturer_id,
-          "body": {
-            "consultations": {
-              "occurrences": [
-                {
-                  "id": conId,
-                  "dayOfWeek": day,
-                  "frequency": frequency,
-                  "startTime": startTime,
-                  "endTime": endTime,
-                  "room_id": troomId
-                }
-              ]
-            }
-            }
-        }
+        // const tempFinalinalData = {
+        //     "lecturer_id": oldData.lecturer_id,
+        //   "body": {
+        //     "consultations": {
+        //       "occurrences": [
+        //         {
+        //           "id": conId,
+        //           "dayOfWeek": day,
+        //           "frequency": frequency,
+        //           "startTime": startTime,
+        //           "endTime": endTime,
+        //           "room_id": troomId
+        //         }
+        //       ]
+        //     }
+        //     }
+        // }
         
-        console.log('generated tempFinalData');
-        console.log(frequency);
-        console.log(id);
-        console.log(troomId);
-        console.log(room_id);
-        console.log(day);
-        if (!frequency || !id || !troomId || !day) {
-            return;
-        }
+        // console.log('generated tempFinalData');
+        // console.log(frequency);
+        // console.log(id);
+        // console.log(troomId);
+        // console.log(room_id);
+        // console.log(day);
+        // if (!frequency || !id || !troomId || !day) {
+        //     return;
+        // }
 
-        console.log('if passed');
-        setFinalData(tempFinalinalData);
+        // console.log('if passed');
+        // setFinalData(tempFinalinalData);
 
-        const jsonText = JSON.stringify(finalData, null, 2);
-        setJsonData(jsonText);
 
-        putConsultations(jsonData);
-        console.log('put done');
+        // putConsultations(jsonData);
+        // console.log('put done');
+        setIsButtonClicked(true);
     };
+
+    useEffect(() => {
+        if(id !== null){
+        fetchConsultationsData(id).then((data) => {
+            setOldData(data);
+        });}
+        console.log('got lecturer id');
+    }, [id]);
+
+    useEffect(() => {
+        if(room_id !== null){
+        fetchConsultationsData(id).then((data) => {
+            setOldData(data);
+        });}
+        console.log('got old data');
+    }, [id]);
+
+      
+    useEffect(() => {
+        if(oldData !== null){
+        const occurrences = oldData && oldData.body && oldData.body.consultations ? oldData.body.consultations.occurrences : [];
+        const maxId = Math.max(...occurrences.map(occurrence => occurrence.id));
+        setConId(maxId + 1);
+    }
+    }, [oldData]);
+
+    
+    useEffect(() => {
+    if(oldData !== null && room_id !== null){
+        if(day === '0' || day === '1'  || day === '2' || day === '3' || day === '4' || day === '5' || day === '6'){
+    const tempFinalinalData = {
+        "lecturer_id": oldData.lecturer_id,
+      "body": {
+        "consultations": {
+          "occurrences": [
+            {
+              "id": conId,
+              "dayOfWeek": day,
+              "frequency": frequency,
+              "startTime": startTime,
+              "endTime": endTime,
+              "room_id": room_id
+            }
+          ]
+        }
+        }
+    }
+    console.log('if passed');
+    setFinalData(tempFinalinalData);}
+    }
+    }, [oldData, conId, room_id]);
+    
+
+    useEffect(() => {
+        if(finalData !== null && room_id !== null){
+            const jsonText = JSON.stringify(finalData);
+            setJsonData(jsonText);
+            console.log('fetched');}
+    }, [finalData]);
+
+    useEffect(() => {
+        if (isButtonClicked && jsonData !== null) {
+            console.log(jsonData);
+            console.log('frequency', frequency);
+            console.log('day', day);
+            console.log('start', startTime);
+            console.log('end', endTime);
+            console.log('room_id: ', room_id);
+            putConsultations(jsonData);
+            console.log('put done');
+        }
+    }, [isButtonClicked, jsonData]);
 
     return (
         <div className="reservation-edit">
