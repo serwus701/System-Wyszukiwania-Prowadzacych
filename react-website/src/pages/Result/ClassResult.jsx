@@ -92,7 +92,11 @@ const ClassResult = () => {
   return (
     <div className="result-box">
       <div>
-        <InformationList chosenCourseInfo={chosenCourse} lecturerData={null} />
+        <InformationList
+          chosenCourseInfo={chosenCourse}
+          lecturerData={null}
+          calendarContentType={"C"}
+        />
       </div>
       <div>
         <Calendar

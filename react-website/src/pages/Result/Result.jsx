@@ -47,6 +47,7 @@ const Result = () => {
         <InformationList
           chosenCourseInfo={chosenCourse}
           lecturerData={lecturerInformation}
+          calendarContentType={"L"}
         />
       </div>
       <div>

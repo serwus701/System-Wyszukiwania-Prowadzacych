@@ -46,8 +46,6 @@ function InformationList(props) {
     fetchLecturerInformation();
   }, [props.lecturerData]);
 
-  if (!lecturerInformation) return null;
-
   return (
     <div className="information-list">
       {props.chosenCourseInfo ? (
@@ -57,12 +55,30 @@ function InformationList(props) {
           <div>{props.chosenCourseInfo.course.location}</div>
         </div>
       ) : null}
-      <div>{lecturerInformation.title + " " + props.lecturerData.name}</div>
-      <div>
-        {"Ogłoszenia: " + lecturerInformation.banner === null
-          ? lecturerInformation.banner
-          : "Brak ogłoszeń"}
-      </div>
+
+      {lecturerInformation ? (
+        <div>{lecturerInformation.title + " " + props.lecturerData.name}</div>
+      ) : null}
+      {lecturerInformation ? (
+        <div>
+          {"Ogłoszenia: " + lecturerInformation.banner === null
+            ? lecturerInformation.banner
+            : "Brak ogłoszeń"}
+        </div>
+      ) : null}
+      {props.calendarContentType === "C" ? (
+        <aside className="dupa">
+          <h1>
+            {
+              JSON.parse(sessionStorage.getItem("classroom")).classroom
+                .building_id
+            }
+            <br />
+            {" Sala: " +
+              JSON.parse(sessionStorage.getItem("classroom")).classroom.number}
+          </h1>
+        </aside>
+      ) : null}
     </div>
   );
 }
