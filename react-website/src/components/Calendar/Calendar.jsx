@@ -106,7 +106,7 @@ const Calendar = (props) => {
           let result = classrooms.find((obj) => obj.id === course.room_id);
           const location = result
             ? result.building_id + " " + result.number
-            : course.room_id;
+            : "Sala: " + course.room_id;
 
           const lecturer = "course.lecturer";
 
@@ -131,7 +131,6 @@ const Calendar = (props) => {
     return props.lecturerCourses
       ? props.lecturerCourses.map((course) => {
           const type = course.classtype_name.pl.charAt(0).toUpperCase();
-
           const name = course.name.pl;
 
           const strDate = course.start_time.split(" ")[0];
