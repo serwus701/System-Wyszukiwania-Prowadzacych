@@ -30,6 +30,10 @@ function ConsultationEdit(props) {
     const [surname, setSurname] = useState('Krawczyszyn');
 
     const [putResponse, setPutResponse] = useState(null);
+    const [newData , setNewData] = useState(null);
+    const [finalData , setFinalData] = useState(null);
+    const [lecturerBody , setLecturerBody] = useState(null);
+    const [troomId , setTroomId] = useState(null);
 
 
     const searchPerson = (firstName, lastName) => {
@@ -48,7 +52,7 @@ function ConsultationEdit(props) {
     useEffect(() => {
         axios.get('/cache/lecturers.json')
             .then(response => {
-                setLecturersData(response);
+                setLecturersData(response.data);
             })
             .catch(error => {
                 console.error('Error in fetching:', error);
@@ -56,36 +60,48 @@ function ConsultationEdit(props) {
     }, []);
 
     const searchRoomID = (building_id, number) => {
-        const foundRoomID = roomData.find(room =>
-            room.building_id === building_id && room.number === number
+        const foundRoomID = Object.values(roomData).find(room =>
+          room.building_id === building_id && room.number === number
         );
-
+      
         if (foundRoomID) {
-            console.log('Room found:', foundRoomID);
-            setId(foundRoomID.id);
+          console.log('Room found:', foundRoomID);
+          setTroomId(foundRoomID.id);
+          console.log(troomId);
         } else {
-            console.log('Nie znaleziono sali o podanym identyfikatorze.');
+          console.log('Nie znaleziono sali o podanym identyfikatorze.');
         }
-    };
+      };
 
     useEffect(() => {
-        axios.get('/cache/classrooms.json')
-            .then(response => {
-                setRoomData(response);
-            })
-            .catch(error => {
-                console.error('Error in fetching:', error);
-            });
-    }, []);
+        axios
+          .get('/cache/classrooms.json')
+          .then(response => {
+            setRoomData(response.data);
+          })
+          .catch(error => {
+            console.error('Error in fetching:', error);
+          });
+      }, []);
 
-    const fetchConsultationsData = async (lecturerId) => {
+    const fetchConsultationsData = async (id) => {
+        console.log(id);
         const response = await fetch("http://127.0.0.1:8000/api/consultations", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ lecturer_id: lecturerId }),
+          body: JSON.stringify(
+            {
+                "lecturer_id" : id
+            }
+          ),
         });
+        const fetchInfo = await response.json();
+        if (fetchInfo && fetchInfo.body) {
+            console.log('Data:', fetchInfo.body);
+          }
+        return fetchInfo;
     }
 
     const putConsultations = async (someData) => {
@@ -99,6 +115,7 @@ function ConsultationEdit(props) {
           });
     
           if (response.ok) {
+            console.log('Everything ok');
             const responseData = await response.json();
             setPutResponse(responseData);
           } else {
@@ -136,41 +153,28 @@ function ConsultationEdit(props) {
     };
 
     const handlePreviewData = () => {
-        props.onPreviewData(preview);
+        props.onListItemsUpdate(preview);
     };
 
     const handleSubmit = () => {
-        if (!frequency || !lecturer || !room_id || !day) {
-            return;
-        }
-
-        setId(searchPerson(name, surname));
-
+        
+        setLecturer(searchPerson(name, surname));
+        
+        const tempRoom = room_id.split(":");
+        setTroomId(searchRoomID(tempRoom[0], tempRoom[1]));
+        
+        console.log(id);
+        console.log(lecturer);
+        console.log(room_id);
+        console.log(troomId);
+        console.log('before fetch');
         fetchConsultationsData(id).then((data) => {
             setOldData(data);
         });
+        console.log('fetched');
 
-        const occurrences = oldData.body.consultations.occurrences;
+        const occurrences = oldData && oldData.body && oldData.body.consultations ? oldData.body.consultations.occurrences : [];
         const maxId = Math.max(...occurrences.map(occurrence => occurrence.id));
-
-
-        const partsData = startTime.split("]");
-
-        const tempRoom = room_id.split(":");
-        setRoom_id(searchRoomID(tempRoom[0], tempRoom[1]));
-
-        const newConsultation = {
-            lecturer: lecturer,
-            id: id,
-            day: day,
-            frequency: frequency,
-            startTime: startTime,
-            endTime: endTime,
-            room_id: room_id,
-        };
-
-        props(newConsultation);
-        navigate('/');
 
         const translateDay = (dayNum) => {
             const dayTranslations = {
@@ -206,44 +210,45 @@ function ConsultationEdit(props) {
             setFrequency('TN');
         }
 
+        console.log('parity checked');
         const conId = maxId + 1;
 
-        const newData = {
+        const tempFinalinalData = {
             "lecturer_id": oldData.lecturer_id,
-            "body": {
-                "consultations": {
-                    "occurrences": [
-                        {
-                            "id": conId,
-                            "dayOfWeek": day,
-                            "frequency": frequency,
-                            "startTime": startTime,
-                            "endTime": endTime,
-                            "room_id": room_id
-                        }
-                    ]
-                },
-                "banner": oldData.banner
+          "body": {
+            "consultations": {
+              "occurrences": [
+                {
+                  "id": conId,
+                  "dayOfWeek": day,
+                  "frequency": frequency,
+                  "startTime": startTime,
+                  "endTime": endTime,
+                  "room_id": troomId
+                }
+              ]
             }
+            }
+        }
+        
+        console.log('generated tempFinalData');
+        console.log(frequency);
+        console.log(id);
+        console.log(troomId);
+        console.log(room_id);
+        console.log(day);
+        if (!frequency || !id || !troomId || !day) {
+            return;
         }
 
-        const finalData = {
-            "lecturer_id": oldData.lecturer_id,
-            "body": {
-                "consultations": {
-                    "occurrences": [
-                        oldData.body.consultations.occurrences,
-                        newData.body.consultations.occurrences
-                    ]
-                },
-                "banner": oldData.banner
-            }
-        }
+        console.log('if passed');
+        setFinalData(tempFinalinalData);
 
         const jsonText = JSON.stringify(finalData, null, 2);
         setJsonData(jsonText);
 
         putConsultations(jsonData);
+        console.log('put done');
     };
 
     return (
@@ -265,12 +270,8 @@ function ConsultationEdit(props) {
                 </div>
                 <div class="input-box">
                     <div>
-                        <span>Prowadzący:</span>
-                        <input type="text" class="search-bar" value={lecturer} onChange={(event) => setLecturer(event.target.value)} placeholder="np. dr inż. Imię Nazwisko" />
-                    </div>
-                    <div>
                         <span>Sala:</span>
-                        <input type="text" class="search-bar" value={room_id} onChange={(event) => setRoom_id(event.target.value)} placeholder="np. C3:229" />
+                        <input type="text" class="search-bar" value={room_id} onChange={(event) => setRoom_id(event.target.value)} placeholder="np. C-3:229" />
                     </div>
                     <div>
                         <span>Dzień:</span>
