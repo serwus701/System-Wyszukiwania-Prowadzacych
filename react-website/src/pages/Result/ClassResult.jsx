@@ -77,7 +77,7 @@ const ClassResult = () => {
               time:
                 dayOfTheWeek[course.day] +
                 " T" +
-                course.type +
+                course.courseWeekEventIndicator +
                 "   " +
                 course.timeDisplay,
               name: course.name,
