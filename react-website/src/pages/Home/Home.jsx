@@ -7,7 +7,7 @@ import { ReferenceDataContext } from "../../ReferenceDataContext";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { setLecturerCourses, setLecturerData } =
+  const { setLecturerCourses, setLecturerData, setClassroom } =
     useContext(ReferenceDataContext);
   const [searchText, setSearchSearch] = useState("");
 
@@ -30,22 +30,6 @@ const Home = () => {
     });
 
     return data;
-  };
-
-  const fetchClassCourses = async (lecturerId, lecturer) => {
-    // const response = await fetch("http://127.0.0.1:8000/api/ttbyid", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ id: lecturerId }),
-    // });
-    // const data = await response.json();
-    // data.forEach((element) => {
-    //   element.lecturer = lecturer;
-    //   element.id = lecturerId;
-    // });
-    // return data;
   };
 
   function GetClassroms(searchString, searchData) {
@@ -87,13 +71,14 @@ const Home = () => {
     });
   };
 
-  const handleClassroomsNavigate = (classroomId) => {
+  const handleClassroomsNavigate = (classroom) => {
     sessionStorage.setItem(
-      "classroomId",
+      "classroom",
       JSON.stringify({
-        id: classroomId,
+        classroom: classroom,
       })
     );
+    setClassroom(classroom);
 
     navigate("/classResult");
   };
@@ -147,7 +132,7 @@ const Home = () => {
           {GetClassroms(searchText, classesList).map((item) => (
             <button
               onClick={() => {
-                handleClassroomsNavigate(item.id);
+                handleClassroomsNavigate(item);
               }}
             >
               {item.building_id + " " + item.number}

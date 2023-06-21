@@ -3,11 +3,9 @@ import "./Board.css";
 
 function Board(props) {
   function handleCourseChoice(event) {
-    console.log(event);
     props.handleCourseClick(event);
   }
 
-  // console.log(props.events);
   return (
     <div className="grid-container" id="grid-container">
       {Array(15)
@@ -21,22 +19,16 @@ function Board(props) {
               ))}
           </div>
         ))}
+
+      {console.log(props.events)}
+
       {props.events.map((event, key) => {
-        if (props.weekEvenIndicator !== event.type) {
+        if (props.weekEvenIndicator() !== event.courseWeekEventIndicator) {
           return null;
         }
+
         let eventElement = (
-          <div
-            key={key}
-            // className='event-hover'
-            // style={{
-            //     backgroundColor: "red",
-            //     top: `${(event.timeStart - 7) * 6.666}%`,
-            //     left: `${(event.day - 1) * 20}%`,
-            //     width: '20%',
-            //     height: `${(event.timeEnd - event.timeStart) * 6.666}%`
-            // }}
-          >
+          <div key={key}>
             <div
               className="event"
               onClick={() => handleCourseChoice(event)}

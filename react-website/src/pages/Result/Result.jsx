@@ -13,12 +13,25 @@ const Result = () => {
     sessionStorage.getItem("lecturerData")
   );
 
+  const dayOfTheWeek = {
+    1: "Poniedziałek",
+    2: "Wtorek",
+    3: "Środa",
+    4: "Czwartek",
+    5: "Piątek",
+  };
+
   function handleCourseClick(course) {
     const mapedCourse = course
       ? () => {
           return {
             course: {
-              time: course.timeDisplay,
+              time:
+                dayOfTheWeek[course.day] +
+                " T" +
+                course.courseWeekEventIndicator +
+                "   " +
+                course.timeDisplay,
               name: course.name,
               location: course.location,
             },
@@ -40,6 +53,7 @@ const Result = () => {
         <Calendar
           lecturerCourses={lecturerCourses}
           handleCourseClick={handleCourseClick}
+          calendarContentType={"L"}
         />
       </div>
     </div>

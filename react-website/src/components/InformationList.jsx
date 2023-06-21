@@ -8,7 +8,7 @@ function InformationList(props) {
   async function fetchLecturerInformation() {
     const lecturerId = props.lecturerData ? props.lecturerData.id : null;
 
-    if (!lecturerId) return console.log("No lecturer id");
+    if (!lecturerId) return;
 
     const bannerResponse = await fetch(
       "http://127.0.0.1:8000/api/consultations",
