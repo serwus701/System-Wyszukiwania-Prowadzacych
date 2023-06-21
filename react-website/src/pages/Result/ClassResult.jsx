@@ -101,6 +101,7 @@ const ClassResult = () => {
       <div>
         <Calendar
           classCourses={currCourses}
+          consultations={null}
           handleCourseClick={handleCourseClick}
           nextWeekHandler={nextWeekHandler}
           prevWeekHandler={prevWeekHandler}

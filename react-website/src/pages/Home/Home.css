@@ -157,3 +157,20 @@ select {
     font-weight: 400;
     font-size: 15px;
 }
+
+.search-result-button{
+    display: flex;
+    margin: auto;
+    width: 400px;
+    height: 39px;
+    left: 572px;
+    top: 190px;
+
+    background: #B3E8E5;
+    border: 2px solid #036371;
+
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+}
