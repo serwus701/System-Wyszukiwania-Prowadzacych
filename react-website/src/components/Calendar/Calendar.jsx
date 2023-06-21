@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Board from "./Board";
 import "./Calendar.css";
+import axios from "axios";
 
 const Calendar = (props) => {
+  const [classrooms, setClassrooms] = useState([]);
   const today = new Date();
   const [weekStart, setWeekStart] = useState(
     new Date(
@@ -59,15 +61,29 @@ const Calendar = (props) => {
     );
   }
 
-  function getClasses() {
+  useEffect(() => {
+    axios
+      .get("/cache/classrooms.json")
+      .then((response) => {
+        var classesList = [];
+
+        for (var prop in response.data) {
+          classesList.push(response.data[prop]);
+        }
+        setClassrooms(classesList);
+      })
+      .catch((error) => {
+        console.error("Error in fetching:", error);
+      });
+  }, []);
+
+  function getConsultations() {
     return props.consultations
       ? props.consultations.map((course) => {
           const type = "K";
 
           const name = "Konsultacje";
 
-          // const strDate = course.start_time.split(" ")[0];
-          // const date = new Date(strDate);
           const day = course.dayOfWeek;
 
           const strTimeStart = course.startTime;
@@ -87,7 +103,10 @@ const Calendar = (props) => {
 
           const timeDisplay = `${dispTimeStart} - ${dispTimeEnd}`;
 
-          const location = course.room_id;
+          let result = classrooms.find((obj) => obj.id === course.room_id);
+          const location = result
+            ? result.building_id + " " + result.number
+            : course.room_id;
 
           const lecturer = "course.lecturer";
 
@@ -221,7 +240,7 @@ const Calendar = (props) => {
   const events =
     props.calendarContentType === "L"
       ? (() => {
-          return getClasses().concat(getLecturerClasses());
+          return getConsultations().concat(getLecturerClasses());
         })()
       : getClassesCourses();
 
