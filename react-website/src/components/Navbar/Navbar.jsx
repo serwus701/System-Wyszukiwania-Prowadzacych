@@ -38,12 +38,11 @@ const Bar = () => {
     <Navbar>
       <Container className="Navbar">
         <Nav className="links">
-        <img src='/resources/logo.png' alt="logo"></img>
+          <a href='/'><img src='/resources/logo.png' alt="logo"></img></a>
           <BarElement value="profile" name='Profil' access='private' ></BarElement>
           <BarElement value="consultations" name='Konsultacje' access='private'></BarElement>
           <BarElement value="reservations" name='Rezerwacje' access='private'></BarElement>
           <BarElement value="administration" name='Administracja' access='private'></BarElement>
-          
           <BarElement value="/" name='Szukaj' access='private'></BarElement>
           <BarElement value="/" name='Wyloguj' access='private'></BarElement>
           <BarElement value="login" name='Zaloguj' access='public'></BarElement>
