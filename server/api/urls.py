@@ -11,4 +11,5 @@ urlpatterns = [
     path('setbanner', views.setBanner, name='setBanner'),
     path('ttbyid', views.getTimeTableById, name='ttbyid'),
     path('title', views.getTitle, name='getTitle'),
+    path('logout', views.logout_endpoint, name='logout'),
 ]
