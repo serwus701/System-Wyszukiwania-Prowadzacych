@@ -73,7 +73,6 @@ const Result = () => {
 
   return (
     <div className="result-box">
-      <button onClick={fetchLecturerConsultations}>DUPA</button>
       <div>
         <InformationList
           chosenCourseInfo={chosenCourse}

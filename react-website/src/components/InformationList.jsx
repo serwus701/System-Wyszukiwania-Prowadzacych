@@ -38,7 +38,7 @@ function InformationList(props) {
 
     setLecturerInformation({
       banner: lecturerBanner,
-      title: lecturerTitle,
+      title: lecturerTitle ? lecturerTitle : "Prowadzący: ",
     });
   }
 
