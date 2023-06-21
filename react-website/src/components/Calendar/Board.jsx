@@ -20,8 +20,6 @@ function Board(props) {
           </div>
         ))}
 
-      {console.log(props.events)}
-
       {props.events.map((event, key) => {
         if (props.weekEvenIndicator() !== event.courseWeekEventIndicator) {
           return null;
