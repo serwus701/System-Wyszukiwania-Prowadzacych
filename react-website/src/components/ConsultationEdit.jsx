@@ -16,6 +16,7 @@ function ConsultationEdit(props) {
     const [room_id, setRoom_id] = useState('');
     const [building_id, setBuilding_id] = useState('');
     const [number, setNumberd] = useState('');
+    const [oldData, setOldData] = useState(null);
     const [jsonData, setJsonData] = useState(null);
 
     const [isTPSelected, setIsTPSelected] = useState(false);
@@ -23,6 +24,13 @@ function ConsultationEdit(props) {
 
     const [lecturersData, setLecturersData] = useState(null);
     const [roomData, setRoomData] = useState(null);
+
+
+    const [name, setName] = useState('Jaros\u0142aw');
+    const [surname, setSurname] = useState('Krawczyszyn');
+
+    const [putResponse, setPutResponse] = useState(null);
+
 
     const searchPerson = (firstName, lastName) => {
         const foundPerson = lecturersData.find(person =>
@@ -70,6 +78,36 @@ function ConsultationEdit(props) {
             });
     }, []);
 
+    const fetchConsultationsData = async (lecturerId) => {
+        const response = await fetch("http://127.0.0.1:8000/api/consultations", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ lecturer_id: lecturerId }),
+        });
+    }
+
+    const putConsultations = async (someData) => {
+        try {
+          const response = await fetch('http://127.0.0.1:8000/api/consultations', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(someData),
+          });
+    
+          if (response.ok) {
+            const responseData = await response.json();
+            setPutResponse(responseData);
+          } else {
+            console.log('Error sending PUT request');
+          }
+        } catch (error) {
+          console.log('Network error:', error);
+        }
+    };
 
     const preview = {
         "termin1": {
@@ -105,6 +143,21 @@ function ConsultationEdit(props) {
         if (!frequency || !lecturer || !room_id || !day) {
             return;
         }
+
+        setId(searchPerson(name, surname));
+
+        fetchConsultationsData(id).then((data) => {
+            setOldData(data);
+        });
+
+        const occurrences = oldData.body.consultations.occurrences;
+        const maxId = Math.max(...occurrences.map(occurrence => occurrence.id));
+
+
+        const partsData = startTime.split("]");
+
+        const tempRoom = room_id.split(":");
+        setRoom_id(searchRoomID(tempRoom[0], tempRoom[1]));
 
         const newConsultation = {
             lecturer: lecturer,
@@ -153,16 +206,15 @@ function ConsultationEdit(props) {
             setFrequency('TN');
         }
 
-        const tempRoom = room_id.split(":");
-        setRoom_id(searchRoomID(tempRoom[0], tempRoom[1]));
+        const conId = maxId + 1;
 
-        const data = {
-            "lecturer_id": id,
+        const newData = {
+            "lecturer_id": oldData.lecturer_id,
             "body": {
                 "consultations": {
                     "occurrences": [
                         {
-                            "id": conId + 1,
+                            "id": conId,
                             "dayOfWeek": day,
                             "frequency": frequency,
                             "startTime": startTime,
@@ -171,12 +223,27 @@ function ConsultationEdit(props) {
                         }
                     ]
                 },
-                "banner": banner
+                "banner": oldData.banner
             }
         }
 
-        const jsonText = JSON.stringify(data, null, 2);
+        const finalData = {
+            "lecturer_id": oldData.lecturer_id,
+            "body": {
+                "consultations": {
+                    "occurrences": [
+                        oldData.body.consultations.occurrences,
+                        newData.body.consultations.occurrences
+                    ]
+                },
+                "banner": oldData.banner
+            }
+        }
+
+        const jsonText = JSON.stringify(finalData, null, 2);
         setJsonData(jsonText);
+
+        putConsultations(jsonData);
     };
 
     return (
