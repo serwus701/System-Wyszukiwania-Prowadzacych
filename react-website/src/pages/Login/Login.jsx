@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import useGoogleAuthToken from "../../hooks/useGoogleAuthToken"
 import useGoogleAuthLink from "../../hooks/useGoogleAuthLink"
 import useProfile from "../../hooks/useProfile"
+// import { logOut } from "../../api"
 
 function Login() {
   const { data: profile, refetch: fetchProfile } = useProfile()
@@ -27,7 +28,7 @@ function Login() {
 
   useEffect(() => {
     if (isSuccess) {
-      fetchProfile()
+      fetchProfile()  
     }
   }, [isSuccess, fetchProfile])
 
@@ -42,14 +43,7 @@ function Login() {
   }
 
   return (
-    <div className="App">
-      {profile ? (
-        <h1>Hello {profile.firstName}!</h1>
-      ) : (
-        <button onClick={handleGoogleLogin}>Login with Google</button>
-      )}
-    </div>
+    handleGoogleLogin()
   )
 }
-
 export default Login

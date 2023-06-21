@@ -8,16 +8,15 @@ import Profile from "./pages/Profile";
 import Administration from "./pages/Administration";
 import Reservations from "./pages/Reservation/Reservations";
 import Consultations from "./pages/Consultations";
-import Logout from "./pages/Logout/Logout";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReferenceDataContextProvider } from "./ReferenceDataContext";
 import ClassResult from "./pages/Result/ClassResult";
-const queryClient = new QueryClient();
+ const queryClient = new QueryClient();
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient} contextSharing={true}>
+     <QueryClientProvider client={queryClient} contextSharing={true}>
       <ReferenceDataContextProvider>
         <Router>
           <Navbar />
@@ -30,11 +29,10 @@ function App() {
             <Route path="/administration" element={<Administration />} />
             <Route path="/reservations" element={<Reservations />} />
             <Route path="/consultations" element={<Consultations />} />
-            <Route path="/logout" element={<Logout />} />
           </Routes>
         </Router>
       </ReferenceDataContextProvider>
-    </QueryClientProvider>
+     </QueryClientProvider>
   );
 }
 
