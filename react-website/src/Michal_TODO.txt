@@ -2,14 +2,15 @@ Zmieścić te jebane gówno (tekst) w tym jebanym kurestwie (eventach na kalenda
 
 Zrobić wykurwiste (ładne) wyświetlanie spisu wyników wyszukiwania
 
-Zrobić wyszukiwanie sal
-
--------------------------W panelu wyszukiwanie sal grupować je po budynku
-
 zapisywanie ostatniej sali i prowadzącego w historii
 
 dodanie konsultacji !!!!
 
-TN/TP (Będziesz pamiętał)
-
 sprawdzić miesiące w kalendarzu
+
+-------------------------TN/TP (Będziesz pamiętał)
+
+-------------------------Zrobić wyszukiwanie sal
+
+-------------------------W panelu wyszukiwanie sal grupować je po budynku
+

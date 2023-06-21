@@ -129,8 +129,10 @@ const Home = () => {
           onChange={(e) => setSearchSearch(e.target.value)}
         />
         <div>
-          {GetClassroms(searchText, classesList).map((item) => (
+          {GetClassroms(searchText, classesList).map((item, key) => (
             <button
+              className="search-result-button"
+              key={key}
               onClick={() => {
                 handleClassroomsNavigate(item);
               }}
@@ -138,8 +140,10 @@ const Home = () => {
               {item.building_id + " " + item.number}
             </button>
           ))}
-          {GetLecturers(searchText, lecturersList).map((item) => (
+          {GetLecturers(searchText, lecturersList).map((item, key) => (
             <button
+              className="search-result-button"
+              key={key}
               onClick={() => {
                 handleLecturersNavigate(
                   item.id,

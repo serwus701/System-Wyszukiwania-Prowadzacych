@@ -59,60 +59,111 @@ const Calendar = (props) => {
     );
   }
 
-  const events =
-    props.calendarContentType === "L"
-      ? props.lecturerCourses
-        ? props.lecturerCourses.map((course) => {
-            const type = course.classtype_name.pl.charAt(0).toUpperCase();
+  function getClasses() {
+    return props.consultations
+      ? props.consultations.map((course) => {
+          const type = "K";
 
-            const name = course.name.pl;
+          const name = "Konsultacje";
 
-            const strDate = course.start_time.split(" ")[0];
-            const date = new Date(strDate);
-            const day = date.getDay();
+          // const strDate = course.start_time.split(" ")[0];
+          // const date = new Date(strDate);
+          const day = course.dayOfWeek;
 
-            const strTimeStart = course.start_time.split(" ")[1];
-            const timeStart =
-              parseInt(strTimeStart.split(":")[0]) +
-              parseInt(strTimeStart.split(":")[1]) / 60;
+          const strTimeStart = course.startTime;
+          const timeStart =
+            parseInt(strTimeStart.split(":")[0]) +
+            parseInt(strTimeStart.split(":")[1]) / 60;
 
-            const strTimeEnd = course.end_time.split(" ")[1];
-            const timeEnd =
-              parseInt(strTimeEnd.split(":")[0]) +
-              parseInt(strTimeEnd.split(":")[1]) / 60;
+          const strTimeEnd = course.endTime;
+          const timeEnd =
+            parseInt(strTimeEnd.split(":")[0]) +
+            parseInt(strTimeEnd.split(":")[1]) / 60;
 
-            const dispTimeStart =
-              strTimeStart.split(":")[0] + ":" + strTimeStart.split(":")[1];
-            const dispTimeEnd =
-              strTimeEnd.split(":")[0] + ":" + strTimeEnd.split(":")[1];
+          const dispTimeStart =
+            strTimeStart.split(":")[0] + ":" + strTimeStart.split(":")[1];
+          const dispTimeEnd =
+            strTimeEnd.split(":")[0] + ":" + strTimeEnd.split(":")[1];
 
-            const timeDisplay = `${dispTimeStart} - ${dispTimeEnd}`;
+          const timeDisplay = `${dispTimeStart} - ${dispTimeEnd}`;
 
-            const location = course.room_number;
+          const location = course.room_id;
 
-            const lecturer = course.lecturer;
+          const lecturer = "course.lecturer";
 
-            let weekNumber = Math.floor(
-              (date - new Date(date.getFullYear(), 0, 1)) /
-                (1000 * 60 * 60 * 24 * 7)
-            );
+          const courseWeekEventIndicator = course.frequency[1];
 
-            const courseWeekEventIndicator = weekNumber % 2 === 0 ? "N" : "P";
+          return {
+            type,
+            name,
+            day,
+            timeStart,
+            timeEnd,
+            timeDisplay,
+            location,
+            lecturer,
+            courseWeekEventIndicator,
+          };
+        })
+      : [];
+  }
 
-            return {
-              type,
-              name,
-              day,
-              timeStart,
-              timeEnd,
-              timeDisplay,
-              location,
-              lecturer,
-              courseWeekEventIndicator,
-            };
-          })
-        : []
-      : props.classCourses
+  function getLecturerClasses() {
+    return props.lecturerCourses
+      ? props.lecturerCourses.map((course) => {
+          const type = course.classtype_name.pl.charAt(0).toUpperCase();
+
+          const name = course.name.pl;
+
+          const strDate = course.start_time.split(" ")[0];
+          const date = new Date(strDate);
+          const day = date.getDay();
+
+          const strTimeStart = course.start_time.split(" ")[1];
+          const timeStart =
+            parseInt(strTimeStart.split(":")[0]) +
+            parseInt(strTimeStart.split(":")[1]) / 60;
+
+          const strTimeEnd = course.end_time.split(" ")[1];
+          const timeEnd =
+            parseInt(strTimeEnd.split(":")[0]) +
+            parseInt(strTimeEnd.split(":")[1]) / 60;
+
+          const dispTimeStart =
+            strTimeStart.split(":")[0] + ":" + strTimeStart.split(":")[1];
+          const dispTimeEnd =
+            strTimeEnd.split(":")[0] + ":" + strTimeEnd.split(":")[1];
+
+          const timeDisplay = `${dispTimeStart} - ${dispTimeEnd}`;
+
+          const location = course.room_number;
+
+          const lecturer = course.lecturer;
+
+          let weekNumber = Math.floor(
+            (date - new Date(date.getFullYear(), 0, 1)) /
+              (1000 * 60 * 60 * 24 * 7)
+          );
+
+          const courseWeekEventIndicator = weekNumber % 2 === 0 ? "N" : "P";
+
+          return {
+            type,
+            name,
+            day,
+            timeStart,
+            timeEnd,
+            timeDisplay,
+            location,
+            lecturer,
+            courseWeekEventIndicator,
+          };
+        })
+      : [];
+  }
+
+  function getClassesCourses() {
+    return props.classCourses
       ? props.classCourses.map((course) => {
           let typeEng = course.name.en.split("-").slice(-1)[0].charAt(1);
           const type = typeEng === "L" ? "W" : typeEng;
@@ -165,6 +216,14 @@ const Calendar = (props) => {
           };
         })
       : [];
+  }
+
+  const events =
+    props.calendarContentType === "L"
+      ? (() => {
+          return getClasses().concat(getLecturerClasses());
+        })()
+      : getClassesCourses();
 
   return (
     <div className="calendar">

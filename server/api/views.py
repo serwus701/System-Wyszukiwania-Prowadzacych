@@ -1,6 +1,7 @@
 import json
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.http import JsonResponse, HttpResponse
 import json
 import api.internal.utils
@@ -131,3 +132,7 @@ def getTitle(request):
     params = {'format': 'json', 'user_id': data['id'], 'fields': 'titles'}
     response = usos.get('services/users/user', **params)
     return JsonResponse(response, safe=False)
+
+def logout_endpoint(request):
+    logout(request)
+    return HttpResponse(status=200)
