@@ -1,5 +1,31 @@
-import React from "react";
-import "./Board.css";
+import React from 'react';
+import './Board.css';
+
+const FitText = ({ text }) => {
+  const divRef = React.useRef(null);
+  const [fontSize, setFontSize] = React.useState(16);
+
+  React.useEffect(() => {
+    const resizeText = () => {
+      const divWidth = divRef.current.offsetWidth;
+      const textWidth = divRef.current.scrollWidth;
+      if (textWidth > divWidth) {
+        setFontSize((prev) => prev - 1);
+      } else if (textWidth < divWidth) {
+        setFontSize((prev) => prev + 1);
+      }
+    };
+    window.addEventListener('resize', resizeText);
+    resizeText();
+    return () => window.removeEventListener('resize', resizeText);
+  }, []);
+
+  return (
+    <div ref={divRef} style={{ fontSize }}>
+      {text}
+    </div>
+  );
+};
 
 function Board(props) {
   function handleCourseChoice(event) {
@@ -38,9 +64,9 @@ function Board(props) {
               }}
             >
               <div className="event-content">
-                <div>{event.name}</div>
-                <div>{event.timeDisplay}</div>
-                <div>{event.location}</div>
+                <FitText text={event.name} />
+                <FitText text={event.timeDisplay} />
+                <FitText text={event.location} />
               </div>
             </div>
           </div>
