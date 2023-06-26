@@ -27,9 +27,6 @@ function ConsultationEdit(props) {
   const [lecturersData, setLecturersData] = useState(null);
   const [roomData, setRoomData] = useState(null);
 
-  const [name, setName] = useState("Jaros\u0142aw");
-  const [surname, setSurname] = useState("Krawczyszyn");
-
   const [putResponse, setPutResponse] = useState(null);
   const [newData, setNewData] = useState(null);
   const [finalData, setFinalData] = useState(null);
@@ -39,10 +36,13 @@ function ConsultationEdit(props) {
   const [tempRoom, setTempRoom] = useState(null);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
-  const searchPerson = (firstName, lastName) => {
+  const searchPerson = () => {
     const foundPerson = lecturersData.find(
       (person) =>
-        person.first_name === firstName && person.last_name === lastName
+        person.first_name ===
+          JSON.parse(localStorage.getItem("PROFILE")).firstName &&
+        person.last_name ===
+          JSON.parse(localStorage.getItem("PROFILE")).lastName
     );
 
     if (foundPerson) {
@@ -202,13 +202,13 @@ function ConsultationEdit(props) {
   useEffect(() => {
     if (oldData !== null && fRoomId !== null) {
       if (
-        transDay === "0" ||
         transDay === "1" ||
         transDay === "2" ||
         transDay === "3" ||
         transDay === "4" ||
         transDay === "5" ||
-        transDay === "6"
+        transDay === "6" ||
+        transDay === "7"
       ) {
         const tempFinalinalData = {
           lecturer_id: oldData.lecturer_id,
@@ -249,7 +249,7 @@ function ConsultationEdit(props) {
   }, [room_id]);
 
   const handleRoomChange = (event) => {
-    setLecturer(searchPerson(name, surname));
+    setLecturer(searchPerson());
     setRoom_id(event.target.value);
   };
 
@@ -268,13 +268,13 @@ function ConsultationEdit(props) {
   const handleDayChange = (event) => {
     const translateDay = (dayNum) => {
       const dayTranslations = {
-        Poniedziałek: "0",
-        Wtorek: "1",
-        Środa: "2",
-        Czwartek: "3",
-        Piątek: "4",
-        Sobota: "5",
-        Niedziela: "6",
+        Poniedziałek: "1",
+        Wtorek: "2",
+        Środa: "3",
+        Czwartek: "4",
+        Piątek: "5",
+        Sobota: "6",
+        Niedziela: "7",
       };
 
       if (dayTranslations.hasOwnProperty(dayNum)) {
