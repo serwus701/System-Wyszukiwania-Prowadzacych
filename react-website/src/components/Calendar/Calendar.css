@@ -12,6 +12,7 @@
 .calendar-itself {
     display: flex;
     flex-direction: row;
+    overflow: hidden;
 }
 
 .calendar-grid {

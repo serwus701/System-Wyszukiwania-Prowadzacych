@@ -39,9 +39,7 @@ function Board(props) {
             >
               <div className="event-content">
                 <div>{event.name}</div>
-                <br />
                 <div>{event.timeDisplay}</div>
-                <br />
                 <div>{event.location}</div>
               </div>
             </div>
