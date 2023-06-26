@@ -34,6 +34,7 @@
     background: var(--primary-color);
     border: 3px solid var(--primary-color-dark);
     border-radius: 15px;
+    overflow: hidden;
 }
 
 .dupa {
@@ -49,4 +50,14 @@
     background: var(--primary-color);
     border: 3px solid var(--primary-color-dark);
     border-radius: 15px;
+}
+
+.my-inline-element {
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.course-info-box{
+    overflow: hidden;
+
 }

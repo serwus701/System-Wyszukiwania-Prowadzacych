@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import $ from "jquery";
 
 import "./InformationList.css";
 
 function InformationList(props) {
   const [lecturerInformation, setLecturerInformation] = useState(null);
+  const [height, setHeight] = useState(0);
 
   async function fetchLecturerInformation() {
     const lecturerId = props.lecturerData ? props.lecturerData.id : null;
@@ -42,17 +44,57 @@ function InformationList(props) {
     });
   }
 
-  useState(() => {
+  useEffect(() => {
     fetchLecturerInformation();
   }, [props.lecturerData]);
+
+  useEffect(() => {
+    let totalHeight = 0;
+    $(".my-inline-element").each(function () {
+      totalHeight += $(this).height() * 1.5;
+    });
+    setHeight(totalHeight);
+  }, [props.chosenCourseInfo]);
+
+  useEffect(() => {
+    function handleResize() {
+      let totalHeight = 0;
+      $(".my-inline-element").each(function () {
+        totalHeight += $(this).height() * 1.5;
+      });
+      setHeight(totalHeight);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div className="information-list">
       {props.chosenCourseInfo ? (
-        <div>
-          <div>{props.chosenCourseInfo.course.time}</div>
-          <div>{props.chosenCourseInfo.course.name}</div>
-          <div>{props.chosenCourseInfo.course.location}</div>
+        <div
+          style={{
+            height: `${height}px`,
+          }}
+        >
+          <div className="course-info-box">
+            <div className="my-inline-element">
+              {props.chosenCourseInfo.course.time}
+            </div>
+          </div>
+          <div>
+            <div className="my-inline-element">
+              {props.chosenCourseInfo.course.name}
+            </div>
+          </div>
+          <div>
+            <div className="my-inline-element">
+              {props.chosenCourseInfo.course.location}
+            </div>
+          </div>
         </div>
       ) : null}
 
