@@ -19,11 +19,11 @@ function ConsultationList(props) {
         } else {
           return (
             <div>
-              {Object.entries(sectionItems).map(([itemName, itemValue], index) => (
-                <div>
-                  {itemValue}
-                </div>
-              ))}
+              {Object.entries(sectionItems).map(
+                ([itemName, itemValue], index) => (
+                  <div>{itemValue}</div>
+                )
+              )}
             </div>
           );
         }

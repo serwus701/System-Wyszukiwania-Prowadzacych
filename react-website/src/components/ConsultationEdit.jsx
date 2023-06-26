@@ -102,7 +102,6 @@ function ConsultationEdit(props) {
     });
     const fetchInfo = await response.json();
     if (fetchInfo && fetchInfo.body) {
-      // console.log('Data:', fetchInfo.body);
     }
     return fetchInfo;
   };
