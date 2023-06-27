@@ -16,10 +16,7 @@ client.interceptors.response.use(response => {
 })
 
 client.interceptors.request.use(config => {
-  localStorage.setItem(TOKEN_KEY, '11a9eec95fad750da252b045ebd0d5109093d130')
-  
   const token = localStorage.getItem(TOKEN_KEY)
-
   if (token) {
     config.headers["Authorization"] = `Token ${token}`
   }
