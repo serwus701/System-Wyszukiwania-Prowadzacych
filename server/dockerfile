@@ -1,0 +1,13 @@
+FROM python:3.10-alpine
+
+
+WORKDIR /server
+ADD requirements.txt /server/requirements.txt
+RUN pip install -r requirements.txt
+RUN pip install social-auth-app-django
+ADD . /server/
+
+
+EXPOSE 8000
+
+CMD ["python", "manage.py", "runserver"]
