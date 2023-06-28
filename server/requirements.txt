@@ -1,9 +1,9 @@
 social-auth-app-django==5.2.0
+django-cors-headers
+djoser
 Django==4.2
 djangorestframework==3.14.0
 rauth==0.7.3
 Requests==2.31.0
 python-social-auth
 social-auth-core==4.4.2
-
-
