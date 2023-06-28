@@ -1,13 +1,13 @@
 FROM python:3.10-alpine
 
+WORKDIR /usr/src/app
 
-WORKDIR /server
-ADD requirements.txt /server/requirements.txt
+RUN pip install --upgrade pip
+COPY ./requirements.txt /usr/src/app
 RUN pip install -r requirements.txt
-RUN pip install social-auth-app-django
-ADD . /server/
 
+COPY . /usr/src/app
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
