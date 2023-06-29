@@ -31,19 +31,18 @@ function Login() {
       fetchProfile()  
     }
   }, [isSuccess, fetchProfile])
-
-  useEffect(() => {
-    if (googleAuth) {
-      window.location.replace(googleAuth.authorizationUrl)
-    }
-  }, [googleAuth])
-
   const handleGoogleLogin = () => {
     fetchGoogleAuth()
   }
 
   return (
-    handleGoogleLogin()
+    <div className="App">
+      {profile ? (
+        <h1>Pomyślnie zalogowano!</h1>
+      ) : (
+        handleGoogleLogin()
+      )}
+    </div>
   )
 }
 export default Login
