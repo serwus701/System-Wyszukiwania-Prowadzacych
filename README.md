@@ -6,3 +6,6 @@
 ```
 docker compose up
 ```
+
+## Wdrażanie aplikacji w realnym środowisku
+Podczas wdrażania aplikacji należy zmienić klucze dostępu zawarte w server/settings.json. Narazie używane są klucze prywatne studentów :). Następnie należy podmienić adresy URL używane do proxy, na pożądane w server/server/settings.py [CORS_ALLOWED_ORIGINS] [CORS_ALLOWED_WHITELIST].
