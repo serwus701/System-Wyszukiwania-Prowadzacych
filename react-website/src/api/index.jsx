@@ -26,7 +26,7 @@ client.interceptors.request.use(config => {
 export const getGoogleAuthLink = async () => {
   const response = await client.get("/auth/o/google-oauth2/", {
     params: {
-      redirect_uri: "http://127.0.0.1:3000"
+      redirect_uri: "http://127.0.0.1:3000/login"
     },
     withCredentials: true
   })

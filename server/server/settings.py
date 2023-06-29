@@ -176,7 +176,10 @@ CORS_ALLOW_CREDENTIALS = True
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'SOCIAL_AUTH_TOKEN_STRATEGY': 'server.strategy.TokenStrategy',
-    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://127.0.0.1:3000'],
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': 
+        ['http://127.0.0.1:3000', 
+         "http://localhost:3000/login",
+        "http://127.0.0.1:3000/login"],
 }
 REST_FRAMEWORK = {
    'DEFAULT_AUTHENTICATION_CLASSES': (
